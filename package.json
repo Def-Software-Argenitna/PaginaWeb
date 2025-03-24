@@ -7,8 +7,12 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+<<<<<<< HEAD
     "preview": "vite preview",
     "start": "vite preview"
+=======
+    "preview": "vite preview"
+>>>>>>> 549bbef2c67276e01338c55e4665aab4e8120aac
   },
   "dependencies": {
     "@vercel/analytics": "^1.3.1",
