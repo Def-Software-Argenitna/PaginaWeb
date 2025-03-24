@@ -1,0 +1,11 @@
+.background {
+    background-image: url('/public/EgUx.gif'); /* Asegúrate de la ruta correcta */
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Ajusta la altura según sea necesario */
+    width: 100vw; /* Ajusta el ancho al 100% del viewport */
+    position: fixed; /* Fija la imagen al fondo */
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
