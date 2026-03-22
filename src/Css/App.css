@@ -58,8 +58,8 @@
   box-shadow: none;
 }
 
-.hero-video {
-  position: absolute;
+    background: #181a1b;
+    box-shadow: 0 2px 16px #000a;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -68,19 +68,19 @@
 
 .hero-overlay {
   position: absolute;
-  inset: 0;
-  background:
+    background: #23243a;
+    box-shadow: 0 2px 8px #000a;
     linear-gradient(115deg, rgba(11, 10, 10, 0.85) 0%, rgba(11, 10, 10, 0.68) 45%, rgba(11, 10, 10, 0.9) 100%),
     linear-gradient(180deg, rgba(112, 24, 17, 0.2), rgba(18, 15, 14, 0.25));
 }
 
 .hero-content {
-  position: relative;
+    color: #fff;
   z-index: 1;
   width: min(1100px, 96vw);
   margin: 0 auto;
-  min-height: 70vh;
-  display: flex;
+    background: #181a1b;
+    box-shadow: none;
   align-items: flex-start;
   justify-content: space-between;
   gap: 3rem;
@@ -104,106 +104,107 @@
   max-width: 520px;
   margin-top: 2.5rem;
 }
-
-.eyebrow,
-.section-tag,
+    border: 1px solid #3a3dff;
+    background: rgba(58,61,255,0.08);
+    color: #3a3dff;
 .form-tag {
   width: fit-content;
   padding: 0.45rem 0.8rem;
-  border: 1px solid rgba(180, 89, 255, 0.22);
-  border-radius: 999px;
-  background: rgba(180, 89, 255, 0.08);
-  color: #e0d7ff;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
+    background: #3a3dff;
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 8px #3a3dff33;
+    font-weight: 700;
+    transition: transform 180ms, box-shadow 180ms;
   text-transform: uppercase;
 }
 
-
-
-.hero-copy h1 {
-  margin: 0;
+    background: #23243a;
+    color: #3a3dff;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 24px #3a3dff55;
   max-width: 12ch;
   font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
   font-size: clamp(3.4rem, 7vw, 6.6rem);
-  line-height: 0.95;
-  letter-spacing: 0.03em;
-}
+    background: #23243a;
+    border: 1px solid #23243a;
+    box-shadow: 0 24px 60px #000a;
 
 .hero-description {
   max-width: 62ch;
   margin: 0;
   font-size: 1.08rem;
   color: rgba(255, 249, 242, 0.86);
-}
-
+    background: #23243a;
+    border: 1px solid #23243a;
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.9rem;
+    color: #3a3dff;
 }
 
 .primary-action,
-.secondary-action {
+    background: #181a1b;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
+    color: #b6faff;
   padding: 0.9rem 1.4rem;
   border-radius: 999px;
   font-weight: 700;
-  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
-}
+    background: #23243a;
+    border: 1px solid #23243a;
 
 .modern-btn {
   background: linear-gradient(90deg, #3a3dff 0%, #a259ff 100%);
-  color: #fff;
-  border: none;
+    background: rgba(58,61,255,0.08);
+    color: #3a3dff;
   box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
   font-weight: 700;
   transition: transform 180ms, box-shadow 180ms;
-}
+    color: #3a3dff;
 
 .modern-btn:hover {
   background: linear-gradient(90deg, #a259ff 0%, #3a3dff 100%);
-  color: #fff;
+    color: #e0e0e0;
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 6px 24px rgba(60, 60, 120, 0.18);
 }
-
+    color: #b6faff;
 .hero-metrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  padding-top: 1rem;
-}
+    border: 1px solid #3a3dff;
+    background: #23243a;
+    color: #3a3dff;
 
 .hero-metrics article {
   padding: 1rem;
-  border: 1px solid rgba(255, 247, 241, 0.14);
+    background: #3a3dff;
+    color: #fff;
   border-radius: 24px;
   background: rgba(255, 247, 241, 0.06);
   backdrop-filter: blur(8px);
-}
+    color: #3a3dff;
 
 .hero-metrics strong {
   display: block;
-  margin-bottom: 0.35rem;
-  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+    background: #23243a;
+    border: 1px solid #23243a;
   font-size: 1.5rem;
   letter-spacing: 0.05em;
 }
-
+    background: #181a1b;
 .hero-metrics span {
   color: rgba(255, 249, 242, 0.82);
 }
 
-.hero-form-panel {
+    color: #3a3dff;
   animation: fadeUp 820ms ease-out;
 }
 
-.content-grid {
-  width: min(1180px, calc(100% - 2rem));
+    border-color: #3a3dff;
+    background: rgba(58,61,255,0.08);
   margin: 0 auto;
   padding: 4rem 0 5rem;
   display: grid;
