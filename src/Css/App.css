@@ -126,9 +126,8 @@
   max-width: 12ch;
   font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
   font-size: clamp(3.4rem, 7vw, 6.6rem);
-    background: #23243a;
-    border: none;
-    box-shadow: none;
+    /* Se hereda de .glass-panel en Modern.css para glassmorphism */
+    /* background, border, box-shadow, blur y color ya definidos en .glass-panel */
 
 .hero-description {
   max-width: 62ch;

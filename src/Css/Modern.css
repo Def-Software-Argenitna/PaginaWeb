@@ -1,7 +1,40 @@
 Modern, techy, animated background for the site
 body {
-  background: #101014;
+  background: linear-gradient(135deg, #181a1b 0%, #23243a 100%) fixed;
   color: #f7f7f7;
+  /* Glassmorphism panel base */
+  .glass-panel, .info-section, .benefit-card, .module-card, .sector-panel, .process-panel, .plan-card, .cta-strip, .architecture-strip, .sector-list span {
+    background: rgba(30,34,60,0.55);
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+    backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    color: #f7f7f7;
+  }
+  .modern-btn, .plan-action, .contact-form button {
+    background: linear-gradient(90deg, #3a3dff 0%, #00ffe7 100%);
+    color: #181a1b;
+    border: none;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    box-shadow: 0 2px 12px #00ffe755;
+    transition: background 180ms, color 180ms, box-shadow 180ms;
+  }
+  .modern-btn:hover, .plan-action:hover, .contact-form button:hover {
+    background: linear-gradient(90deg, #00ffe7 0%, #3a3dff 100%);
+    color: #181a1b;
+    box-shadow: 0 6px 24px #3a3dff99;
+  }
+  .eyebrow, .section-tag, .form-tag, .plan-badge {
+    border: 1.5px solid #00ffe7;
+    background: rgba(0,255,231,0.10);
+    color: #00ffe7;
+    border-radius: 999px;
+    font-size: 0.92em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
   font-family: 'Manrope', Arial, sans-serif;
   min-height: 100vh;
   margin: 0;
