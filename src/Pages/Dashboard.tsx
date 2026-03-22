@@ -20,6 +20,9 @@ export default function Dashboard() {
   const [loadingData, setLoadingData] = useState(true);
   const [savingMsg, setSavingMsg] = useState('');
 
+  // Form UI states
+  const [showCardForm, setShowCardForm] = useState(false);
+
   useEffect(() => {
     async function fetchUserData() {
       if (currentUser) {
@@ -86,8 +89,10 @@ export default function Dashboard() {
         {/* Sidebar Nav */}
         <div className="glass-panel reveal" style={{ padding: '1.5rem 1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', height: 'fit-content' }}>
           <div style={{ padding: '0 1rem', marginBottom: '1.5rem' }}>
-            <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Portal Privado</p>
-            <h3 style={{ color: '#fff', fontSize: '1.2rem', marginTop: '0.5rem', wordBreak: 'break-all' }}>{currentUser?.email || 'Mi Comercio'}</h3>
+            <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Portal de Clientes</p>
+            <h3 style={{ color: '#fff', fontSize: '1.2rem', marginTop: '0.5rem', wordBreak: 'break-all' }}>
+              {razonSocial && razonSocial !== 'Pendiente (Contactar Soporte)' && razonSocial !== 'No asignada (Contactar Soporte)' ? razonSocial : 'Cargando Empresa...'}
+            </h3>
           </div>
           
           <button onClick={() => setActiveTab('licencia')} className={`modern-btn ${activeTab === 'licencia' ? 'main-btn' : 'secondary-btn'}`} style={{ border: 'none', textAlign: 'left', justifyContent: 'flex-start', padding: '0.8rem 1rem', background: activeTab === 'licencia' ? 'var(--accent-cyan)' : 'transparent', color: activeTab === 'licencia' ? '#000' : '#fff' }}>
@@ -199,7 +204,36 @@ export default function Dashboard() {
                 </div>
                 <span style={{ color: 'var(--accent-cyan)', fontSize: '0.9rem', cursor: 'pointer' }}>Editar</span>
               </div>
-              <button className="modern-btn secondary-btn" style={{ marginTop: '2rem' }}>+ Agregar nuevo método</button>
+              
+              {!showCardForm ? (
+                <button onClick={() => setShowCardForm(true)} className="modern-btn secondary-btn" style={{ marginTop: '2rem' }}>+ Añadir Nuevo Método de Pago</button>
+              ) : (
+                <form className="contact-form reveal" onSubmit={(e) => { e.preventDefault(); setShowCardForm(false); }} style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '12px', border: '1px solid var(--accent-cyan)', marginTop: '2rem' }}>
+                  <h3 style={{ color: '#fff', marginBottom: '1.5rem', fontSize: '1.1rem' }}>Detalles de la Nueva Tarjeta</h3>
+                  <div className="form-group">
+                    <label>Nombre del Titular</label>
+                    <input type="text" placeholder="Ej: JUAN PABLO PEREZ" required />
+                  </div>
+                  <div className="form-group" style={{ marginTop: '1rem' }}>
+                    <label>Número de Tarjeta</label>
+                    <input type="text" placeholder="XXXX XXXX XXXX XXXX" maxLength={19} required />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1rem' }}>
+                    <div className="form-group">
+                      <label>MM / AA</label>
+                      <input type="text" placeholder="12/28" maxLength={5} required />
+                    </div>
+                    <div className="form-group">
+                      <label>Código CVV</label>
+                      <input type="text" placeholder="123" maxLength={4} required />
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
+                    <button type="submit" className="modern-btn main-btn">Guardar Tarjeta</button>
+                    <button type="button" onClick={() => setShowCardForm(false)} className="modern-btn secondary-btn" style={{ background: 'transparent', border: '1px solid #ff6b6b', color: '#ff6b6b' }}>Cancelar</button>
+                  </div>
+                </form>
+              )}
             </div>
           )}
 
