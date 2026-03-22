@@ -5,7 +5,7 @@
   line-height: 1.5;
   font-weight: 400;
   color: #e0e0e0;
-  background: #05050a;
+  /* background: #05050a;  -- Moved to specialized containers */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,6 +14,7 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #05050a; /* Fallback */
 }
 
 * {
@@ -24,14 +25,12 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  /* El fondo ya está definido en :root, pero aseguramos negro para evitar flashes blancos */
-  background: #05050a;
+  background-color: transparent; /* Permite ver el AtmosphericBackground */
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.3s;
 }
 
 img {
