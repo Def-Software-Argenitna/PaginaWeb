@@ -11,6 +11,8 @@ import CasosExito from './Pages/CasosExito';
 import CentroAyuda from './Pages/CentroAyuda';
 import EstadoSistema from './Pages/EstadoSistema';
 import Documentacion from './Pages/Documentacion';
+import Login from './Pages/Login';
+import Dashboard from './Pages/Dashboard';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -72,7 +74,7 @@ function App() {
             <Link to="/contacto">Contacto</Link>
           </nav>
           <div className="auth-buttons">
-            <Link to="/contacto" className="modern-btn nav-btn">Ingresar</Link>
+            <Link to="/login" className="modern-btn nav-btn">Ingresar</Link>
           </div>
         </div>
       </header>
@@ -87,6 +89,8 @@ function App() {
         <Route path="/centro-ayuda" element={<CentroAyuda />} />
         <Route path="/estado-sistema" element={<EstadoSistema />} />
         <Route path="/documentacion" element={<Documentacion />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
 
       <footer className="new-footer">
