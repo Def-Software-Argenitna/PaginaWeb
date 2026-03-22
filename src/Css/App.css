@@ -263,8 +263,8 @@
 .sector-panel,
 .process-panel {
   border-radius: 24px;
-  background: #fffaf6;
-  border: 1px solid rgba(95, 49, 28, 0.1);
+  background: #23243a;
+  border: 1px solid #00ffe711;
 }
 
 .benefit-card {
@@ -281,7 +281,7 @@
 }
 
 .benefit-index {
-  color: #b43b28;
+  color: #00ffe7;
   font-size: 2rem;
   line-height: 1;
 }
@@ -295,7 +295,12 @@
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: 1.5rem;
   align-items: center;
-  background: linear-gradient(135deg, #fff6ef, #f6e4d8);
+  background: linear-gradient(135deg, #23243a, #181a1b);
+}
+.architecture-strip p {
+  margin: 0;
+  font-size: 1.02rem;
+  color: #b6faff;
 }
 
 .architecture-strip p {
@@ -313,16 +318,16 @@
   gap: 1rem;
   padding: 1.5rem;
   border-radius: 28px;
-  background: linear-gradient(180deg, #fffaf6, #fff3eb);
-  border: 1px solid rgba(95, 49, 28, 0.12);
+  background: linear-gradient(180deg, #23243a, #181a1b);
+  border: 1px solid #00ffe711;
 }
 
 .plan-badge {
   width: fit-content;
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
-  background: rgba(180, 59, 40, 0.1);
-  color: #9f2f1f;
+  background: rgba(0,255,231,0.08);
+  color: #00ffe7;
   font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -331,13 +336,13 @@
 
 .plan-card h3 {
   margin: 0;
-  color: #231813;
+  color: #00ffe7;
   font-size: 1.4rem;
 }
 
 .plan-card p {
   margin: 0;
-  color: #5a4438;
+  color: #e0e0e0;
 }
 
 .plan-card ul {
@@ -345,7 +350,7 @@
   padding-left: 1.15rem;
   display: grid;
   gap: 0.65rem;
-  color: #4f3d34;
+  color: #b6faff;
 }
 
 .plan-action {
@@ -355,14 +360,16 @@
   min-height: 48px;
   padding: 0.85rem 1rem;
   border-radius: 16px;
-  border: 1px solid rgba(180, 59, 40, 0.2);
-  background: #ffffff;
-  color: #9f2f1f;
+  border: 1px solid #00ffe7;
+  background: #23243a;
+  color: #00ffe7;
   font-weight: 800;
+  transition: background 180ms, color 180ms;
 }
 
 .plan-action:hover {
-  background: #fff3ea;
+  background: #00ffe7;
+  color: #181a1b;
 }
 
 .module-card {
@@ -371,7 +378,7 @@
 
 .module-card h3 {
   margin: 0 0 0.6rem;
-  color: #1f1511;
+  color: #00ffe7;
 }
 
 .split-section {
@@ -393,8 +400,8 @@
 .sector-list span {
   padding: 0.7rem 0.95rem;
   border-radius: 999px;
-  background: #f5e6da;
-  border: 1px solid rgba(180, 59, 40, 0.14);
+  background: #23243a;
+  border: 1px solid #00ffe711;
 }
 
 .process-panel ol {
@@ -409,17 +416,17 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background: linear-gradient(135deg, #2a1712, #623124);
+  background: linear-gradient(135deg, #23243a, #181a1b);
 }
 
 .cta-strip h2,
 .cta-strip .section-tag {
-  color: #fff7f1;
+  color: #00ffe7;
 }
 
 .cta-strip .section-tag {
-  border-color: rgba(255, 247, 241, 0.2);
-  background: rgba(255, 247, 241, 0.08);
+  border-color: #00ffe7;
+  background: rgba(0,255,231,0.08);
 }
 
 @keyframes fadeUp {

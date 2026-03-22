@@ -3,6 +3,7 @@ import './Css/Modern.css';
 import ContactForm from './Components/ContactForm';
 import TypewriterHero from './Components/TypewriterHero';
 import ParallaxBackground from './Components/ParallaxBackground';
+import ParticlesBackground from './Components/ParticlesBackground';
 import Logo from './Imagenes/fondo-final.png';
 
 const benefits = [
@@ -78,7 +79,7 @@ function App() {
 
   return (
     <div className="page-shell">
-      <ParallaxBackground />
+      <ParticlesBackground />
       <header className="main-header">
         <div className="header-content">
           <img src={Logo} alt="Def Software" className="header-logo" />
@@ -120,6 +121,41 @@ function App() {
       </section>
 
       <main className="content-grid">
+        {/* Sección de características */}
+        <section className="info-section" style={{marginTop: '3rem', animation: 'fadeUp 1s'}}>
+          <h2 style={{fontSize: '2.2rem', marginBottom: '1.5rem'}}>Características principales</h2>
+          <div style={{display: 'flex', flexWrap: 'wrap', gap: '2.5rem'}}>
+            <div style={{flex: '1 1 220px', minWidth: 220}}>
+              <h3 style={{fontSize: '1.3rem'}}>Gestión integral</h3>
+              <p>Administra ventas, stock, compras y reportes desde un solo lugar, con paneles visuales y datos en tiempo real.</p>
+            </div>
+            <div style={{flex: '1 1 220px', minWidth: 220}}>
+              <h3 style={{fontSize: '1.3rem'}}>Automatización</h3>
+              <p>Automatiza tareas repetitivas, controla inventario y recibe alertas inteligentes para tomar mejores decisiones.</p>
+            </div>
+            <div style={{flex: '1 1 220px', minWidth: 220}}>
+              <h3 style={{fontSize: '1.3rem'}}>Escalable y seguro</h3>
+              <p>Funciona para un local o una cadena, con acceso seguro y respaldo automático de la información.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Sección de beneficios */}
+        <section className="info-section" style={{animation: 'fadeUp 1.2s'}}>
+          <h2 style={{fontSize: '2.2rem', marginBottom: '1.5rem'}}>Beneficios para tu negocio</h2>
+          <ul style={{display: 'grid', gap: '1.2rem', padding: 0, listStyle: 'none'}}>
+            <li>✔️ Ahorra tiempo y reduce errores operativos</li>
+            <li>✔️ Visualiza métricas clave y reportes claros</li>
+            <li>✔️ Mejora la experiencia de tu equipo y tus clientes</li>
+            <li>✔️ Soporte y actualizaciones continuas</li>
+          </ul>
+        </section>
+
+        {/* Llamado a la acción */}
+        <section className="info-section" style={{textAlign: 'center', animation: 'fadeUp 1.4s'}}>
+          <h2 style={{fontSize: '2.2rem', marginBottom: '1.2rem'}}>¿Listo para modernizar tu gestión?</h2>
+          <a href="#contacto" className="primary-action modern-btn" style={{fontSize: '1.3rem', padding: '1.2rem 3rem', marginTop: '1.5rem'}}>Solicitar una demo</a>
+        </section>
         <section className="info-section highlight-section">
           <div>
             <span className="section-tag">Que resuelve</span>
