@@ -65,8 +65,13 @@ function App() {
       
       <header className="new-modern-header">
         <div className="new-header-content">
-          <div className="brand-logo">
-            <span></span> DEF
+          <div className="brand-logo" style={{ cursor: 'pointer', gap: '8px' }}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span style={{ fontWeight: 800, fontSize: '1.4rem', letterSpacing: '0px' }}>DEF<span style={{ fontWeight: 300, color: 'var(--text-dim)', marginLeft: '4px' }}>Commerce</span></span>
           </div>
           <nav className="nav-links">
             <a href="#features">Plataforma</a>
@@ -80,7 +85,6 @@ function App() {
       <main className="new-main-content">
         <section className="new-hero-section">
           <div className="hero-panel">
-            <div className="hero-eyebrow">Def Software Engine v3.0</div>
             <TypewriterHero />
             <p style={{ color: 'var(--text-dim)', fontSize: '1.25rem', maxWidth: '650px', margin: '1.5rem auto 3.5rem', lineHeight: 1.6 }}>
               Impulsamos la transformación de tu empresa con herramientas hiper-optimizadas, interfaces de vidrio y un control absoluto sobre tu data.
@@ -157,10 +161,15 @@ function App() {
       <footer className="new-footer" id="contacto">
         <div className="footer-content">
           <div className="footer-col" style={{ paddingRight: '2rem' }}>
-            <div className="brand-logo" style={{ marginBottom: '1.5rem' }}>
-              <span></span> DEF
+            <div className="brand-logo" style={{ marginBottom: '1.5rem', gap: '8px' }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              <span style={{ fontWeight: 800, fontSize: '1.4rem', letterSpacing: '0px' }}>DEF<span style={{ fontWeight: 300, color: 'var(--text-dim)', marginLeft: '4px' }}>Commerce</span></span>
             </div>
-            <p>Forjando el futuro digital con software de gestión empresarial de última generación. Optimización, diseño y velocidad llevados al límite.</p>
+            <p>Forjando el futuro digital con software de gestión comercial. Optimización, diseño y facturación en un solo lugar.</p>
           </div>
           <div className="footer-col">
             <h4>Producto</h4>

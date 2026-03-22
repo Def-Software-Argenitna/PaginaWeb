@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 const words = [
-  'Software moderno para tu negocio',
-  'Control total, simple y visual',
-  'Automatización y datos en tiempo real',
-  'Experiencias digitales de alto impacto',
+  'Gestión inteligente para tu comercio',
+  'Control de ventas e inventario',
+  'Facturación automatizada',
+  'Lleva tu negocio al siguiente nivel',
 ];
 
 export default function TypewriterHero() {
