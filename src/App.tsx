@@ -1,5 +1,6 @@
 // import { useState } from 'react';
 import './Css/App.css';
+import './Css/Modern.css';
 import ContactForm from './Components/ContactForm';
 import Logo from './Imagenes/fondo-final.png';
 
@@ -77,6 +78,7 @@ function App() {
 
   return (
     <div className="page-shell">
+      <div className="animated-bg" />
       <header className="main-header">
         <div className="header-content">
           <img src={Logo} alt="Def Software" className="header-logo" />
@@ -86,11 +88,15 @@ function App() {
       <section className="hero-section modern-bg">
         <div className="hero-content modern-hero">
           <div className="hero-copy modern-copy">
-            <div className="eyebrow">Soluciones modernas para comercios</div>
-            <h1>Software de gestión adaptable y moderno</h1>
-            <p className="hero-description">
-              Administra ventas, stock, compras y reportes con una plataforma ágil, visual y escalable para cualquier tipo de local.
-            </p>
+            <div className="eyebrow">Soluciones tecnológicas para comercios</div>
+            <h1>Software de gestión <span style={{color:'#00ffe7'}}>moderno</span> y <span style={{color:'#1a1aff'}}>dinámico</span></h1>
+            {/* Hero slider (Swiper.js) irá aquí */}
+            <div className="hero-slider">
+              {/* TODO: Integrar Swiper.js para slides animados */}
+              <div className="swiper-slide">Control total de tu negocio en tiempo real</div>
+              <div className="swiper-slide">Paneles visuales y reportes interactivos</div>
+              <div className="swiper-slide">Automatización y escalabilidad para cualquier local</div>
+            </div>
             <div className="hero-actions">
               <a href="#contacto" className="primary-action modern-btn">
                 Solicitar una demo
