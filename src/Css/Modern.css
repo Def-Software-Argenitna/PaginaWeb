@@ -35,7 +35,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 100;
-  background: rgba(5, 5, 10, 0.8);
+  background: rgba(5, 5, 10, 0.4); /* Less opaque */
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-glass);
   padding: 1rem 0;
