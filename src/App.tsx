@@ -8,15 +8,13 @@ import TypewriterHero from './Components/TypewriterHero';
 import ParticlesBackground from './Components/ParticlesBackground';
 
 function App() {
-  return (
-    <div className="page-shell new-modern-shell">
-      <ParticlesBackground />
-      <header className="main-header new-modern-header">
-        <div className="header-content new-header-content">
+  import './Css/App.css';
+  import './Css/Modern.css';
+  import TypewriterHero from './Components/TypewriterHero';
+  import ParticlesBackground from './Components/ParticlesBackground';
           <span className="brand-logo">DS</span>
           <span className="brand-title">DEF Software</span>
         </div>
-      </header>
       <main className="main-content new-main-content">
         <section className="hero-section new-hero-section">
           <div className="hero-panel glass-panel">
