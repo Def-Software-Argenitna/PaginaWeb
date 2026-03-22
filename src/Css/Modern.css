@@ -1,22 +1,16 @@
 // Modern, techy, animated background for the site
 body {
-  background: #0a0a23;
-  color: #e0e0e0;
+  background: #181a1b;
+  color: #fff;
   font-family: 'Manrope', Arial, sans-serif;
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
 }
 
+/* Fondo animado eliminado para fondo gris oscuro limpio */
 .animated-bg {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(circle at 20% 30%, #1a1aff 0%, transparent 60%),
-              radial-gradient(circle at 80% 70%, #00ffe7 0%, transparent 60%),
-              linear-gradient(120deg, #0a0a23 60%, #1a1aff 100%);
-  animation: bgMove 12s ease-in-out infinite alternate;
+  display: none;
 }
 
 @keyframes bgMove {
@@ -35,10 +29,10 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  background: rgba(20, 20, 40, 0.7);
+  background: #232526;
   border-radius: 18px;
   box-shadow: 0 4px 32px #000a;
-  color: #00ffe7;
+  color: #fff;
   margin: 0 8px;
 }
 
@@ -49,20 +43,20 @@ body {
 }
 
 .modern-btn {
-  background: linear-gradient(90deg, #00ffe7 0%, #1a1aff 100%);
-  color: #0a0a23;
+  background: linear-gradient(90deg, #ffb347 0%, #ff416c 100%);
+  color: #fff;
   border: none;
   border-radius: 999px;
   font-weight: 700;
   padding: 0.9rem 2.2rem;
   font-size: 1.1rem;
-  box-shadow: 0 2px 12px #00ffe799;
+  box-shadow: 0 2px 12px #ff416c55;
   transition: transform 180ms, box-shadow 180ms;
 }
 
 .modern-btn:hover {
-  background: linear-gradient(90deg, #1a1aff 0%, #00ffe7 100%);
+  background: linear-gradient(90deg, #ff416c 0%, #ffb347 100%);
   color: #fff;
   transform: scale(1.06);
-  box-shadow: 0 6px 32px #1a1aff99;
+  box-shadow: 0 6px 32px #ff416c99;
 }
