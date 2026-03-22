@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
 const words = [
-  'Software moderno para tu negocio.',
-  'Control total, simple y visual.',
-  'Automatización y datos en tiempo real.',
+  'Software moderno para tu negocio',
+  'Control total, simple y visual',
+  'Automatización y datos en tiempo real',
+  'Experiencias digitales de alto impacto',
 ];
 
 export default function TypewriterHero() {
@@ -15,29 +16,60 @@ export default function TypewriterHero() {
 
   useEffect(() => {
     if (pause) {
-      setTimeout(() => setPause(false), 1200);
-      return;
+      const timer = setTimeout(() => setPause(false), 2000);
+      return () => clearTimeout(timer);
     }
     const current = words[wordIdx];
+    const typingSpeed = deleting ? 40 : 80;
+
     if (!deleting && charIdx < current.length) {
-      setTimeout(() => setCharIdx(charIdx + 1), 60);
-      setDisplayed(current.slice(0, charIdx + 1));
+      const timer = setTimeout(() => {
+        setCharIdx(charIdx + 1);
+        setDisplayed(current.slice(0, charIdx + 1));
+      }, typingSpeed);
+      return () => clearTimeout(timer);
     } else if (!deleting && charIdx === current.length) {
-      setTimeout(() => setDeleting(true), 1200);
+      setPause(true);
+      setDeleting(true);
     } else if (deleting && charIdx > 0) {
-      setTimeout(() => setCharIdx(charIdx - 1), 30);
-      setDisplayed(current.slice(0, charIdx - 1));
+      const timer = setTimeout(() => {
+        setCharIdx(charIdx - 1);
+        setDisplayed(current.slice(0, charIdx - 1));
+      }, typingSpeed / 2);
+      return () => clearTimeout(timer);
     } else if (deleting && charIdx === 0) {
       setDeleting(false);
-      setPause(true);
       setWordIdx((wordIdx + 1) % words.length);
     }
   }, [charIdx, deleting, pause, wordIdx]);
 
   return (
-    <h1 style={{fontSize: '2.8rem', fontWeight: 700, letterSpacing: '0.01em', minHeight: '3.5rem'}}>
-      {displayed}
-      <span style={{color: '#00ffe7', fontWeight: 400}}>|</span>
-    </h1>
+    <div className="typewriter-container" style={{ minHeight: '120px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <h1 style={{ 
+        fontSize: 'clamp(2rem, 5vw, 4rem)', 
+        fontWeight: 800, 
+        lineHeight: 1.1,
+        margin: '0 auto',
+        maxWidth: '800px',
+        background: 'linear-gradient(to right, #fff, #888)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        display: 'inline'
+      }}>
+        {displayed}
+        <span style={{ 
+          color: '#00f2ff', 
+          fontWeight: 300, 
+          animation: 'blink 1s step-end infinite',
+          marginLeft: '4px'
+        }}>_</span>
+      </h1>
+      <style>{`
+        @keyframes blink {
+          from, to { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      `}</style>
+    </div>
   );
 }
