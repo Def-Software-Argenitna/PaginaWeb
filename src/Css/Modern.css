@@ -345,15 +345,26 @@ body {
 .nav-btn {
   padding: 0.5rem 1.2rem;
   font-size: 0.85rem;
+  background: var(--accent-cyan);
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
 }
 
-.main-btn {
+.nav-btn:hover {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.main-btn:not(.nav-btn) {
   background: #fff;
   color: #000;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.main-btn:hover {
+.main-btn:not(.nav-btn):hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
   background: #f0f0f0;
@@ -381,6 +392,18 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(0, 242, 255, 0.5);
   filter: brightness(1.1);
+}
+
+/* Scroll Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* CTA Section */

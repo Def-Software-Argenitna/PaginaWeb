@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './Css/Modern.css';
 import TypewriterHero from './Components/TypewriterHero';
 import AtmosphericBackground from './Components/AtmosphericBackground';
@@ -59,14 +60,42 @@ const PricingPlans = [
 ];
 
 function App() {
+  const [logoError, setLogoError] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const hiddenElements = document.querySelectorAll('.reveal');
+    hiddenElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="new-modern-shell">
       <AtmosphericBackground />
       
       <header className="new-modern-header">
-        <div className="new-header-content">
-          <div className="brand-logo" style={{ cursor: 'pointer' }}>
-            <img src="/logo.png" alt="Def Software" style={{ height: '50px', objectFit: 'contain' }} />
+        <div className="new-header-content reveal">
+          <div className="brand-logo" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            {!logoError ? (
+              <img src="/logo.png" alt="Def Software" style={{ height: '50px', objectFit: 'contain' }} onError={() => setLogoError(true)} />
+            ) : (
+              <>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                <span style={{ fontWeight: 800, fontSize: '1.4rem' }}>DEF<span style={{ fontWeight: 300, color: 'var(--text-dim)' }}>Software</span></span>
+              </>
+            )}
           </div>
           <nav className="nav-links">
             <a href="#features">Plataforma</a>
@@ -79,7 +108,7 @@ function App() {
 
       <main className="new-main-content">
         <section className="new-hero-section">
-          <div className="hero-panel">
+          <div className="hero-panel reveal">
             <TypewriterHero />
             <p style={{ color: 'var(--text-dim)', fontSize: '1.25rem', maxWidth: '650px', margin: '1.5rem auto 3.5rem', lineHeight: 1.6 }}>
               Sistema de gestión integral para comercios. Controla tu inventario, agiliza tus ventas y automatiza la facturación diaria desde una plataforma 100% intuitiva y segura.
@@ -92,13 +121,13 @@ function App() {
         </section>
 
         <section id="features" className="new-info-section">
-          <div className="section-header">
+          <div className="section-header reveal">
             <h2>Ecosistema de Alto Rendimiento</h2>
             <p>Construido desde cero para ofrecer la máxima velocidad, una interfaz intuitiva y tecnologías revolucionarias integradas directamente en su núcleo.</p>
           </div>
           <div className="info-grid">
             {Features.map((f, i) => (
-              <div key={i} className="info-card glass-panel">
+              <div key={i} className="info-card glass-panel reveal" style={{ transitionDelay: `${i * 0.15}s` }}>
                 <div className="icon-wrapper">{f.icon}</div>
                 <h3>{f.title}</h3>
                 <p>{f.description}</p>
@@ -108,13 +137,13 @@ function App() {
         </section>
 
         <section id="planes" className="new-info-section" style={{ position: 'relative', zIndex: 10 }}>
-          <div className="section-header">
+          <div className="section-header reveal">
             <h2>Planes Transparentes</h2>
             <p>Escale sin límites. Elija el plan que mejor se adapte a las necesidades operativas de su empresa hoy, y mejore mañana.</p>
           </div>
           <div className="pricing-grid">
             {PricingPlans.map((plan, i) => (
-              <div key={i} className={`pricing-card glass-panel ${plan.popular ? 'popular' : ''}`}>
+              <div key={i} className={`pricing-card glass-panel reveal ${plan.popular ? 'popular' : ''}`} style={{ transitionDelay: `${i * 0.15}s` }}>
                 <div className="pricing-tier">{plan.name}</div>
                 <div className="pricing-price">{plan.price}<span>/mes</span></div>
                 <div className="pricing-desc">{plan.desc}</div>
@@ -135,7 +164,7 @@ function App() {
         </section>
 
         <section className="cta-section" id="demo">
-          <div className="cta-panel">
+          <div className="cta-panel reveal">
             <h2>Descarga la Demo Hoy Mismo.</h2>
             <p style={{ color: 'var(--text-dim)', fontSize: '1.2rem', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem' }}>
               Experimente el futuro del software de gestión empresarial. Instale la versión de prueba en segundos y descubra el impacto real en su productividad.
@@ -154,10 +183,21 @@ function App() {
       </main>
 
       <footer className="new-footer" id="contacto">
-        <div className="footer-content">
+        <div className="footer-content reveal">
           <div className="footer-col" style={{ paddingRight: '2rem' }}>
-            <div className="brand-logo" style={{ marginBottom: '1.5rem' }}>
-              <img src="/logo.png" alt="Def Software" style={{ height: '60px', objectFit: 'contain' }} />
+            <div className="brand-logo" style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {!logoError ? (
+                <img src="/logo.png" alt="Def Software" style={{ height: '60px', objectFit: 'contain' }} onError={() => setLogoError(true)} />
+              ) : (
+                <>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                  </svg>
+                  <span style={{ fontWeight: 800, fontSize: '1.4rem' }}>DEF<span style={{ fontWeight: 300, color: 'var(--text-dim)' }}>Software</span></span>
+                </>
+              )}
             </div>
             <p>Forjando el futuro digital con software de gestión comercial. Optimización, diseño y facturación en un solo lugar.</p>
           </div>
