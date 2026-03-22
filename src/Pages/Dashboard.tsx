@@ -1,11 +1,73 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('licencia');
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
+
+  // Firestore States
+  const [razonSocial, setRazonSocial] = useState('');
+  const [cuit, setCuit] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [direccion, setDireccion] = useState('');
+  const [ciudad, setCiudad] = useState('');
+  const [codigoPostal, setCodigoPostal] = useState('');
+  
+  const [loadingData, setLoadingData] = useState(true);
+  const [savingMsg, setSavingMsg] = useState('');
+
+  useEffect(() => {
+    async function fetchUserData() {
+      if (currentUser) {
+        try {
+          const docRef = doc(db, 'clientes', currentUser.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setRazonSocial(data.razonSocial || 'No asignada (Contactar Soporte)');
+            setCuit(data.cuit || 'X-XXXXXXX-X');
+            setTelefono(data.telefono || '');
+            setDireccion(data.direccion || '');
+            setCiudad(data.ciudad || '');
+            setCodigoPostal(data.codigoPostal || '');
+          } else {
+            setRazonSocial('Pendiente (Contactar Soporte)');
+            setCuit('Pendiente');
+          }
+        } catch (e) {
+          console.error("Error reading db", e);
+        }
+        setLoadingData(false);
+      }
+    }
+    fetchUserData();
+  }, [currentUser]);
+
+  const handleSaveProfile = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!currentUser) return;
+    
+    setSavingMsg('Guardando...');
+    try {
+      const docRef = doc(db, 'clientes', currentUser.uid);
+      await setDoc(docRef, {
+        telefono,
+        direccion,
+        ciudad,
+        codigoPostal
+      }, { merge: true });
+      setSavingMsg('¡Datos actualizados correctamente!');
+      setTimeout(() => setSavingMsg(''), 3000);
+    } catch (e) {
+      console.error("Error saving db", e);
+      setSavingMsg('Error al guardar.');
+      setTimeout(() => setSavingMsg(''), 3000);
+    }
+  };
 
   const handleLogout = async () => {
     try {
@@ -78,44 +140,49 @@ export default function Dashboard() {
               <h2 style={{ color: '#fff', marginBottom: '2rem' }}>Datos de Facturación</h2>
               <p style={{ color: 'var(--text-dim)', marginBottom: '2rem' }}>Información fiscal utilizada para emitir tus comprobantes mensuales. Razón Social y CUIT solo pueden ser modificados contactando a soporte técnico.</p>
               
-              <form className="contact-form" onSubmit={(e) => e.preventDefault()} style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '12px', border: '1px solid var(--border-glass)' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                  <div className="form-group">
-                    <label>Razón Social / Nombre de Empresa</label>
-                    <input type="text" value="Demo Cliente S.A." disabled style={{ background: 'rgba(255,255,255,0.05)', color: '#888', cursor: 'not-allowed' }} />
+              {loadingData ? (
+                <div style={{ color: 'var(--accent-cyan)' }}>Cargando datos desde la base...</div>
+              ) : (
+                <form className="contact-form" onSubmit={handleSaveProfile} style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '12px', border: '1px solid var(--border-glass)' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'minmax(200px, 1fr) minmax(200px, 1fr)', gap: '1.5rem' }}>
+                    <div className="form-group">
+                      <label>Razón Social / Nombre de Empresa</label>
+                      <input type="text" value={razonSocial} disabled style={{ background: 'rgba(255,255,255,0.05)', color: '#888', cursor: 'not-allowed' }} />
+                    </div>
+                    <div className="form-group">
+                      <label>CUIT / Identificador Fiscal</label>
+                      <input type="text" value={cuit} disabled style={{ background: 'rgba(255,255,255,0.05)', color: '#888', cursor: 'not-allowed' }} />
+                    </div>
                   </div>
-                  <div className="form-group">
-                    <label>CUIT / Identificador Fiscal</label>
-                    <input type="text" value="30-12345678-9" disabled style={{ background: 'rgba(255,255,255,0.05)', color: '#888', cursor: 'not-allowed' }} />
+                  
+                  <div style={{ display: 'grid', gridTemplateColumns: 'minmax(200px, 1fr) minmax(200px, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+                    <div className="form-group">
+                      <label>Teléfono de Contacto</label>
+                      <input type="text" placeholder="+54 9 11 1234-5678" value={telefono} onChange={e => setTelefono(e.target.value)} />
+                    </div>
+                    <div className="form-group">
+                      <label>Dirección Fiscal</label>
+                      <input type="text" placeholder="Av. Corrientes 1234, Piso 5" value={direccion} onChange={e => setDireccion(e.target.value)} />
+                    </div>
                   </div>
-                </div>
-                
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
-                  <div className="form-group">
-                    <label>Teléfono de Contacto</label>
-                    <input type="text" placeholder="+54 9 11 1234-5678" />
-                  </div>
-                  <div className="form-group">
-                    <label>Dirección Fiscal</label>
-                    <input type="text" placeholder="Av. Corrientes 1234, Piso 5" />
-                  </div>
-                </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
-                  <div className="form-group">
-                    <label>Ciudad / Provincia</label>
-                    <input type="text" placeholder="Ciudad Autónoma de Buenos Aires" />
+                  <div style={{ display: 'grid', gridTemplateColumns: 'minmax(200px, 1fr) minmax(200px, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+                    <div className="form-group">
+                      <label>Ciudad / Provincia</label>
+                      <input type="text" placeholder="Ciudad Autónoma de Buenos Aires" value={ciudad} onChange={e => setCiudad(e.target.value)} />
+                    </div>
+                    <div className="form-group">
+                      <label>Código Postal</label>
+                      <input type="text" placeholder="C1043AAZ" value={codigoPostal} onChange={e => setCodigoPostal(e.target.value)} />
+                    </div>
                   </div>
-                  <div className="form-group">
-                    <label>Código Postal</label>
-                    <input type="text" placeholder="C1043AAZ" />
-                  </div>
-                </div>
 
-                <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
-                  <button className="modern-btn main-btn">Guardar Cambios</button>
-                </div>
-              </form>
+                  <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '1rem' }}>
+                    {savingMsg && <span style={{ color: savingMsg.includes('Error') ? '#ff6b6b' : '#00ff88', fontWeight: 600 }}>{savingMsg}</span>}
+                    <button type="submit" className="modern-btn main-btn">Guardar Cambios</button>
+                  </div>
+                </form>
+              )}
             </div>
           )}
 
