@@ -2,15 +2,15 @@
 :root {
   --primary-glow: #00f2ff;
   --secondary-glow: #7000ff;
-  --bg-dark: #121215;      /* Gris oscuro premium */
-  --card-bg: rgba(255, 255, 255, 0.04);
-  --card-hover-bg: rgba(255, 255, 255, 0.07);
-  --border-glass: rgba(255, 255, 255, 0.1);
-  --border-glass-hover: rgba(255, 255, 255, 0.25);
+  --bg-dark: #1e1e24;      /* Gris mucho más claro/navidad */
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-hover-bg: rgba(255, 255, 255, 0.08);
+  --border-glass: rgba(255, 255, 255, 0.15);
+  --border-glass-hover: rgba(255, 255, 255, 0.3);
   --accent-cyan: #00f2fe;
   --accent-purple: #9d50bb;
-  --text-main: #f0f0f2;
-  --text-dim: #9999a8;
+  --text-main: #f8f8fa;
+  --text-dim: #a9a9b8;
   --font-bebas: 'Bebas Neue', cursive;
   --font-manrope: 'Manrope', sans-serif;
 }
@@ -491,12 +491,12 @@ body {
 }
 
 .mouse-orb {
-  width: 600px; 
-  height: 600px;
-  background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 60%);
+  width: 700px; 
+  height: 700px;
+  background: radial-gradient(circle, rgba(0, 242, 255, 0.4) 0%, rgba(112, 0, 255, 0.2) 40%, transparent 70%);
   z-index: -5;
-  filter: blur(80px);
-  opacity: 0.6;
+  filter: blur(60px);
+  opacity: 0.95;
   animation: none;
   pointer-events: none;
 }

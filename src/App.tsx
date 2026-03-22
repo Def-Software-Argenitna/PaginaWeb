@@ -65,13 +65,8 @@ function App() {
       
       <header className="new-modern-header">
         <div className="new-header-content">
-          <div className="brand-logo" style={{ cursor: 'pointer', gap: '8px' }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
-            <span style={{ fontWeight: 800, fontSize: '1.4rem', letterSpacing: '0px' }}>DEF<span style={{ fontWeight: 300, color: 'var(--text-dim)', marginLeft: '4px' }}>Commerce</span></span>
+          <div className="brand-logo" style={{ cursor: 'pointer' }}>
+            <img src="/logo.png" alt="Def Software" style={{ height: '50px', objectFit: 'contain' }} />
           </div>
           <nav className="nav-links">
             <a href="#features">Plataforma</a>
@@ -87,7 +82,7 @@ function App() {
           <div className="hero-panel">
             <TypewriterHero />
             <p style={{ color: 'var(--text-dim)', fontSize: '1.25rem', maxWidth: '650px', margin: '1.5rem auto 3.5rem', lineHeight: 1.6 }}>
-              Impulsamos la transformación de tu empresa con herramientas hiper-optimizadas, interfaces de vidrio y un control absoluto sobre tu data.
+              Sistema de gestión integral para comercios. Controla tu inventario, agiliza tus ventas y automatiza la facturación diaria desde una plataforma 100% intuitiva y segura.
             </p>
             <div className="hero-actions">
               <a href="#demo" className="modern-btn main-btn" style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem' }}>Empezar Gratis</a>
@@ -161,13 +156,8 @@ function App() {
       <footer className="new-footer" id="contacto">
         <div className="footer-content">
           <div className="footer-col" style={{ paddingRight: '2rem' }}>
-            <div className="brand-logo" style={{ marginBottom: '1.5rem', gap: '8px' }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
-              <span style={{ fontWeight: 800, fontSize: '1.4rem', letterSpacing: '0px' }}>DEF<span style={{ fontWeight: 300, color: 'var(--text-dim)', marginLeft: '4px' }}>Commerce</span></span>
+            <div className="brand-logo" style={{ marginBottom: '1.5rem' }}>
+              <img src="/logo.png" alt="Def Software" style={{ height: '60px', objectFit: 'contain' }} />
             </div>
             <p>Forjando el futuro digital con software de gestión comercial. Optimización, diseño y facturación en un solo lugar.</p>
           </div>
