@@ -6,6 +6,11 @@ import Home from './Pages/Home';
 import Planes from './Pages/Planes';
 import Contacto from './Pages/Contacto';
 import SobreNosotros from './Pages/SobreNosotros';
+import Plataforma from './Pages/Plataforma';
+import CasosExito from './Pages/CasosExito';
+import CentroAyuda from './Pages/CentroAyuda';
+import EstadoSistema from './Pages/EstadoSistema';
+import Documentacion from './Pages/Documentacion';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -61,7 +66,7 @@ function App() {
             ) : fallbackLogo}
           </Link>
           <nav className="nav-links">
-            <Link to="/">Plataforma</Link>
+            <Link to="/plataforma">Plataforma</Link>
             <Link to="/planes">Planes y Precios</Link>
             <Link to="/sobre-nosotros">Sobre Nosotros</Link>
             <Link to="/contacto">Contacto</Link>
@@ -74,9 +79,14 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/plataforma" element={<Plataforma />} />
         <Route path="/planes" element={<Planes />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
+        <Route path="/casos-exito" element={<CasosExito />} />
         <Route path="/contacto" element={<Contacto />} />
+        <Route path="/centro-ayuda" element={<CentroAyuda />} />
+        <Route path="/estado-sistema" element={<EstadoSistema />} />
+        <Route path="/documentacion" element={<Documentacion />} />
       </Routes>
 
       <footer className="new-footer">
@@ -92,7 +102,7 @@ function App() {
           <div className="footer-col">
             <h4>Producto</h4>
             <div className="footer-links">
-              <Link to="/">Plataforma</Link>
+              <Link to="/plataforma">Plataforma</Link>
               <Link to="/planes">Precios</Link>
               <Link to="/contacto">Descargar</Link>
             </div>
@@ -101,16 +111,16 @@ function App() {
             <h4>Compañía</h4>
             <div className="footer-links">
               <Link to="/sobre-nosotros">Sobre Nosotros</Link>
-              <Link to="/sobre-nosotros#casos-exito">Casos de Éxito</Link>
+              <Link to="/casos-exito">Casos de Éxito</Link>
               <Link to="/contacto">Contacto</Link>
             </div>
           </div>
           <div className="footer-col">
             <h4>Soporte</h4>
             <div className="footer-links">
-              <Link to="/contacto">Centro de Ayuda</Link>
-              <Link to="/contacto">Documentación API</Link>
-              <Link to="/contacto">Estado del Sistema</Link>
+              <Link to="/centro-ayuda">Centro de Ayuda</Link>
+              <Link to="/documentacion">Documentación API</Link>
+              <Link to="/estado-sistema">Estado del Sistema</Link>
             </div>
           </div>
         </div>

@@ -18,26 +18,6 @@ export default function SobreNosotros() {
         </div>
       </section>
 
-      <section id="casos-exito" className="new-info-section" style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '40px', padding: '6rem 2rem', marginBottom: '6rem' }}>
-        <div className="section-header reveal">
-          <h2>Impacto Medible</h2>
-          <p>La estabilidad de nuestros módulos permitió transformar estos números en la realidad de nuestros clientes.</p>
-        </div>
-        <div className="info-grid reveal" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', textAlign: 'center' }}>
-          <div className="glass-panel" style={{ padding: '3rem 2rem' }}>
-            <div style={{ fontSize: '3.5rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>+500</div>
-            <p style={{ color: 'var(--text-dim)' }}>Comercios Activos Diarios</p>
-          </div>
-          <div className="glass-panel" style={{ padding: '3rem 2rem' }}>
-            <div style={{ fontSize: '3.5rem', fontWeight: 800, color: 'var(--accent-cyan)', marginBottom: '0.5rem' }}>99.9%</div>
-            <p style={{ color: 'var(--text-dim)' }}>Disponibilidad (SLA Oficial)</p>
-          </div>
-          <div className="glass-panel" style={{ padding: '3rem 2rem' }}>
-            <div style={{ fontSize: '3.5rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>2M+</div>
-            <p style={{ color: 'var(--text-dim)' }}>Facturas Trazadas al Mes</p>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
