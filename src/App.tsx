@@ -163,6 +163,63 @@ function App() {
           </div>
         </section>
 
+        <section id="sobre-nosotros" className="new-info-section" style={{ paddingTop: '2rem' }}>
+          <div className="section-header reveal">
+            <h2>Sobre Nosotros</h2>
+            <p>Nuestra historia está impulsada por una sola misión: dotar a cada local comercial de la tecnología reservada para gigantes corporativos.</p>
+          </div>
+          <div className="glass-panel reveal" style={{ padding: '3rem', textAlign: 'center', marginBottom: '4rem' }}>
+            <p style={{ fontSize: '1.1rem', color: 'var(--text-dim)', lineHeight: 1.8, maxWidth: '800px', margin: '0 auto' }}>
+              Fundada en 2024, DEF Commerce nació de la necesidad de simplificar la facturación y el inventario para equipos ágiles. Hoy, procesamos más de 10 millones de transacciones semanales, democratizando la infraestructura tecnológica a través de sistemas rápidos, ininterrumpibles y fáciles de escalar.
+            </p>
+          </div>
+        </section>
+
+        <section id="casos-exito" className="new-info-section" style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '40px', padding: '6rem 2rem' }}>
+          <div className="section-header reveal">
+            <h2>Casos de Éxito</h2>
+            <p>Empresas que ya transformaron su flujo operativo con nosotros.</p>
+          </div>
+          <div className="info-grid reveal" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', textAlign: 'center' }}>
+            <div className="glass-panel" style={{ padding: '2rem' }}>
+              <div style={{ fontSize: '3rem', fontWeight: 800, color: '#fff' }}>+500</div>
+              <p style={{ color: 'var(--text-dim)' }}>Comercios Activos</p>
+            </div>
+            <div className="glass-panel" style={{ padding: '2rem' }}>
+              <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>99.9%</div>
+              <p style={{ color: 'var(--text-dim)' }}>Uptime Garantizado</p>
+            </div>
+            <div className="glass-panel" style={{ padding: '2rem' }}>
+              <div style={{ fontSize: '3rem', fontWeight: 800, color: '#fff' }}>2M+</div>
+              <p style={{ color: 'var(--text-dim)' }}>Facturas Emitidas</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="contacto" className="new-info-section">
+          <div className="section-header reveal">
+            <h2>Envíenos su consulta</h2>
+            <p>Díganos cómo podemos ayudarle. Nuestro equipo comercial y técnico le responderá a la brevedad.</p>
+          </div>
+          <div className="glass-panel reveal" style={{ maxWidth: '600px', margin: '0 auto', padding: '3rem 2rem' }}>
+            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+              <div className="form-group">
+                <label>Nombre Completo</label>
+                <input type="text" placeholder="Ej. Juan Pérez" />
+              </div>
+              <div className="form-group">
+                <label>Correo Electrónico</label>
+                <input type="email" placeholder="hola@tuempresa.com" />
+              </div>
+              <div className="form-group">
+                <label>Mensaje</label>
+                <textarea rows={4} placeholder="¿En qué te podemos ayudar?"></textarea>
+              </div>
+              <button type="submit" className="modern-btn main-btn" style={{ width: '100%', marginTop: '1rem' }}>Enviar Mensaje</button>
+            </form>
+          </div>
+        </section>
+
         <section className="cta-section" id="demo">
           <div className="cta-panel reveal">
             <h2>Descarga la Demo Hoy Mismo.</h2>
@@ -207,16 +264,22 @@ function App() {
               <a href="#features">Plataforma</a>
               <a href="#planes">Precios</a>
               <a href="#demo">Descargar</a>
-              <a href="#">Actualizaciones</a>
             </div>
           </div>
           <div className="footer-col">
             <h4>Compañía</h4>
             <div className="footer-links">
-              <a href="#">Sobre Nosotros</a>
-              <a href="#">Casos de Éxito</a>
-              <a href="#">Soporte</a>
-              <a href="#">Contacto</a>
+              <a href="#sobre-nosotros">Sobre Nosotros</a>
+              <a href="#casos-exito">Casos de Éxito</a>
+              <a href="#contacto">Contacto</a>
+            </div>
+          </div>
+          <div className="footer-col">
+            <h4>Soporte</h4>
+            <div className="footer-links">
+              <a href="#">Centro de Ayuda</a>
+              <a href="#">Documentación API</a>
+              <a href="#">Estado del Sistema</a>
             </div>
           </div>
         </div>
