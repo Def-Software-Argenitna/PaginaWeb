@@ -1,7 +1,20 @@
 import { useState } from 'react';
+import { useAuth } from '../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('licencia');
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (e) {
+      console.error('Error closing session', e);
+    }
+  };
 
   return (
     <main className="new-main-content" style={{ minHeight: '100vh', paddingTop: '8rem', paddingBottom: '4rem' }}>
@@ -12,11 +25,14 @@ export default function Dashboard() {
         <div className="glass-panel reveal" style={{ padding: '1.5rem 1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', height: 'fit-content' }}>
           <div style={{ padding: '0 1rem', marginBottom: '1.5rem' }}>
             <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Portal Privado</p>
-            <h3 style={{ color: '#fff', fontSize: '1.2rem', marginTop: '0.5rem' }}>Mi Comercio</h3>
+            <h3 style={{ color: '#fff', fontSize: '1.2rem', marginTop: '0.5rem', wordBreak: 'break-all' }}>{currentUser?.email || 'Mi Comercio'}</h3>
           </div>
           
           <button onClick={() => setActiveTab('licencia')} className={`modern-btn ${activeTab === 'licencia' ? 'main-btn' : 'secondary-btn'}`} style={{ border: 'none', textAlign: 'left', justifyContent: 'flex-start', padding: '0.8rem 1rem', background: activeTab === 'licencia' ? 'var(--accent-cyan)' : 'transparent', color: activeTab === 'licencia' ? '#000' : '#fff' }}>
             Estado de Licencia
+          </button>
+          <button onClick={() => setActiveTab('perfil')} className={`modern-btn ${activeTab === 'perfil' ? 'main-btn' : 'secondary-btn'}`} style={{ border: 'none', textAlign: 'left', justifyContent: 'flex-start', padding: '0.8rem 1rem', background: activeTab === 'perfil' ? 'var(--accent-cyan)' : 'transparent', color: activeTab === 'perfil' ? '#000' : '#fff' }}>
+            Datos de Facturación
           </button>
           <button onClick={() => setActiveTab('pagos')} className={`modern-btn ${activeTab === 'pagos' ? 'main-btn' : 'secondary-btn'}`} style={{ border: 'none', textAlign: 'left', justifyContent: 'flex-start', padding: '0.8rem 1rem', background: activeTab === 'pagos' ? 'var(--accent-cyan)' : 'transparent', color: activeTab === 'pagos' ? '#000' : '#fff' }}>
             Métodos de Pago
@@ -27,6 +43,10 @@ export default function Dashboard() {
           <button onClick={() => setActiveTab('soporte')} className={`modern-btn ${activeTab === 'soporte' ? 'main-btn' : 'secondary-btn'}`} style={{ border: 'none', textAlign: 'left', justifyContent: 'flex-start', padding: '0.8rem 1rem', background: activeTab === 'soporte' ? 'var(--accent-cyan)' : 'transparent', color: activeTab === 'soporte' ? '#000' : '#fff' }}>
             Tickets de Soporte
           </button>
+          
+          <button onClick={handleLogout} className="modern-btn secondary-btn" style={{ border: 'none', textAlign: 'left', justifyContent: 'flex-start', padding: '0.8rem 1rem', background: 'transparent', color: '#ff6b6b', marginTop: 'auto' }}>
+            Cerrar Sesión
+          </button>
         </div>
 
         {/* Action Panel */}
@@ -35,21 +55,67 @@ export default function Dashboard() {
           {activeTab === 'licencia' && (
             <div className="reveal active">
               <h2 style={{ color: '#fff', marginBottom: '2rem' }}>Resumen de Suscripción</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'minmax(200px, 1fr) minmax(200px, 1fr)', gap: '2rem' }}>
                 <div style={{ padding: '2rem', background: 'rgba(0,0,0,0.3)', borderRadius: '12px', border: '1px solid var(--accent-cyan)' }}>
                   <p style={{ color: 'var(--text-dim)', marginBottom: '0.5rem' }}>Plan Actual</p>
                   <h3 style={{ color: '#fff', fontSize: '2rem', marginBottom: '1rem' }}>Profesional</h3>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#00ff88', boxShadow: '0 0 10px #00ff88' }}></div>
-                    <span style={{ color: '#00ff88', fontWeight: 600 }}>Totalmente Operativo</span>
+                    <span style={{ color: '#00ff88', fontWeight: 600 }}>Operativo</span>
                   </div>
                 </div>
                 <div style={{ padding: '2rem', background: 'rgba(0,0,0,0.3)', borderRadius: '12px', border: '1px solid var(--border-glass)' }}>
                   <p style={{ color: 'var(--text-dim)', marginBottom: '0.5rem' }}>Próxima Renovación</p>
                   <h3 style={{ color: '#fff', fontSize: '2rem', marginBottom: '1rem' }}>28 Días</h3>
-                  <p style={{ color: '#a9a9b8' }}>Se cobrarán $129 USD el 20 de Octubre.</p>
+                  <p style={{ color: '#a9a9b8' }}>Renueva el 20 de Octubre.</p>
                 </div>
               </div>
+            </div>
+          )}
+
+          {activeTab === 'perfil' && (
+            <div className="reveal active">
+              <h2 style={{ color: '#fff', marginBottom: '2rem' }}>Datos de Facturación</h2>
+              <p style={{ color: 'var(--text-dim)', marginBottom: '2rem' }}>Información fiscal utilizada para emitir tus comprobantes mensuales. Razón Social y CUIT solo pueden ser modificados contactando a soporte técnico.</p>
+              
+              <form className="contact-form" onSubmit={(e) => e.preventDefault()} style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '12px', border: '1px solid var(--border-glass)' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                  <div className="form-group">
+                    <label>Razón Social / Nombre de Empresa</label>
+                    <input type="text" value="Demo Cliente S.A." disabled style={{ background: 'rgba(255,255,255,0.05)', color: '#888', cursor: 'not-allowed' }} />
+                  </div>
+                  <div className="form-group">
+                    <label>CUIT / Identificador Fiscal</label>
+                    <input type="text" value="30-12345678-9" disabled style={{ background: 'rgba(255,255,255,0.05)', color: '#888', cursor: 'not-allowed' }} />
+                  </div>
+                </div>
+                
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
+                  <div className="form-group">
+                    <label>Teléfono de Contacto</label>
+                    <input type="text" placeholder="+54 9 11 1234-5678" />
+                  </div>
+                  <div className="form-group">
+                    <label>Dirección Fiscal</label>
+                    <input type="text" placeholder="Av. Corrientes 1234, Piso 5" />
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
+                  <div className="form-group">
+                    <label>Ciudad / Provincia</label>
+                    <input type="text" placeholder="Ciudad Autónoma de Buenos Aires" />
+                  </div>
+                  <div className="form-group">
+                    <label>Código Postal</label>
+                    <input type="text" placeholder="C1043AAZ" />
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
+                  <button className="modern-btn main-btn">Guardar Cambios</button>
+                </div>
+              </form>
             </div>
           )}
 

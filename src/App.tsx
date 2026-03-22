@@ -13,6 +13,7 @@ import EstadoSistema from './Pages/EstadoSistema';
 import Documentacion from './Pages/Documentacion';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -90,7 +91,11 @@ function App() {
         <Route path="/estado-sistema" element={<EstadoSistema />} />
         <Route path="/documentacion" element={<Documentacion />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
       </Routes>
 
       <footer className="new-footer">
