@@ -6,7 +6,7 @@ import Logo from './Imagenes/fondo-final.png';
 const videoList = ['/fondo-video2.mp4', '/fondo-video6.mp4', '/fondo-video9.mp4'];
 
 const benefits = [
-  'Control de stock por cortes, piezas, bandejas y fiambres.',
+  'Control de stock por productos, lotes, bandejas o categorías.',
   'Precios, listas y promociones actualizadas en segundos.',
   'Ventas en mostrador con tickets, caja y reportes diarios.',
   'Indicadores claros para comprar mejor y reducir merma.',
@@ -36,11 +36,11 @@ const modules = [
 ];
 
 const sectors = [
-  'Carnicerías',
-  'Fiambrerías',
-  'Pollerías',
-  'Granjas',
-  'Rotiserías',
+  'Comercios de alimentos',
+  'Minoristas',
+  'Locales con productos frescos',
+  'Supermercados pequeños',
+  'Tiendas especializadas',
   'Locales con una o varias sucursales',
 ];
 
@@ -98,9 +98,9 @@ function App() {
 
         <div className="hero-content">
           <div className="hero-copy">
-            <div className="eyebrow">DEF Software para comercios de alimentos</div>
+            <div className="eyebrow">DEF Software para comercios</div>
             <img src={Logo} alt="Def Software" className="hero-logo" />
-            <h1>Software de gestion para carnicerias, fiambrerias y locales que necesitan control real.</h1>
+            <h1>Software de gestión para comercios que necesitan control real.</h1>
             <p className="hero-description">
               Una solucion comercial instalable, agil y confiable para administrar ventas, stock, compras,
               precios y reportes desde una operacion simple para el equipo y solida para la gerencia.
