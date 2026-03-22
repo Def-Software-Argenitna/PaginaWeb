@@ -1,9 +1,7 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import './Css/App.css';
 import ContactForm from './Components/ContactForm';
 import Logo from './Imagenes/fondo-final.png';
-
-const videoList = ['/fondo-video2.mp4', '/fondo-video6.mp4', '/fondo-video9.mp4'];
 
 const benefits = [
   'Control de stock por productos, lotes, bandejas o categorías.',
