@@ -83,46 +83,36 @@ function App() {
 
   return (
     <div className="page-shell">
-      <section className="hero-section">
-        <video
-          key={videoList[currentIndex]}
-          className="hero-video"
-          autoPlay
-          muted
-          playsInline
-          onEnded={handleEnded}
-        >
-          <source src={videoList[currentIndex]} type="video/mp4" />
-        </video>
-        <div className="hero-overlay" />
-
-        <div className="hero-content">
-          <div className="hero-copy">
-            <div className="eyebrow">DEF Software para comercios</div>
-            <img src={Logo} alt="Def Software" className="hero-logo" />
-            <h1>Software de gestión para comercios que necesitan control real.</h1>
+      <header className="main-header">
+        <div className="header-content">
+          <img src={Logo} alt="Def Software" className="header-logo" />
+          <span className="header-title">DEF Software</span>
+        </div>
+      </header>
+      <section className="hero-section modern-bg">
+        <div className="hero-content modern-hero">
+          <div className="hero-copy modern-copy">
+            <div className="eyebrow">Soluciones modernas para comercios</div>
+            <h1>Software de gestión adaptable y moderno</h1>
             <p className="hero-description">
-              Una solucion comercial instalable, agil y confiable para administrar ventas, stock, compras,
-              precios y reportes desde una operacion simple para el equipo y solida para la gerencia.
+              Administra ventas, stock, compras y reportes con una plataforma ágil, visual y escalable para cualquier tipo de local.
             </p>
-
             <div className="hero-actions">
-              <a href="#contacto" className="primary-action">
+              <a href="#contacto" className="primary-action modern-btn">
                 Solicitar una demo
               </a>
-              <a href="#planes" className="secondary-action">
-                Ver opciones de adquisicion
+              <a href="#planes" className="secondary-action modern-btn">
+                Ver opciones de adquisición
               </a>
             </div>
-
             <div className="hero-metrics">
               <article>
                 <strong>Instalable</strong>
-                <span>sin exigir hardware complejo</span>
+                <span>sin hardware complejo</span>
               </article>
               <article>
                 <strong>Centralizado</strong>
-                <span>con respaldo automatico de informacion</span>
+                <span>con backup automático</span>
               </article>
               <article>
                 <strong>Escalable</strong>
@@ -130,7 +120,6 @@ function App() {
               </article>
             </div>
           </div>
-
           <div className="hero-form-panel" id="contacto">
             <ContactForm />
           </div>
