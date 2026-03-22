@@ -243,9 +243,20 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.5;
+  opacity: 0.4; /* Slightly reduced background orbs */
   mix-blend-mode: screen;
   animation: floatOrb 20s infinite alternate ease-in-out;
+}
+
+.mouse-orb {
+  width: 45vw; /* Smooth glow size */
+  height: 45vw;
+  background: radial-gradient(circle, rgba(0, 242, 255, 0.25) 0%, transparent 65%);
+  z-index: -5; /* Above other orbs */
+  filter: blur(100px);
+  opacity: 0.6;
+  animation: none; /* Pointer-controlled, no float */
+  pointer-events: none;
 }
 
 .orb-1 {
