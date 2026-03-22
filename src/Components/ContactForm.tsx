@@ -35,8 +35,8 @@ function ContactForm() {
     <form className="contact-form" onSubmit={handleSubmit}>
       <div className="form-header">
         <span className="form-tag">Contacto comercial</span>
-        <h2>Solicita una demo y una propuesta comercial.</h2>
-        <p>Indicanos tu rubro, tu operatoria y si buscas una demo o una licencia definitiva.</p>
+        <h2>Coordina una demo y recibi una propuesta.</h2>
+        <p>Contanos tu rubro, cantidad de puestos y objetivo comercial.</p>
       </div>
 
       <input
@@ -67,13 +67,13 @@ function ContactForm() {
         onChange={(event) => setFormData({ ...formData, phone: event.target.value })}
       />
       <textarea
-        placeholder="Ejemplo: tengo una carniceria con dos cajas, necesito una demo y quiero evaluar la compra definitiva para controlar stock, precios y caja diaria."
+        placeholder="Ejemplo: tengo una carniceria con dos cajas, quiero controlar stock, precios y caja diaria, y conocer el costo de implementacion."
         value={formData.message}
         onChange={(event) => setFormData({ ...formData, message: event.target.value })}
         required
       />
 
-      <button type="submit">Solicitar demo o propuesta</button>
+      <button type="submit">Solicitar demo y propuesta</button>
     </form>
   );
 }

@@ -86,12 +86,6 @@
   color: rgba(255, 249, 242, 0.86);
 }
 
-.hero-supporting-copy {
-  max-width: 58ch;
-  margin: -0.5rem 0 0;
-  color: rgba(255, 236, 219, 0.88);
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -211,8 +205,7 @@
 .benefits-grid,
 .modules-grid,
 .split-section,
-.plans-grid,
-.advantages-grid {
+.plans-grid {
   display: grid;
   gap: 1rem;
 }
@@ -224,9 +217,7 @@
 .benefit-card,
 .module-card,
 .sector-panel,
-.process-panel,
-.plan-card,
-.advantage-card {
+.process-panel {
   border-radius: 24px;
   background: #fffaf6;
   border: 1px solid rgba(95, 49, 28, 0.1);
@@ -255,8 +246,18 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.plans-heading {
-  margin-bottom: 1.25rem;
+.architecture-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1.5rem;
+  align-items: center;
+  background: linear-gradient(135deg, #fff6ef, #f6e4d8);
+}
+
+.architecture-strip p {
+  margin: 0;
+  font-size: 1.02rem;
+  color: #5a4438;
 }
 
 .plans-grid {
@@ -266,60 +267,58 @@
 .plan-card {
   display: grid;
   gap: 1rem;
-  padding: 1.4rem;
-  align-content: start;
+  padding: 1.5rem;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #fffaf6, #fff3eb);
+  border: 1px solid rgba(95, 49, 28, 0.12);
 }
 
-.plan-card-featured {
-  background: linear-gradient(180deg, #fff4ec, #fffaf6);
-  border-color: rgba(180, 59, 40, 0.26);
-  box-shadow: 0 24px 40px rgba(180, 59, 40, 0.1);
-}
-
-.plan-header {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.plan-name {
-  text-transform: uppercase;
+.plan-badge {
+  width: fit-content;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(180, 59, 40, 0.1);
+  color: #9f2f1f;
+  font-size: 0.8rem;
+  font-weight: 800;
   letter-spacing: 0.08em;
-  color: #8d4a34;
-  font-size: 0.86rem;
+  text-transform: uppercase;
 }
 
-.plan-header strong {
-  color: #241712;
-  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
-  font-size: 2.2rem;
-  line-height: 1;
-}
-
-.plan-description,
-.advantage-card p {
+.plan-card h3 {
   margin: 0;
-  color: #5d473d;
+  color: #231813;
+  font-size: 1.4rem;
 }
 
-.plan-features {
+.plan-card p {
   margin: 0;
-  padding-left: 1.2rem;
+  color: #5a4438;
+}
+
+.plan-card ul {
+  margin: 0;
+  padding-left: 1.15rem;
   display: grid;
-  gap: 0.7rem;
-  color: #4d3b33;
+  gap: 0.65rem;
+  color: #4f3d34;
 }
 
-.advantages-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.plan-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(180, 59, 40, 0.2);
+  background: #ffffff;
+  color: #9f2f1f;
+  font-weight: 800;
 }
 
-.advantage-card {
-  padding: 1.4rem;
-}
-
-.advantage-card h3 {
-  margin: 0 0 0.6rem;
-  color: #1f1511;
+.plan-action:hover {
+  background: #fff3ea;
 }
 
 .module-card {
@@ -393,7 +392,9 @@
 @media (max-width: 980px) {
   .hero-content,
   .split-section,
-  .cta-strip {
+  .cta-strip,
+  .architecture-strip,
+  .plans-grid {
     grid-template-columns: 1fr;
   }
 
@@ -414,8 +415,6 @@
 @media (max-width: 720px) {
   .benefits-grid,
   .modules-grid,
-  .plans-grid,
-  .advantages-grid,
   .hero-metrics {
     grid-template-columns: 1fr;
   }

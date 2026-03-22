@@ -6,10 +6,10 @@ import Logo from './Imagenes/fondo-final.png';
 const videoList = ['/fondo-video2.mp4', '/fondo-video6.mp4', '/fondo-video9.mp4'];
 
 const benefits = [
-  'Control de stock por cortes, piezas, bandejas y fiambres con una operatoria simple.',
-  'Precios, listas y promociones actualizadas en segundos para actuar con rapidez comercial.',
-  'Ventas en mostrador con tickets, caja y reportes diarios sin fricciones para el equipo.',
-  'Indicadores de margen, rotacion y merma para decidir con informacion confiable.',
+  'Control de stock por cortes, piezas, bandejas y fiambres.',
+  'Precios, listas y promociones actualizadas en segundos.',
+  'Ventas en mostrador con tickets, caja y reportes diarios.',
+  'Indicadores claros para comprar mejor y reducir merma.',
 ];
 
 const modules = [
@@ -45,68 +45,32 @@ const sectors = [
 ];
 
 const steps = [
-  'Relevamos tu operación y definimos el circuito comercial más conveniente para tu negocio.',
-  'Configuramos artículos, precios, usuarios, puestos de venta y reportes de gestión.',
-  'Capacitamos al equipo y acompañamos la puesta en marcha hasta que la operación quede estable.',
-];
-
-const advantages = [
-  {
-    title: 'Instalacion simple',
-    description: 'El software es instalable y se implementa sin exigir cambios complejos en tu infraestructura.',
-  },
-  {
-    title: 'Bajo requerimiento de hardware',
-    description: 'Funciona correctamente en equipos de trabajo habituales, sin necesidad de PCs de alta gama.',
-  },
-  {
-    title: 'Servidor centralizado',
-    description: 'La información se consolida en un servidor central, con respaldo automático y mayor continuidad operativa.',
-  },
+  'Relevamos tu operación y definimos el circuito comercial.',
+  'Configuramos artículos, precios, usuarios y reportes.',
+  'Capacitamos al equipo y acompañamos la puesta en marcha.',
 ];
 
 const plans = [
   {
-    name: 'Demo guiada',
-    price: 'Sin cargo',
+    title: 'Demo guiada',
     description:
-      'Instancia comercial inicial para conocer el sistema, revisar tu circuito de trabajo y validar el alcance funcional.',
-    features: [
-      'Presentacion personalizada del sistema',
-      'Relevamiento del negocio y necesidades',
-      'Recomendacion de configuracion inicial',
-    ],
-    action: 'Solicitar demo',
-    href: '#contacto',
-    featured: false,
+      'Presentacion comercial y funcional para evaluar el circuito de ventas, stock, caja y reportes segun tu tipo de negocio.',
+    badge: 'Primer paso',
+    features: ['Relevamiento inicial', 'Demo personalizada', 'Definicion de alcance'],
   },
   {
-    name: 'Licencia operativa',
-    price: 'A medida',
+    title: 'Licencia definitiva',
     description:
-      'Propuesta comercial para poner el sistema en marcha con instalacion, parametrizacion y acompanamiento inicial.',
-    features: [
-      'Sistema instalable en tu operacion diaria',
-      'Configuracion de puestos, usuarios y rubros',
-      'Puesta en marcha asistida',
-    ],
-    action: 'Quiero una propuesta',
-    href: '#contacto',
-    featured: true,
+      'Implementacion del sistema instalable con configuracion, puesta en marcha y acceso a la base centralizada.',
+    badge: 'Mas elegido',
+    features: ['Instalacion rapida', 'Compra simple', 'Capacitacion operativa'],
   },
   {
-    name: 'Escalado multisucursal',
-    price: 'A convenir',
+    title: 'Acompanamiento continuo',
     description:
-      'Para empresas que necesitan administracion centralizada, control consolidado y mayor volumen operativo.',
-    features: [
-      'Base centralizada con respaldo automatico',
-      'Control por sucursal o punto de venta',
-      'Esquema comercial adaptable al crecimiento',
-    ],
-    action: 'Hablar con ventas',
-    href: '#contacto',
-    featured: false,
+      'Soporte, ajustes, crecimiento por sucursales y evolucion del sistema a medida del negocio.',
+    badge: 'Escalable',
+    features: ['Soporte postventa', 'Escala por sucursal', 'Actualizaciones y mejoras'],
   },
 ];
 
@@ -138,14 +102,8 @@ function App() {
             <img src={Logo} alt="Def Software" className="hero-logo" />
             <h1>Software de gestion para carnicerias, fiambrerias y locales que necesitan control real.</h1>
             <p className="hero-description">
-              Una plataforma comercial y operativa para administrar ventas, stock, compras, precios y
-              reportes con criterio profesional. Pensada para negocios con productos frescos, rotacion
-              diaria y necesidad de informacion segura.
-            </p>
-
-            <p className="hero-supporting-copy">
-              Solicitar una demo es simple, y avanzar a la compra definitiva tambien: relevamos tu
-              operatoria, proponemos la licencia adecuada y dejamos el sistema listo para trabajar.
+              Una solucion comercial instalable, agil y confiable para administrar ventas, stock, compras,
+              precios y reportes desde una operacion simple para el equipo y solida para la gerencia.
             </p>
 
             <div className="hero-actions">
@@ -153,22 +111,22 @@ function App() {
                 Solicitar una demo
               </a>
               <a href="#planes" className="secondary-action">
-                Ver planes
+                Ver opciones de adquisicion
               </a>
             </div>
 
             <div className="hero-metrics">
               <article>
-                <strong>+ control</strong>
-                <span>sobre stock y costos</span>
+                <strong>Instalable</strong>
+                <span>sin exigir hardware complejo</span>
               </article>
               <article>
-                <strong>+ velocidad</strong>
-                <span>en caja y mostrador</span>
+                <strong>Centralizado</strong>
+                <span>con respaldo automatico de informacion</span>
               </article>
               <article>
-                <strong>+ margen</strong>
-                <span>con mejores decisiones</span>
+                <strong>Escalable</strong>
+                <span>para uno o varios puntos de venta</span>
               </article>
             </div>
           </div>
@@ -183,7 +141,7 @@ function App() {
         <section className="info-section highlight-section">
           <div>
             <span className="section-tag">Que resuelve</span>
-            <h2>Una gestion comercial ordenada, medible y lista para crecer.</h2>
+            <h2>Una operacion ordenada, vendible y facil de implementar.</h2>
           </div>
           <div className="benefits-grid">
             {benefits.map((benefit) => (
@@ -200,66 +158,56 @@ function App() {
             <span className="section-tag">Modulos</span>
             <h2>Herramientas pensadas para el ritmo real del negocio.</h2>
             <p>
-              No es un sistema generico: prioriza control operativo, reposicion, precios y trazabilidad.
+              No es un sistema generico: prioriza control operativo, reposicion, precios, caja y trazabilidad.
             </p>
-
-        <section className="info-section" id="planes">
-          <div className="section-heading plans-heading">
-            <span className="section-tag">Planes y adquisicion</span>
-            <h2>Un recorrido comercial simple: demo, propuesta y puesta en marcha.</h2>
-            <p>
-              Dejamos preparada una base para que luego afinemos precios. La idea es que adquirir una demo
-              o avanzar a una compra definitiva sea un proceso claro y rapido.
-            </p>
-          </div>
-
-          <div className="plans-grid">
-            {plans.map((plan) => (
-              <article key={plan.name} className={`plan-card${plan.featured ? ' plan-card-featured' : ''}`}>
-                <div className="plan-header">
-                  <span className="plan-name">{plan.name}</span>
-                  <strong>{plan.price}</strong>
-                </div>
-                <p className="plan-description">{plan.description}</p>
-                <ul className="plan-features">
-                  {plan.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
-                  ))}
-                </ul>
-                <a href={plan.href} className={plan.featured ? 'primary-action' : 'secondary-action'}>
-                  {plan.action}
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="info-section advantages-section">
-          <div className="section-heading">
-            <span className="section-tag">Infraestructura</span>
-            <h2>Implementacion practica, operacion liviana y datos protegidos.</h2>
-            <p>
-              La solución está pensada para incorporarse sin complejidad técnica innecesaria y con respaldo
-              continuo de la información operativa.
-            </p>
-          </div>
-          <div className="advantages-grid">
-            {advantages.map((advantage) => (
-              <article key={advantage.title} className="advantage-card">
-                <h3>{advantage.title}</h3>
-                <p>{advantage.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
           </div>
           <div className="modules-grid">
             {modules.map((module) => (
               <article key={module.title} className="module-card">
-            <h2>Solicita una demostracion y recibe una propuesta adaptada a tu operatoria.</h2>
+                <h3>{module.title}</h3>
                 <p>{module.description}</p>
               </article>
-            Solicitar asesoramiento comercial
+            ))}
+          </div>
+        </section>
+
+        <section className="info-section architecture-strip">
+          <div>
+            <span className="section-tag">Infraestructura</span>
+            <h2>Software instalable con base centralizada y backup automatico.</h2>
+          </div>
+          <p>
+            El sistema se instala rapidamente en equipos de trabajo sin requerimientos altos de hardware.
+            La informacion se mantiene en un servidor centralizado, lo que facilita la administracion,
+            protege la operacion y asegura respaldos automaticos de la base de datos.
+          </p>
+        </section>
+
+        <section className="info-section" id="planes">
+          <div className="section-heading">
+            <span className="section-tag">Planes y adquisicion</span>
+            <h2>Una demo para evaluar. Una compra simple para implementar.</h2>
+            <p>
+              Armamos esta seccion como base comercial para que luego afinemos precios, alcances y
+              condiciones segun tu estrategia de venta.
+            </p>
+          </div>
+          <div className="plans-grid">
+            {plans.map((plan) => (
+              <article key={plan.title} className="plan-card">
+                <span className="plan-badge">{plan.badge}</span>
+                <h3>{plan.title}</h3>
+                <p>{plan.description}</p>
+                <ul>
+                  {plan.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
+                <a href="#contacto" className="plan-action">
+                  Solicitar informacion
+                </a>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -288,10 +236,10 @@ function App() {
         <section className="info-section cta-strip">
           <div>
             <span className="section-tag">Demo personalizada</span>
-            <h2>Mostranos como trabajas y te mostramos como ordenarlo.</h2>
+            <h2>Mostranos tu operacion y te presentamos una propuesta concreta para implementarla.</h2>
           </div>
           <a href="#contacto" className="primary-action">
-            Quiero hablar con un asesor
+            Quiero una demo y propuesta comercial
           </a>
         </section>
       </main>
