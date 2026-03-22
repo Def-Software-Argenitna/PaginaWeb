@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import './Css/App.css';
 import './Css/Modern.css';
 import ContactForm from './Components/ContactForm';
@@ -13,7 +12,6 @@ const benefits = [
 
 const modules = [
   {
-    title: 'Stock y trazabilidad',
     description:
       'Seguimiento de ingresos, producción, fraccionamiento, vencimientos y movimientos por sucursal.',
   },
