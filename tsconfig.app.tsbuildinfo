@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts"],"version":"5.6.2"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/atmosphericbackground.tsx","./src/components/contactform.tsx","./src/components/parallaxbackground.tsx","./src/components/particlesbackground.tsx","./src/components/typewriterhero.tsx"],"version":"5.6.2"}

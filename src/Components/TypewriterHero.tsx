@@ -44,25 +44,24 @@ export default function TypewriterHero() {
   }, [charIdx, deleting, pause, wordIdx]);
 
   return (
-    <div className="typewriter-container" style={{ minHeight: '120px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <div className="typewriter-container" style={{ minHeight: '140px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <h1 style={{ 
-        fontSize: 'clamp(2rem, 5vw, 4rem)', 
-        fontWeight: 800, 
+        fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
+        fontWeight: 700, 
         lineHeight: 1.1,
+        letterSpacing: '-1px',
         margin: '0 auto',
-        maxWidth: '800px',
-        background: 'linear-gradient(to right, #fff, #888)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
+        maxWidth: '900px',
+        color: '#ffffff',
         display: 'inline'
       }}>
         {displayed}
         <span style={{ 
-          color: '#00f2ff', 
-          fontWeight: 300, 
+          color: 'var(--accent-cyan)', 
+          fontWeight: 400, 
           animation: 'blink 1s step-end infinite',
           marginLeft: '4px'
-        }}>_</span>
+        }}>|</span>
       </h1>
       <style>{`
         @keyframes blink {

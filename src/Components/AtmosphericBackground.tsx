@@ -25,14 +25,14 @@ const AtmosphericBackground: React.FC = () => {
           left: `${mousePos.x}%`,
           top: `${mousePos.y}%`,
           transform: 'translate(-50%, -50%)',
-          transition: 'left 0.8s cubic-bezier(0.1, 0.4, 0.2, 1), top 0.8s cubic-bezier(0.1, 0.4, 0.2, 1)', // Smooth lag
+          transition: 'left 0.4s ease-out, top 0.4s ease-out', // More responsive smooth lag
         }}
       ></div>
 
       {/* Static/Floating orbs for base atmosphere */}
       <div className="orb orb-1"></div>
       <div className="orb orb-2"></div>
-      <div className="orb orb-3"></div>
+      {/* orb-3 removed for cleaner style */}
       
       <div className="glass-overlay"></div>
       <div className="noise-overlay"></div>
