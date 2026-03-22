@@ -1,6 +1,6 @@
 import './Css/Modern.css';
 import TypewriterHero from './Components/TypewriterHero';
-import ParticlesBackground from './Components/ParticlesBackground';
+import AtmosphericBackground from './Components/AtmosphericBackground';
 
 const Features = [
   {
@@ -37,7 +37,7 @@ const Features = [
 function App() {
   return (
     <div className="new-modern-shell">
-      <ParticlesBackground />
+      <AtmosphericBackground />
       
       <header className="new-modern-header">
         <div className="new-header-content">
