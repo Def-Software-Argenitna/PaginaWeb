@@ -74,12 +74,8 @@ const plans = [
   },
 ];
 
-function App() {
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleEnded = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % videoList.length);
-  };
+function App() {
 
   return (
     <div className="page-shell">
