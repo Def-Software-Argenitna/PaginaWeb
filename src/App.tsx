@@ -2,7 +2,6 @@ import './Css/App.css';
 import './Css/Modern.css';
 import ContactForm from './Components/ContactForm';
 import TypewriterHero from './Components/TypewriterHero';
-import ParallaxBackground from './Components/ParallaxBackground';
 import ParticlesBackground from './Components/ParticlesBackground';
 import Logo from './Imagenes/fondo-final.png';
 
