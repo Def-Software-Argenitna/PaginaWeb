@@ -32,6 +32,11 @@ body {
   flex-direction: column;
 }
 
+<<<<<<< HEAD
+@keyframes bgMove {
+  background: rgba(40,38,30,0.60);
+  100% { filter: blur(4px) brightness(1.1); }
+=======
 /* Header / Navigation */
 .new-modern-header {
   position: fixed;
@@ -44,8 +49,15 @@ body {
   border-bottom: 1px solid var(--border-glass);
   padding: 1rem 0;
   transition: all 0.3s ease;
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
 }
 
+<<<<<<< HEAD
+  border: 1.5px solid rgba(255,179,0,0.10);
+.swiper {
+  width: 100%;
+  height: 100%;
+=======
 .new-header-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -53,15 +65,28 @@ body {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
 }
+<<<<<<< HEAD
+  background: linear-gradient(90deg, #ffb300 0%, #ffe066 100%);
+.swiper-slide {
+=======
 
 .brand-logo {
   font-family: var(--font-bebas);
   font-size: 2rem;
   color: #fff;
   letter-spacing: 2px;
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
   display: flex;
   align-items: center;
+<<<<<<< HEAD
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 2px 12px #ffb30055;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px #000a;
+=======
   gap: 0.5rem;
 }
 
@@ -77,17 +102,29 @@ body {
   font-weight: 700;
   font-size: 1.2rem;
   letter-spacing: 0px;
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
   color: #fff;
 }
 
+<<<<<<< HEAD
+  background: linear-gradient(90deg, #ffe066 0%, #ffb300 100%);
+  margin-top: 2.5rem;
+  width: 100%;
+  max-width: 600px;
+=======
 /* Nav links */
 .nav-links {
   margin-left: auto;
   display: flex;
   gap: 2.5rem;
   align-items: center;
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
 }
 
+<<<<<<< HEAD
+  background: linear-gradient(90deg, #23241e 0%, #ffe066 100%);
+  background: linear-gradient(90deg, #ffb347 0%, #ff416c 100%);
+=======
 .nav-links a {
   font-size: 0.95rem;
   font-weight: 500;
@@ -96,6 +133,7 @@ body {
 }
 
 .nav-links a:hover {
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
   color: #fff;
 }
 
@@ -194,6 +232,10 @@ body {
   margin: 0 auto;
 }
 
+<<<<<<< HEAD
+.modern-btn:hover {
+  background: linear-gradient(90deg, #ffe066 0%, #23241e 100%);
+=======
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -225,6 +267,7 @@ body {
   font-size: 1.4rem;
   font-weight: 600;
   margin: 0;
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
   color: #fff;
 }
 

@@ -71,7 +71,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   width: 100vw;
-  margin-top: 5.5rem;
+    background: linear-gradient(120deg, #191a1b 0%, #23241e 100%) fixed;
 }
 
 .new-hero-section {
@@ -91,17 +91,17 @@ body {
   padding: 3.2rem 2.2rem 2.6rem 2.2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2.2rem;
+    color: #ffb300;
+    background: rgba(255,179,0,0.10);
   background: rgba(30,34,60,0.55);
   border-radius: 28px;
   box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
   backdrop-filter: blur(18px);
   border: 1.5px solid rgba(255,255,255,0.08);
 }
-
+    border: 1.5px solid #ffb300;
 .hero-eyebrow {
-  border: 1.5px solid #00ffe7;
+    color: #ffb300;
   background: rgba(0,255,231,0.10);
   color: #00ffe7;
   border-radius: 999px;
@@ -111,26 +111,26 @@ body {
   padding: 0.38em 1.2em;
   margin-bottom: 0.5em;
 }
-
+    background: linear-gradient(90deg, #ffb300 0%, #ffe066 100%);
 .hero-actions {
   display: flex;
   gap: 1.2rem;
   margin-top: 1.2rem;
 }
-
+    box-shadow: 0 2px 12px #ffb30055;
 .main-btn {
   background: linear-gradient(90deg, #3a3dff 0%, #00ffe7 100%);
   color: #181a1b;
   border: none;
   border-radius: 999px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+    background: linear-gradient(90deg, #ffe066 0%, #ffb300 100%);
   box-shadow: 0 2px 12px #00ffe755;
   padding: 1.1rem 2.8rem;
   font-size: 1.15rem;
   transition: background 180ms, color 180ms, box-shadow 180ms;
 }
-
+    background: linear-gradient(90deg, #23241e 0%, #ffe066 100%);
 .main-btn:hover {
   background: linear-gradient(90deg, #00ffe7 0%, #3a3dff 100%);
   color: #181a1b;
@@ -143,7 +143,7 @@ body {
   border: none;
   border-radius: 999px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+    background: linear-gradient(90deg, #ffe066 0%, #23241e 100%);
   box-shadow: 0 2px 12px #3a3dff33;
   padding: 1.1rem 2.2rem;
   font-size: 1.08rem;

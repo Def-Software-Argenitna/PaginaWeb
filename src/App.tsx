@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import './Css/Modern.css';
+<<<<<<< HEAD
+import TypewriterHero from './Components/TypewriterHero';
+=======
 import AtmosphericBackground from './Components/AtmosphericBackground';
 import Home from './Pages/Home';
 import Planes from './Pages/Planes';
@@ -14,6 +17,7 @@ import Documentacion from './Pages/Documentacion';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import ProtectedRoute from './Components/ProtectedRoute';
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -56,6 +60,13 @@ function App() {
   );
 
   return (
+<<<<<<< HEAD
+    <div className="page-shell new-modern-shell">
+      <header className="main-header new-modern-header">
+        <div className="header-content new-header-content">
+          <span className="brand-logo">DS</span>
+          <span className="brand-title">DEF Software</span>
+=======
     <div className="new-modern-shell">
       <ScrollToTop />
       <AtmosphericBackground />
@@ -77,6 +88,7 @@ function App() {
           <div className="auth-buttons">
             <Link to="/login" className="modern-btn nav-btn">Ingresar</Link>
           </div>
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
         </div>
       </header>
 
@@ -116,13 +128,29 @@ function App() {
               <Link to="/contacto">Descargar</Link>
             </div>
           </div>
+<<<<<<< HEAD
+        </section>
+
+        {/* Sección Sobre Nosotros */}
+        <section className="info-section new-info-section" id="sobre">
+          <div className="info-grid">
+            <div className="info-card glass-panel">
+              <h3>¿Quiénes somos?</h3>
+              <p>Somos un equipo apasionado por la tecnología y la eficiencia, ayudando a negocios a crecer con herramientas simples y potentes.</p>
+=======
           <div className="footer-col">
             <h4>Compañía</h4>
             <div className="footer-links">
               <Link to="/sobre-nosotros">Sobre Nosotros</Link>
               <Link to="/casos-exito">Casos de Éxito</Link>
               <Link to="/contacto">Contacto</Link>
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
             </div>
+<<<<<<< HEAD
+            <div className="info-card glass-panel">
+              <h3>Nuestra misión</h3>
+              <p>Facilitar la gestión y el control de tu negocio, para que puedas enfocarte en lo que realmente importa: tus clientes.</p>
+=======
           </div>
           <div className="footer-col">
             <h4>Soporte</h4>
@@ -130,12 +158,84 @@ function App() {
               <Link to="/centro-ayuda">Centro de Ayuda</Link>
               <Link to="/documentacion">Documentación API</Link>
               <Link to="/estado-sistema">Estado del Sistema</Link>
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
+            </div>
+<<<<<<< HEAD
+          </div>
+        </section>
+
+        {/* Sección Beneficios */}
+        <section className="info-section new-info-section" id="beneficios">
+          <h2 className="section-title">Beneficios clave</h2>
+          <div className="info-grid">
+            <div className="info-card glass-panel">
+              <h3>Simple y visual</h3>
+              <p>Interfaz intuitiva, sin complicaciones. Todo lo que necesitas, a un clic.</p>
+            </div>
+            <div className="info-card glass-panel">
+              <h3>Soporte cercano</h3>
+              <p>Te acompañamos en cada paso, con atención personalizada y rápida.</p>
+            </div>
+            <div className="info-card glass-panel">
+              <h3>Actualizaciones constantes</h3>
+              <p>El sistema evoluciona con tu negocio, siempre actualizado y seguro.</p>
+            </div>
+=======
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
+          </div>
+<<<<<<< HEAD
+        </section>
+
+        {/* Sección Cómo funciona */}
+        <section className="info-section new-info-section" id="funciona">
+          <h2 className="section-title">¿Cómo funciona?</h2>
+          <div className="info-grid">
+            <div className="info-card glass-panel">
+              <h3>1. Diagnóstico</h3>
+              <p>Analizamos tu operación y necesidades para ofrecerte la mejor solución.</p>
+            </div>
+            <div className="info-card glass-panel">
+              <h3>2. Implementación</h3>
+              <p>Configuramos el sistema y capacitamos a tu equipo para un arranque sin problemas.</p>
+            </div>
+            <div className="info-card glass-panel">
+              <h3>3. Acompañamiento</h3>
+              <p>Seguimos a tu lado para que aproveches al máximo cada herramienta.</p>
             </div>
           </div>
+        </section>
+
+        {/* Sección Testimonios */}
+        <section className="info-section new-info-section" id="testimonios">
+          <h2 className="section-title">Testimonios</h2>
+          <div className="info-grid">
+            <div className="info-card glass-panel">
+              <p>“Desde que usamos DEF Software, todo es más simple y rápido. El soporte es excelente.”</p>
+              <span className="testimonial-author">— Ana, Supermercado El Sol</span>
+            </div>
+            <div className="info-card glass-panel">
+              <p>“La implementación fue fácil y el sistema se adapta a nuestro crecimiento.”</p>
+              <span className="testimonial-author">— Martín, Tienda Natural</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Sección Contacto */}
+        <section className="cta-section" id="contacto">
+          <div className="cta-panel glass-panel">
+            <h2>¿Listo para modernizar tu gestión?</h2>
+            <a href="mailto:info@defsoftware.com" className="modern-btn main-btn">Contactar ahora</a>
+          </div>
+        </section>
+      </main>
+      <footer className="main-footer new-footer">
+        <span>© {new Date().getFullYear()} DEF Software. Todos los derechos reservados.</span>
+=======
         </div>
         <div className="footer-bottom reveal">
           <p>&copy; {new Date().getFullYear()} DEF Commerce. Todos los derechos reservados.</p>
         </div>
+>>>>>>> a2f598fa505f9fe90980f4d459b110131b6340c2
       </footer>
     </div>
   );
