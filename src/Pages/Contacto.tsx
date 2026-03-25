@@ -1,9 +1,9 @@
-export default function Contacto() {
+﻿export default function Contacto() {
   return (
     <main className="new-main-content">
       <section className="new-hero-section" style={{ paddingBottom: '3rem', paddingTop: '10rem' }}>
         <div className="hero-panel reveal" style={{ padding: '0', background: 'none', border: 'none', boxShadow: 'none' }}>
-          <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#fff', marginBottom: '1rem', lineHeight: 1.1 }}>Contacto Comercial</h1>
+          <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#fff', marginBottom: '1rem', lineHeight: 1.1 }}>Contacto comercial</h1>
           <p style={{ color: 'var(--text-dim)', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto' }}>
             Hablemos hoy sobre cómo estandarizar los procesos de tu sucursal.
           </p>
@@ -24,18 +24,18 @@ export default function Contacto() {
               </div>
             </div>
             <div className="form-group">
-              <label>Razón Social / Comercio</label>
+              <label>Razón social / Comercio</label>
               <input type="text" placeholder="Nombre de la factura" />
             </div>
             <div className="form-group">
-              <label>Correo Electrónico</label>
+              <label>Correo electrónico</label>
               <input type="email" placeholder="hola@tuempresa.com" required />
             </div>
             <div className="form-group">
-              <label>Mensaje Detallado</label>
+              <label>Mensaje detallado</label>
               <textarea rows={5} placeholder="Cuéntanos cuántas sucursales tienes y qué módulo necesitas..." required></textarea>
             </div>
-            <button type="submit" className="modern-btn main-btn" style={{ width: '100%', marginTop: '1.5rem', padding: '1.2rem' }}>Enviar Solicitud</button>
+            <button type="submit" className="modern-btn main-btn" style={{ width: '100%', marginTop: '1.5rem', padding: '1.2rem' }}>Enviar solicitud</button>
           </form>
         </div>
       </section>

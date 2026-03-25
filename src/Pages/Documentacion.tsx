@@ -1,4 +1,4 @@
-export default function Documentacion() {
+﻿export default function Documentacion() {
   return (
     <main className="new-main-content">
       <section className="new-hero-section" style={{ paddingBottom: '3rem', paddingTop: '10rem' }}>
@@ -12,7 +12,6 @@ export default function Documentacion() {
 
       <section className="new-info-section" style={{ paddingTop: '0' }}>
         <div className="glass-panel reveal" style={{ maxWidth: '900px', margin: '0 auto', padding: '0', overflow: 'hidden' }}>
-          
           <div style={{ background: 'rgba(255,255,255,0.02)', padding: '2rem', borderBottom: '1px solid var(--border-glass-hover)' }}>
             <h2 style={{ color: '#fff', fontSize: '1.5rem', marginBottom: '1rem' }}>Autenticación Bearer</h2>
             <p style={{ color: 'var(--text-dim)', lineHeight: 1.6 }}>Todas las peticiones a la API deben incluir el encabezado de autorización usando un Bearer Token generado desde el panel de administrador comercial.</p>
@@ -68,7 +67,6 @@ export default function Documentacion() {
                 </pre>
               </div>
             </div>
-
           </div>
         </div>
       </section>
