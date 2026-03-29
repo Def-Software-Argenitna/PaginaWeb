@@ -1,9 +1,8 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import './Css/Modern.css';
 import AtmosphericBackground from './Components/AtmosphericBackground';
 import Home from './Pages/Home';
-import Planes from './Pages/Planes';
 import Contacto from './Pages/Contacto';
 import SobreNosotros from './Pages/SobreNosotros';
 import Plataforma from './Pages/Plataforma';
@@ -101,7 +100,6 @@ function App() {
           </Link>
           <nav className="nav-links">
             <Link to="/plataforma">Plataforma</Link>
-            <Link to="/planes">Planes y precios</Link>
             <Link to="/sobre-nosotros">Sobre nosotros</Link>
             <Link to="/contacto">Contacto</Link>
           </nav>
@@ -116,7 +114,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/plataforma" element={<Plataforma />} />
-        <Route path="/planes" element={<Planes />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
         <Route path="/casos-exito" element={<CasosExito />} />
         <Route path="/contacto" element={<Contacto />} />
@@ -169,7 +166,6 @@ function App() {
             <h4>Producto</h4>
             <div className="footer-links">
               <Link to="/plataforma">Plataforma</Link>
-              <Link to="/planes">Precios</Link>
               <Link to="/contacto">Descargar</Link>
             </div>
           </div>

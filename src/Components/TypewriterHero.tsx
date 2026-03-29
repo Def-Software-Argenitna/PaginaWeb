@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const words = [
   'Gestión inteligente para tu comercio',
@@ -44,7 +44,7 @@ export default function TypewriterHero() {
   }, [charIdx, deleting, pause, wordIdx]);
 
   return (
-    <div className="typewriter-container" style={{ minHeight: '140px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <div className="typewriter-container" style={{ minHeight: '240px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <h1 style={{ 
         fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
         fontWeight: 700, 
