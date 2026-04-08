@@ -12,6 +12,7 @@ import EstadoSistema from './Pages/EstadoSistema';
 import Documentacion from './Pages/Documentacion';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
+import PoliticaPrivacidadApp from './Pages/PoliticaPrivacidadApp';
 import ProtectedRoute from './Components/ProtectedRoute';
 
 function ScrollToTop() {
@@ -27,6 +28,7 @@ function ScrollToTop() {
 function App() {
   const [logoError, setLogoError] = useState(false);
   const { pathname } = useLocation();
+  const isHiddenLegalRoute = pathname.startsWith('/app/privacy/');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -80,36 +82,38 @@ function App() {
       <AtmosphericBackground />
       <div className="content-veil"></div>
 
-      <header className="new-modern-header">
-        <div className="new-header-content reveal active">
-          <Link
-            to="/"
-            className="brand-logo"
-            style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}
-          >
-            {!logoError ? (
-              <img
-                src="/logo.png"
-                alt="Def Software"
-                style={{ height: '50px', objectFit: 'contain' }}
-                onError={() => setLogoError(true)}
-              />
-            ) : (
-              fallbackLogo
-            )}
-          </Link>
-          <nav className="nav-links">
-            <Link to="/plataforma">Plataforma</Link>
-            <Link to="/sobre-nosotros">Sobre nosotros</Link>
-            <Link to="/contacto">Contacto</Link>
-          </nav>
-          <div className="auth-buttons">
-            <Link to="/login" className="modern-btn nav-btn">
-              Ingresar
+      {!isHiddenLegalRoute && (
+        <header className="new-modern-header">
+          <div className="new-header-content reveal active">
+            <Link
+              to="/"
+              className="brand-logo"
+              style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}
+            >
+              {!logoError ? (
+                <img
+                  src="/logo.png"
+                  alt="Def Software"
+                  style={{ height: '50px', objectFit: 'contain' }}
+                  onError={() => setLogoError(true)}
+                />
+              ) : (
+                fallbackLogo
+              )}
             </Link>
+            <nav className="nav-links">
+              <Link to="/plataforma">Plataforma</Link>
+              <Link to="/sobre-nosotros">Sobre nosotros</Link>
+              <Link to="/contacto">Contacto</Link>
+            </nav>
+            <div className="auth-buttons">
+              <Link to="/login" className="modern-btn nav-btn">
+                Ingresar
+              </Link>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+      )}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -121,6 +125,7 @@ function App() {
         <Route path="/estado-sistema" element={<EstadoSistema />} />
         <Route path="/documentacion" element={<Documentacion />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/app/privacy/meatmanager-mobile" element={<PoliticaPrivacidadApp />} />
         <Route
           path="/dashboard"
           element={
@@ -131,68 +136,70 @@ function App() {
         />
       </Routes>
 
-      <footer className="new-footer">
-        <div className="footer-content reveal">
-          <div className="footer-col" style={{ paddingRight: '2rem' }}>
-            <Link
-              to="/"
-              className="brand-logo"
-              style={{
-                textDecoration: 'none',
-                marginBottom: '1.5rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-              }}
-            >
-              {!logoError ? (
-                <img
-                  src="/logo.png"
-                  alt="Def Software"
-                  style={{ height: '60px', objectFit: 'contain' }}
-                  onError={() => setLogoError(true)}
-                />
-              ) : (
-                fallbackLogo
-              )}
-            </Link>
-            <p>
-              Forjando el futuro digital con software de gestión comercial. Optimización,
-              diseño y facturación en un solo lugar.
-            </p>
-          </div>
+      {!isHiddenLegalRoute && (
+        <footer className="new-footer">
+          <div className="footer-content reveal">
+            <div className="footer-col" style={{ paddingRight: '2rem' }}>
+              <Link
+                to="/"
+                className="brand-logo"
+                style={{
+                  textDecoration: 'none',
+                  marginBottom: '1.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}
+              >
+                {!logoError ? (
+                  <img
+                    src="/logo.png"
+                    alt="Def Software"
+                    style={{ height: '60px', objectFit: 'contain' }}
+                    onError={() => setLogoError(true)}
+                  />
+                ) : (
+                  fallbackLogo
+                )}
+              </Link>
+              <p>
+                Forjando el futuro digital con software de gestión comercial. Optimización,
+                diseño y facturación en un solo lugar.
+              </p>
+            </div>
 
-          <div className="footer-col">
-            <h4>Producto</h4>
-            <div className="footer-links">
-              <Link to="/plataforma">Plataforma</Link>
-              <Link to="/contacto">Descargar</Link>
+            <div className="footer-col">
+              <h4>Producto</h4>
+              <div className="footer-links">
+                <Link to="/plataforma">Plataforma</Link>
+                <Link to="/contacto">Descargar</Link>
+              </div>
+            </div>
+
+            <div className="footer-col">
+              <h4>Compañía</h4>
+              <div className="footer-links">
+                <Link to="/sobre-nosotros">Sobre nosotros</Link>
+                <Link to="/casos-exito">Casos de éxito</Link>
+                <Link to="/contacto">Contacto</Link>
+              </div>
+            </div>
+
+            <div className="footer-col">
+              <h4>Soporte</h4>
+              <div className="footer-links">
+                <Link to="/centro-ayuda">Centro de ayuda</Link>
+                <Link to="/documentacion">Documentación API</Link>
+                <Link to="/estado-sistema">Estado del sistema</Link>
+              </div>
             </div>
           </div>
 
-          <div className="footer-col">
-            <h4>Compañía</h4>
-            <div className="footer-links">
-              <Link to="/sobre-nosotros">Sobre nosotros</Link>
-              <Link to="/casos-exito">Casos de éxito</Link>
-              <Link to="/contacto">Contacto</Link>
-            </div>
+          <div className="footer-bottom reveal">
+            <p>&copy; {new Date().getFullYear()} DEF Software. Todos los derechos reservados.</p>
           </div>
-
-          <div className="footer-col">
-            <h4>Soporte</h4>
-            <div className="footer-links">
-              <Link to="/centro-ayuda">Centro de ayuda</Link>
-              <Link to="/documentacion">Documentación API</Link>
-              <Link to="/estado-sistema">Estado del sistema</Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="footer-bottom reveal">
-          <p>&copy; {new Date().getFullYear()} DEF Software. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+        </footer>
+      )}
     </div>
   );
 }
