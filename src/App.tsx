@@ -13,6 +13,7 @@ import Documentacion from './Pages/Documentacion';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import PoliticaPrivacidadApp from './Pages/PoliticaPrivacidadApp';
+import EliminacionDatosApp from './Pages/EliminacionDatosApp';
 import ProtectedRoute from './Components/ProtectedRoute';
 
 function ScrollToTop() {
@@ -28,7 +29,7 @@ function ScrollToTop() {
 function App() {
   const [logoError, setLogoError] = useState(false);
   const { pathname } = useLocation();
-  const isHiddenLegalRoute = pathname.startsWith('/app/privacy/');
+  const isHiddenLegalRoute = pathname.startsWith('/app/');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -126,6 +127,7 @@ function App() {
         <Route path="/documentacion" element={<Documentacion />} />
         <Route path="/login" element={<Login />} />
         <Route path="/app/privacy/meatmanager-mobile" element={<PoliticaPrivacidadApp />} />
+        <Route path="/app/data-deletion/meatmanager-mobile" element={<EliminacionDatosApp />} />
         <Route
           path="/dashboard"
           element={
