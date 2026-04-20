@@ -21,19 +21,19 @@ const ProductCatalog = [
   },
   {
     name: 'MeatManager',
-    badge: 'Software hibrido (Local + Nube)',
+    badge: 'Plataforma 100% Web',
     summary:
-      'Sistema instalable de forma local, combinado con una potente WebApp basada en la nube que garantiza respaldos (backups) automaticos de toda tu operacion.',
+      'Plataforma web para carnicerias con foco en ventas, stock y rentabilidad, accesible desde cualquier sucursal con una sola operacion centralizada.',
     idealFor:
       'Ideal para carnicerias y despensas con venta por peso que buscan modernizarse mediante terminales tactiles e integraciones fisicas.',
     capabilities: [
-      'Soporte nativo para operar mediante terminales tactiles (Point-of-Sale).',
-      'Integracion fluida con balanzas electronicas para evitar ingresos manuales.',
-      'Funcionamiento local estable respaldado por una WebApp en la nube con backup automatico.',
-      'Control exaustivo de stock para productos frescos, cortes de carne y perecederos.',
+      'Punto de venta web rapido para ventas por kilo o unidad.',
+      'Integracion con balanzas por Serial/USB para capturar peso real sin carga manual.',
+      'Control de stock de cortes, cuentas corrientes de clientes y menu digital para WhatsApp.',
+      'Modo PRO con trazabilidad, analisis de rindes, costos reales y gestion de proveedores.',
     ],
     segment: 'Carnicerias / alimentos frescos',
-    repoUrl: 'https://github.com/Def-Software-Argenitna/MeatManager-instalable',
+    repoUrl: 'https://github.com/Def-Software-Argenitna/MeatManager',
     imageUrl: '/meatmanager_mockup.png',
   },
 ];
@@ -58,10 +58,10 @@ const SalesFeatures = [
       </svg>
     ),
     description:
-      'Control absoluto de tu stock en multiples depositos con seguimiento de entradas, salidas y mercaderia critica.',
+      'Control de cortes y productos frescos en tiempo real con alertas de faltantes para reponer a tiempo.',
   },
   {
-    title: 'Facturacion automatizada',
+    title: 'POS por peso y unidad',
     icon: (
       <svg
         width="24"
@@ -81,7 +81,7 @@ const SalesFeatures = [
       </svg>
     ),
     description:
-      'Emision de comprobantes y procesos comerciales mas ordenados para disminuir tiempos y errores administrativos.',
+      'Flujo de venta agil para mostrador y caja, con registro rapido de kilos, unidades y comandas.',
   },
   {
     title: 'Gestion de cobros',
@@ -103,10 +103,10 @@ const SalesFeatures = [
       </svg>
     ),
     description:
-      'Multiples medios de pago y una operacion mas fluida para cobrar mejor, mas rapido y con mayor trazabilidad.',
+      'Configura efectivo, tarjetas, transferencias y billeteras virtuales con una operacion de cobro mas clara.',
   },
   {
-    title: 'Controles de caja',
+    title: 'Clientes y cuentas corrientes',
     icon: (
       <svg
         width="24"
@@ -124,10 +124,10 @@ const SalesFeatures = [
       </svg>
     ),
     description:
-      'Aperturas, cierres y arqueos mas confiables para reducir desorden operativo y detectar desajustes a tiempo.',
+      'Historial de compras y control de fiados para seguir saldos pendientes sin planillas externas.',
   },
   {
-    title: 'Usuarios y permisos',
+    title: 'Balanza y mostrador',
     icon: (
       <svg
         width="24"
@@ -146,10 +146,10 @@ const SalesFeatures = [
       </svg>
     ),
     description:
-      'Perfiles personalizados para que cada persona acceda solo a lo que necesita y la operacion quede mas protegida.',
+      'Integracion con balanzas electronicas para reducir errores manuales y mejorar la velocidad de atencion.',
   },
   {
-    title: 'Analitica comercial',
+    title: 'Rindes y rentabilidad',
     icon: (
       <svg
         width="24"
@@ -165,25 +165,25 @@ const SalesFeatures = [
       </svg>
     ),
     description:
-      'Indicadores listos para entender que productos rotan mejor, donde se pierde margen y como tomar decisiones con mas criterio.',
+      'Analiza rendimiento por animal, costos post-despostada y calidad de proveedores para cuidar margenes.',
   },
 ];
 
 const BusinessOutcomes = [
   {
-    title: 'Menos tareas manuales',
+    title: 'Operacion centralizada en la web',
     description:
-      'Unificamos venta, control y seguimiento para que el equipo trabaje mas rapido y con menos errores operativos.',
+      'Toda la gestion queda unificada en la plataforma web para administrar el negocio desde un unico entorno.',
   },
   {
-    title: 'Mas control del negocio',
+    title: 'Mas control financiero diario',
     description:
-      'Cada modulo esta pensado para darte visibilidad sobre mercaderia, caja, usuarios y movimiento comercial.',
+      'Centraliza stock, fiados, caja y medios de pago para tomar decisiones con datos operativos reales.',
   },
   {
-    title: 'Mejor experiencia para el cliente',
+    title: 'Escalabilidad para crecer',
     description:
-      'Procesos mas agiles en el mostrador se traducen en menos espera, mejor atencion y mas ventas por turno.',
+      'Empieza con funciones base y evoluciona a analitica PRO de rindes, costos y gestion multi-sucursal.',
   },
 ];
 

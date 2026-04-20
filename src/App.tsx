@@ -93,7 +93,7 @@ function App() {
             >
               {!logoError ? (
                 <img
-                  src="/logo.png"
+                  src="/def-software-logo.jpg"
                   alt="Def Software"
                   style={{ height: '50px', objectFit: 'contain' }}
                   onError={() => setLogoError(true)}
@@ -155,7 +155,7 @@ function App() {
               >
                 {!logoError ? (
                   <img
-                    src="/logo.png"
+                    src="/def-software-logo.jpg"
                     alt="Def Software"
                     style={{ height: '60px', objectFit: 'contain' }}
                     onError={() => setLogoError(true)}
