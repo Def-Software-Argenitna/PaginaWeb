@@ -257,14 +257,17 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
               borderRadius: '12px',
               overflow: 'hidden',
               border: '1px solid rgba(255,255,255,0.1)',
-              background: 'rgba(0,0,0,0.2)',
-              aspectRatio: '16/9',
+              background: '#0d0d0d',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minHeight: '260px',
             }}
           >
             <img
               src={product.images[selectedImg]}
               alt={`Vista principal de ${product.name}`}
-              style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover', transition: 'opacity 0.3s' }}
+              style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain', transition: 'opacity 0.25s ease' }}
             />
           </div>
 
@@ -300,7 +303,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                     style={{
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover',
+                      objectFit: 'contain',
                       opacity: i === selectedImg ? 1 : 0.5,
                       transition: 'opacity 0.2s',
                     }}
