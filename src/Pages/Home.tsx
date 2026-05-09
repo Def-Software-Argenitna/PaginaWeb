@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
 import TypewriterHero from '../Components/TypewriterHero';
 
@@ -219,12 +219,139 @@ const BusinessOutcomes: BusinessOutcome[] = [
   },
 ];
 
-function handleMouseEnter(e: React.MouseEvent<HTMLImageElement>) {
-  e.currentTarget.style.opacity = '1';
-}
+function ProductCard({ product, index }: { product: Product; index: number }) {
+  const [selectedImg, setSelectedImg] = useState(0);
 
-function handleMouseLeave(e: React.MouseEvent<HTMLImageElement>) {
-  e.currentTarget.style.opacity = '0.6';
+  return (
+    <article
+      key={product.name}
+      className="product-card glass-panel reveal"
+      style={{ transitionDelay: `${index * 0.1}s` }}
+    >
+      <div className="product-badge">{product.badge}</div>
+
+      <div className="product-card-header">
+        <div>
+          <p className="product-kicker">Producto destacado</p>
+          <h3>{product.name}</h3>
+        </div>
+        <span className="product-chip">{product.segment}</span>
+      </div>
+
+      <p className="product-summary">{product.summary}</p>
+      <p className="product-ideal">{product.idealFor}</p>
+
+      <div className="product-capabilities">
+        {product.capabilities.map((capability) => (
+          <div key={capability} className="capability-pill">
+            {capability}
+          </div>
+        ))}
+      </div>
+
+      {product.images.length > 0 && (
+        <div className="product-screenshots" style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}>
+          {/* Imagen principal */}
+          <div
+            style={{
+              borderRadius: '12px',
+              overflow: 'hidden',
+              border: '1px solid rgba(255,255,255,0.1)',
+              background: 'rgba(0,0,0,0.2)',
+              aspectRatio: '16/9',
+            }}
+          >
+            <img
+              src={product.images[selectedImg]}
+              alt={`Vista principal de ${product.name}`}
+              style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover', transition: 'opacity 0.3s' }}
+            />
+          </div>
+
+          {/* Miniaturas */}
+          {product.images.length > 1 && (
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
+                gap: '0.8rem',
+                marginTop: '0.8rem',
+              }}
+            >
+              {product.images.map((img, i) => (
+                <div
+                  key={img}
+                  onClick={() => setSelectedImg(i)}
+                  style={{
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                    border: i === selectedImg
+                      ? '2px solid var(--accent-color, #f97316)'
+                      : '1px solid rgba(255,255,255,0.1)',
+                    height: '60px',
+                    background: 'rgba(255,255,255,0.03)',
+                    cursor: 'pointer',
+                    transition: 'border 0.2s',
+                  }}
+                >
+                  <img
+                    src={img}
+                    alt={`${product.name} screenshot ${i + 1}`}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      opacity: i === selectedImg ? 1 : 0.5,
+                      transition: 'opacity 0.2s',
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="product-cta-row" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        <Link to="/contacto" className="modern-btn demo-btn">
+          Quiero este software
+        </Link>
+        <Link to="/plataforma" className="modern-btn secondary-btn">
+          Ver capacidades
+        </Link>
+        {product.repoUrl && (
+          <a
+            href={product.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="modern-btn"
+            style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid var(--border-color)',
+              color: 'var(--text-main)',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{ marginRight: '8px' }}
+            >
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            GitHub
+          </a>
+        )}
+      </div>
+    </article>
+  );
 }
 
 export default function Home() {
@@ -276,128 +403,7 @@ export default function Home() {
 
         <div className="product-grid">
           {ProductCatalog.map((product, index) => (
-            <article
-              key={product.name}
-              className="product-card glass-panel reveal"
-              style={{ transitionDelay: `${index * 0.1}s` }}
-            >
-              <div className="product-badge">{product.badge}</div>
-
-              <div className="product-card-header">
-                <div>
-                  <p className="product-kicker">Producto destacado</p>
-                  <h3>{product.name}</h3>
-                </div>
-                <span className="product-chip">{product.segment}</span>
-              </div>
-
-              <p className="product-summary">{product.summary}</p>
-              <p className="product-ideal">{product.idealFor}</p>
-
-              <div className="product-capabilities">
-                {product.capabilities.map((capability) => (
-                  <div key={capability} className="capability-pill">
-                    {capability}
-                  </div>
-                ))}
-              </div>
-
-              {product.images.length > 0 && (
-                <div className="product-screenshots" style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}>
-                  <div
-                    style={{
-                      borderRadius: '12px',
-                      overflow: 'hidden',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                      background: 'rgba(0,0,0,0.2)',
-                      aspectRatio: '16/9',
-                    }}
-                  >
-                    <img
-                      src={product.images[0]}
-                      alt={`Vista principal de ${product.name}`}
-                      style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
-                    />
-                  </div>
-                  {product.images.length > 1 && (
-                    <div
-                      style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
-                        gap: '0.8rem',
-                        marginTop: '0.8rem',
-                      }}
-                    >
-                      {product.images.slice(1).map((img, i) => (
-                        <div
-                          key={img}
-                          style={{
-                            borderRadius: '8px',
-                            overflow: 'hidden',
-                            border: '1px solid rgba(255,255,255,0.1)',
-                            height: '60px',
-                            background: 'rgba(255,255,255,0.03)',
-                          }}
-                        >
-                          <img
-                            src={img}
-                            alt={`${product.name} screenshot ${i + 2}`}
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              objectFit: 'cover',
-                              opacity: 0.6,
-                              transition: 'opacity 0.3s',
-                            }}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-
-              <div className="product-cta-row" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <Link to="/contacto" className="modern-btn demo-btn">
-                  Quiero este software
-                </Link>
-                <Link to="/plataforma" className="modern-btn secondary-btn">
-                  Ver capacidades
-                </Link>
-                {product.repoUrl && (
-                  <a
-                    href={product.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="modern-btn"
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      border: '1px solid var(--border-color)',
-                      color: 'var(--text-main)',
-                      display: 'flex',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      style={{ marginRight: '8px' }}
-                    >
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                    GitHub
-                  </a>
-                )}
-              </div>
-            </article>
+            <ProductCard key={product.name} product={product} index={index} />
           ))}
         </div>
       </section>
