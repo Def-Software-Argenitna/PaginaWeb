@@ -26,8 +26,45 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+function Logo({ height = '50px' }: { height?: string }) {
   const [logoError, setLogoError] = useState(false);
+
+  const fallbackLogo = (
+    <>
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="var(--accent-cyan)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+      </svg>
+      <span style={{ fontWeight: 800, fontSize: '1.4rem', color: '#fff' }}>
+        DEF
+        <span style={{ fontWeight: 300, color: 'var(--text-dim)' }}>Software</span>
+      </span>
+    </>
+  );
+
+  return !logoError ? (
+    <img
+      src="/def-software-logo.jpg"
+      alt="Def Software"
+      style={{ height, objectFit: 'contain' }}
+      onError={() => setLogoError(true)}
+    />
+  ) : (
+    fallbackLogo
+  );
+}
+
+function App() {
   const { pathname } = useLocation();
   const isHiddenLegalRoute = pathname.startsWith('/app/');
 
@@ -54,29 +91,6 @@ function App() {
     };
   }, [pathname]);
 
-  const fallbackLogo = (
-    <>
-      <svg
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="var(--accent-cyan)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-      </svg>
-      <span style={{ fontWeight: 800, fontSize: '1.4rem', color: '#fff' }}>
-        DEF
-        <span style={{ fontWeight: 300, color: 'var(--text-dim)' }}>Software</span>
-      </span>
-    </>
-  );
-
   return (
     <div className="new-modern-shell">
       <ScrollToTop />
@@ -91,16 +105,7 @@ function App() {
               className="brand-logo"
               style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}
             >
-              {!logoError ? (
-                <img
-                  src="/def-software-logo.jpg"
-                  alt="Def Software"
-                  style={{ height: '50px', objectFit: 'contain' }}
-                  onError={() => setLogoError(true)}
-                />
-              ) : (
-                fallbackLogo
-              )}
+              <Logo height="50px" />
             </Link>
             <nav className="nav-links">
               <Link to="/plataforma">Plataforma</Link>
@@ -153,16 +158,7 @@ function App() {
                   gap: '8px',
                 }}
               >
-                {!logoError ? (
-                  <img
-                    src="/def-software-logo.jpg"
-                    alt="Def Software"
-                    style={{ height: '60px', objectFit: 'contain' }}
-                    onError={() => setLogoError(true)}
-                  />
-                ) : (
-                  fallbackLogo
-                )}
+                <Logo height="60px" />
               </Link>
               <p>
                 Forjando el futuro digital con software de gestión comercial. Optimización,

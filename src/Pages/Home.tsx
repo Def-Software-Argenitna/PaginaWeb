@@ -1,7 +1,30 @@
+import { type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import TypewriterHero from '../Components/TypewriterHero';
 
-const ProductCatalog = [
+interface Product {
+  name: string;
+  badge: string;
+  summary: string;
+  idealFor: string;
+  capabilities: string[];
+  segment: string;
+  repoUrl?: string;
+  images: string[];
+}
+
+interface SalesFeature {
+  title: string;
+  icon: ReactNode;
+  description: string;
+}
+
+interface BusinessOutcome {
+  title: string;
+  description: string;
+}
+
+const ProductCatalog: Product[] = [
   {
     name: 'KioskManager',
     badge: 'App movil gestionada',
@@ -17,7 +40,7 @@ const ProductCatalog = [
     ],
     segment: 'Retail / kioscos',
     repoUrl: 'https://github.com/Def-Software-Argenitna/KioskManager',
-    imageUrl: '/kioskmanager_mockup.png',
+    images: ['/kioskmanager_mockup.png'],
   },
   {
     name: 'MeatManager',
@@ -34,11 +57,20 @@ const ProductCatalog = [
     ],
     segment: 'Carnicerias / alimentos frescos',
     repoUrl: 'https://github.com/Def-Software-Argenitna/MeatManager',
-    imageUrl: '/meatmanager_mockup.png',
+    images: [
+      '/meatmanager/image.png',
+      '/meatmanager/2.png',
+      '/meatmanager/3.png',
+      '/meatmanager/4.png',
+      '/meatmanager/5.png',
+      '/meatmanager/6.png',
+      '/meatmanager/77.png',
+      '/meatmanager/8.png',
+    ],
   },
 ];
 
-const SalesFeatures = [
+const SalesFeatures: SalesFeature[] = [
   {
     title: 'Gestion de inventario',
     icon: (
@@ -169,7 +201,7 @@ const SalesFeatures = [
   },
 ];
 
-const BusinessOutcomes = [
+const BusinessOutcomes: BusinessOutcome[] = [
   {
     title: 'Operacion centralizada en la web',
     description:
@@ -186,6 +218,14 @@ const BusinessOutcomes = [
       'Empieza con funciones base y evoluciona a analitica PRO de rindes, costos y gestion multi-sucursal.',
   },
 ];
+
+function handleMouseEnter(e: React.MouseEvent<HTMLImageElement>) {
+  e.currentTarget.style.opacity = '1';
+}
+
+function handleMouseLeave(e: React.MouseEvent<HTMLImageElement>) {
+  e.currentTarget.style.opacity = '0.6';
+}
 
 export default function Home() {
   return (
@@ -262,13 +302,60 @@ export default function Home() {
                 ))}
               </div>
 
-              {product.imageUrl && (
-                <div style={{ marginTop: '1.5rem', marginBottom: '1.5rem', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <img
-                    src={product.imageUrl}
-                    alt={`Captura de pantalla de ${product.name}`}
-                    style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
-                  />
+              {product.images.length > 0 && (
+                <div className="product-screenshots" style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}>
+                  <div
+                    style={{
+                      borderRadius: '12px',
+                      overflow: 'hidden',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      background: 'rgba(0,0,0,0.2)',
+                      aspectRatio: '16/9',
+                    }}
+                  >
+                    <img
+                      src={product.images[0]}
+                      alt={`Vista principal de ${product.name}`}
+                      style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
+                    />
+                  </div>
+                  {product.images.length > 1 && (
+                    <div
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
+                        gap: '0.8rem',
+                        marginTop: '0.8rem',
+                      }}
+                    >
+                      {product.images.slice(1).map((img, i) => (
+                        <div
+                          key={img}
+                          style={{
+                            borderRadius: '8px',
+                            overflow: 'hidden',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            height: '60px',
+                            background: 'rgba(255,255,255,0.03)',
+                          }}
+                        >
+                          <img
+                            src={img}
+                            alt={`${product.name} screenshot ${i + 2}`}
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover',
+                              opacity: 0.6,
+                              transition: 'opacity 0.3s',
+                            }}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
 
