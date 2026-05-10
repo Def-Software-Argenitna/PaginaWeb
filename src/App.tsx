@@ -105,7 +105,7 @@ function App() {
               className="brand-logo"
               style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}
             >
-              <Logo height="50px" />
+              <Logo height="65px" />
             </Link>
             <nav className="nav-links">
               <Link to="/plataforma">Plataforma</Link>
