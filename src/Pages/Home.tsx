@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import TypewriterHero from '../Components/TypewriterHero';
 
@@ -219,111 +219,363 @@ const BusinessOutcomes: BusinessOutcome[] = [
   },
 ];
 
-function ProductCard({ product, index }: { product: Product; index: number }) {
-  const [selectedImg, setSelectedImg] = useState(0);
+/* ── Lightbox ─────────────────────────────────────────────────────────── */
+function Lightbox({
+  images,
+  startIndex,
+  onClose,
+}: {
+  images: string[];
+  startIndex: number;
+  onClose: () => void;
+}) {
+  const [current, setCurrent] = useState(startIndex);
+
+  const prev = useCallback(
+    () => setCurrent((c) => (c - 1 + images.length) % images.length),
+    [images.length]
+  );
+  const next = useCallback(
+    () => setCurrent((c) => (c + 1) % images.length),
+    [images.length]
+  );
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    };
+    window.addEventListener('keydown', handler);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handler);
+      document.body.style.overflow = '';
+    };
+  }, [onClose, prev, next]);
 
   return (
-    <article
-      key={product.name}
-      className="product-card glass-panel reveal"
-      style={{ transitionDelay: `${index * 0.1}s` }}
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 9999,
+        background: 'rgba(0,0,0,0.88)',
+        backdropFilter: 'blur(10px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        animation: 'lbFadeIn 0.22s ease',
+      }}
     >
-      <div className="product-badge">{product.badge}</div>
+      <style>{`
+        @keyframes lbFadeIn { from { opacity:0 } to { opacity:1 } }
+        @keyframes lbSlideIn { from { transform:scale(0.92); opacity:0 } to { transform:scale(1); opacity:1 } }
+        .lb-img { animation: lbSlideIn 0.25s cubic-bezier(.22,1,.36,1); }
+        .lb-btn:hover { background: rgba(255,255,255,0.18) !important; }
+        .lb-close:hover { background: rgba(249,115,22,0.85) !important; }
+        .lb-thumb-active { border: 2px solid var(--accent-color, #f97316) !important; opacity: 1 !important; }
+      `}</style>
 
-      <div className="product-card-header">
-        <div>
-          <p className="product-kicker">Producto destacado</p>
-          <h3>{product.name}</h3>
-        </div>
-        <span className="product-chip">{product.segment}</span>
-      </div>
+      {/* Botón cerrar */}
+      <button
+        className="lb-close"
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        style={{
+          position: 'absolute',
+          top: '1.2rem',
+          right: '1.4rem',
+          background: 'rgba(255,255,255,0.1)',
+          border: 'none',
+          borderRadius: '50%',
+          width: '44px',
+          height: '44px',
+          color: '#fff',
+          fontSize: '1.4rem',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'background 0.2s',
+        }}
+        aria-label="Cerrar"
+      >
+        ✕
+      </button>
 
-      <p className="product-summary">{product.summary}</p>
-      <p className="product-ideal">{product.idealFor}</p>
-
-      <div className="product-capabilities">
-        {product.capabilities.map((capability) => (
-          <div key={capability} className="capability-pill">
-            {capability}
-          </div>
-        ))}
-      </div>
-
-      {product.images.length > 0 && (
-        <div className="product-screenshots" style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}>
-          {/* Imagen principal */}
-          <div
-            style={{
-              borderRadius: '12px',
-              overflow: 'hidden',
-              border: '1px solid rgba(255,255,255,0.1)',
-              background: '#0d0d0d',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minHeight: '260px',
-            }}
-          >
-            <img
-              src={product.images[selectedImg]}
-              alt={`Vista principal de ${product.name}`}
-              style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain', transition: 'opacity 0.25s ease' }}
-            />
-          </div>
-
-          {/* Miniaturas */}
-          {product.images.length > 1 && (
-            <div
+      {/* Imagen ampliada */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          maxWidth: '90vw',
+          maxHeight: '85vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '1rem',
+        }}
+      >
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          {/* Flecha izquierda */}
+          {images.length > 1 && (
+            <button
+              className="lb-btn"
+              onClick={prev}
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
-                gap: '0.8rem',
-                marginTop: '0.8rem',
+                background: 'rgba(255,255,255,0.1)',
+                border: 'none',
+                borderRadius: '50%',
+                width: '48px',
+                height: '48px',
+                color: '#fff',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+                flexShrink: 0,
+                transition: 'background 0.2s',
               }}
+              aria-label="Anterior"
             >
-              {product.images.map((img, i) => (
-                <div
-                  key={img}
-                  onClick={() => setSelectedImg(i)}
-                  style={{
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    border: i === selectedImg
-                      ? '2px solid var(--accent-color, #f97316)'
-                      : '1px solid rgba(255,255,255,0.1)',
-                    height: '60px',
-                    background: 'rgba(255,255,255,0.03)',
-                    cursor: 'pointer',
-                    transition: 'border 0.2s',
-                  }}
-                >
-                  <img
-                    src={img}
-                    alt={`${product.name} screenshot ${i + 1}`}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain',
-                      opacity: i === selectedImg ? 1 : 0.5,
-                      transition: 'opacity 0.2s',
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
+              ‹
+            </button>
+          )}
+
+          <img
+            key={current}
+            className="lb-img"
+            src={images[current]}
+            alt={`Screenshot ${current + 1}`}
+            style={{
+              maxWidth: images.length > 1 ? 'calc(90vw - 120px)' : '90vw',
+              maxHeight: '75vh',
+              objectFit: 'contain',
+              borderRadius: '10px',
+              boxShadow: '0 8px 48px rgba(0,0,0,0.6)',
+            }}
+          />
+
+          {/* Flecha derecha */}
+          {images.length > 1 && (
+            <button
+              className="lb-btn"
+              onClick={next}
+              style={{
+                background: 'rgba(255,255,255,0.1)',
+                border: 'none',
+                borderRadius: '50%',
+                width: '48px',
+                height: '48px',
+                color: '#fff',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+                flexShrink: 0,
+                transition: 'background 0.2s',
+              }}
+              aria-label="Siguiente"
+            >
+              ›
+            </button>
           )}
         </div>
+
+        {/* Contador */}
+        {images.length > 1 && (
+          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem' }}>
+            {current + 1} / {images.length}
+          </span>
+        )}
+
+        {/* Miniaturas en lightbox */}
+        {images.length > 1 && (
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '80vw' }}>
+            {images.map((img, i) => (
+              <img
+                key={img}
+                src={img}
+                alt={`thumb ${i + 1}`}
+                onClick={() => setCurrent(i)}
+                className={i === current ? 'lb-thumb-active' : ''}
+                style={{
+                  width: '56px',
+                  height: '40px',
+                  objectFit: 'cover',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                  opacity: i === current ? 1 : 0.4,
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  transition: 'opacity 0.2s',
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── ProductCard ──────────────────────────────────────────────────────── */
+function ProductCard({ product, index }: { product: Product; index: number }) {
+  const [selectedImg, setSelectedImg] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  return (
+    <>
+      {lightboxOpen && (
+        <Lightbox
+          images={product.images}
+          startIndex={selectedImg}
+          onClose={() => setLightboxOpen(false)}
+        />
       )}
 
-      <div className="product-cta-row" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-        <Link to="/contacto" className="modern-btn demo-btn">
-          Quiero este software
-        </Link>
-        <Link to="/plataforma" className="modern-btn secondary-btn">
-          Ver capacidades
-        </Link>
-      </div>
-    </article>
+      <article
+        key={product.name}
+        className="product-card glass-panel reveal"
+        style={{ transitionDelay: `${index * 0.1}s` }}
+      >
+        <div className="product-badge">{product.badge}</div>
+
+        <div className="product-card-header">
+          <div>
+            <p className="product-kicker">Producto destacado</p>
+            <h3>{product.name}</h3>
+          </div>
+          <span className="product-chip">{product.segment}</span>
+        </div>
+
+        <p className="product-summary">{product.summary}</p>
+        <p className="product-ideal">{product.idealFor}</p>
+
+        <div className="product-capabilities">
+          {product.capabilities.map((capability) => (
+            <div key={capability} className="capability-pill">
+              {capability}
+            </div>
+          ))}
+        </div>
+
+        {product.images.length > 0 && (
+          <div className="product-screenshots" style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}>
+            {/* Imagen principal — click abre lightbox */}
+            <div
+              onClick={() => setLightboxOpen(true)}
+              title="Clic para ampliar"
+              style={{
+                borderRadius: '12px',
+                overflow: 'hidden',
+                border: '1px solid rgba(255,255,255,0.1)',
+                background: '#0d0d0d',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: '260px',
+                cursor: 'zoom-in',
+                position: 'relative',
+              }}
+            >
+              <img
+                src={product.images[selectedImg]}
+                alt={`Vista principal de ${product.name}`}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  objectFit: 'contain',
+                  transition: 'opacity 0.25s ease, transform 0.25s ease',
+                }}
+              />
+              {/* Overlay hint */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'rgba(0,0,0,0)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'background 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.background = 'rgba(0,0,0,0.35)';
+                  const icon = e.currentTarget.querySelector('.zoom-icon') as HTMLElement | null;
+                  if (icon) icon.style.opacity = '1';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.background = 'rgba(0,0,0,0)';
+                  const icon = e.currentTarget.querySelector('.zoom-icon') as HTMLElement | null;
+                  if (icon) icon.style.opacity = '0';
+                }}
+              >
+                <span
+                  className="zoom-icon"
+                  style={{
+                    opacity: 0,
+                    transition: 'opacity 0.2s',
+                    fontSize: '2rem',
+                    color: '#fff',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  🔍
+                </span>
+              </div>
+            </div>
+
+            {/* Miniaturas */}
+            {product.images.length > 1 && (
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))',
+                  gap: '0.8rem',
+                  marginTop: '0.8rem',
+                }}
+              >
+                {product.images.map((img, i) => (
+                  <div
+                    key={img}
+                    onClick={() => setSelectedImg(i)}
+                    style={{
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      border: i === selectedImg
+                        ? '2px solid var(--accent-color, #f97316)'
+                        : '1px solid rgba(255,255,255,0.1)',
+                      height: '60px',
+                      background: 'rgba(255,255,255,0.03)',
+                      cursor: 'pointer',
+                      transition: 'border 0.2s',
+                    }}
+                  >
+                    <img
+                      src={img}
+                      alt={`${product.name} screenshot ${i + 1}`}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                        opacity: i === selectedImg ? 1 : 0.5,
+                        transition: 'opacity 0.2s',
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="product-cta-row" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <Link to="/contacto" className="modern-btn demo-btn">
+            Quiero este software
+          </Link>
+          <Link to="/plataforma" className="modern-btn secondary-btn">
+            Ver capacidades
+          </Link>
+        </div>
+      </article>
+    </>
   );
 }
 
