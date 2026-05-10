@@ -1,4 +1,4 @@
-﻿/* Modern.css - Antigravity Premium Aesthetic */
+/* Modern.css - Antigravity Premium Aesthetic */
 :root {
   --primary-glow: #00f2ff;
   --secondary-glow: #7000ff;
@@ -192,7 +192,9 @@ body {
   margin-bottom: 1rem;
   background: linear-gradient(135deg, #fff, #999);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
   line-height: 1.2;
 }
 
@@ -212,6 +214,7 @@ body {
 .product-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
+  gap: 3rem;
 }
 
 .product-card {
@@ -545,7 +548,9 @@ body {
   line-height: 1.1;
   background: linear-gradient(to right, #fff, #888);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .outcomes-grid {
