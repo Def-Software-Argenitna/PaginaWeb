@@ -103,7 +103,16 @@ function App() {
             <Link
               to="/"
               className="brand-logo"
-              style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent-cyan)' }}
+              style={{ 
+                textDecoration: 'none', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '8px', 
+                color: 'var(--accent-cyan)',
+                fontFamily: 'var(--font-manrope)',
+                fontWeight: 800,
+                letterSpacing: 'normal'
+              }}
             >
               Inicio
             </Link>
