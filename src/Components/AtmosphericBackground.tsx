@@ -18,6 +18,26 @@ const AtmosphericBackground: React.FC = () => {
 
   return (
     <div className="atmospheric-container">
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          top: 0,
+          left: 0,
+          zIndex: 0,
+          opacity: 0.4, // Oscurecido para que no afecte la legibilidad de la interfaz
+        }}
+      >
+        <source src="/def-software-video.mp4" type="video/mp4" />
+      </video>
+
       {/* Dynamic Mouse Following Orb */}
       <div 
         className="orb mouse-orb"
