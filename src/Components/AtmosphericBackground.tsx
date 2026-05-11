@@ -45,6 +45,7 @@ const AtmosphericBackground: React.FC = () => {
             filter: 'blur(30px)',
             transform: 'scale(1.1)', // Para evitar bordes blancos por el blur
             opacity: 0.3, // Muy sutil
+            clipPath: 'inset(0 0 12% 0)' // Cortar la franja inferior
           }}
         >
           <source src="/def-software-video-3.mp4" type="video/mp4" />
@@ -62,50 +63,12 @@ const AtmosphericBackground: React.FC = () => {
             objectFit: 'contain',
             transform: 'scale(0.9)', // Mismo tamaño y sin desplazar hacia abajo para no cortar las letras
             opacity: 0.5, 
-            zIndex: 2
+            zIndex: 2,
+            clipPath: 'inset(0 0 12% 0)' // Cortar la franja inferior completa
           }}
         >
           <source src="/def-software-video-3.mp4" type="video/mp4" />
         </video>
-
-        {/* Contenedor invisible que imita exactamente el tamaño del video 16:9 para posicionar el parche */}
-        <div style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          maxWidth: 'calc(100vh * (16 / 9))',
-          maxHeight: 'calc(100vw * (9 / 16))',
-          margin: 'auto',
-          inset: 0,
-          transform: 'scale(0.9)', // Mismo scale que el video
-          pointerEvents: 'none',
-          zIndex: 3
-        }}>
-          {/* Parche "DS" anclado a la esquina inferior derecha del video REAL */}
-          <div style={{
-            position: 'absolute',
-            bottom: '18px', 
-            right: '45px', 
-            width: '80px',
-            height: '35px',
-            backgroundColor: 'rgba(28, 30, 34, 0.95)', // Gris oscuro casi opaco
-            backdropFilter: 'blur(10px)', // Difumina las letras de VEO abajo
-            borderRadius: '4px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'rgba(255,255,255,0.3)', // Color sutil
-            fontFamily: 'var(--font-manrope)',
-            fontWeight: '600',
-            letterSpacing: '1px',
-            fontSize: '0.8rem',
-            border: 'none',
-            boxShadow: 'none',
-            pointerEvents: 'auto'
-          }}>
-            DS
-          </div>
-        </div>
       </div>
 
       {/* Dynamic Mouse Following Orb */}
