@@ -45,6 +45,9 @@ const AtmosphericBackground: React.FC = () => {
             filter: 'blur(30px)',
             transform: 'scale(1.1)', // Para evitar bordes blancos por el blur
             opacity: 0.3, // Muy sutil
+            // Desvanecer suavemente la parte inferior
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 90%)',
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 90%)'
           }}
         >
           <source src="/def-software-video-2.mp4" type="video/mp4" />
@@ -62,8 +65,9 @@ const AtmosphericBackground: React.FC = () => {
             objectFit: 'contain',
             transform: 'scale(0.85)', // Achicamos un 15% para que no quede tan gigante
             opacity: 0.5,
-            // Clip-path recorta exactamente un rectangulo en la esquina inferior derecha para borrar Veed.io
-            clipPath: 'polygon(0% 0%, 100% 0%, 100% 88%, 75% 88%, 75% 100%, 0% 100%)'
+            // Desvanecer suavemente la parte inferior para borrar las letras finales y la marca de agua
+            WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 85%)',
+            maskImage: 'linear-gradient(to bottom, black 65%, transparent 85%)'
           }}
         >
           <source src="/def-software-video-2.mp4" type="video/mp4" />
