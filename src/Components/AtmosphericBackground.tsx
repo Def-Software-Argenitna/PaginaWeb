@@ -26,9 +26,6 @@ const AtmosphericBackground: React.FC = () => {
         top: 0,
         left: 0,
         zIndex: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         overflow: 'hidden',
         background: '#050505'
       }}>
@@ -39,12 +36,13 @@ const AtmosphericBackground: React.FC = () => {
           playsInline
           style={{
             position: 'absolute',
+            top: 0,
+            left: 0,
             width: '100%',
-            height: '100%',
-            objectFit: 'cover', // Cubre toda la pantalla sin bordes
+            height: '115%', // Lo hacemos más alto para empujar la franja inferior (el VEO) fuera de la pantalla visible
+            objectFit: 'cover', 
             opacity: 0.5, 
-            zIndex: 0,
-            clipPath: 'inset(0 0 12% 0)' // Mantenemos el corte inferior recto para borrar VEO
+            zIndex: 0
           }}
         >
           <source src="/def-software-video-3.mp4" type="video/mp4" />
