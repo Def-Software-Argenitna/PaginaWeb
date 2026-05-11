@@ -68,27 +68,42 @@ const AtmosphericBackground: React.FC = () => {
           <source src="/def-software-video-3.mp4" type="video/mp4" />
         </video>
 
-        {/* Parche "DS" para tapar la marca de agua de VEED.io de forma elegante */}
+        {/* Contenedor invisible que imita exactamente el tamaño del video 16:9 para posicionar el parche */}
         <div style={{
           position: 'absolute',
-          bottom: '8%',
-          right: '6%',
-          width: '100px',
-          height: '40px',
-          backgroundColor: '#0a0a0a',
-          borderRadius: '8px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'var(--accent-cyan)',
-          fontFamily: 'var(--font-manrope)',
-          fontWeight: '800',
-          fontSize: '1.2rem',
-          zIndex: 3,
-          border: '1px solid rgba(255,255,255,0.05)',
-          boxShadow: '0 4px 15px rgba(0,0,0,0.8)'
+          width: '100%',
+          height: '100%',
+          maxWidth: 'calc(100vh * (16 / 9))',
+          maxHeight: 'calc(100vw * (9 / 16))',
+          margin: 'auto',
+          inset: 0,
+          transform: 'scale(0.9)', // Mismo scale que el video
+          pointerEvents: 'none',
+          zIndex: 3
         }}>
-          DS
+          {/* Parche "DS" anclado a la esquina inferior derecha del video REAL */}
+          <div style={{
+            position: 'absolute',
+            bottom: '15px', 
+            right: '15px', 
+            width: '130px',
+            height: '40px',
+            backgroundColor: '#151719', // Gris oscuro que se camufla con el fondo del video
+            borderRadius: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--accent-cyan)',
+            fontFamily: 'var(--font-manrope)',
+            fontWeight: '700',
+            letterSpacing: '2px',
+            fontSize: '1.1rem',
+            border: '1px solid rgba(255,255,255,0.08)',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.8)',
+            pointerEvents: 'auto'
+          }}>
+            DS
+          </div>
         </div>
       </div>
 
