@@ -26,37 +26,48 @@ const AtmosphericBackground: React.FC = () => {
         top: 0,
         left: 0,
         zIndex: 0,
-        opacity: 0.4,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
+        background: '#050505'
       }}>
+        {/* Capa de fondo desenfocada para llenar los bordes negros */}
         <video
           autoPlay
           muted
           playsInline
           style={{
+            position: 'absolute',
             width: '100%',
             height: '100%',
-            objectFit: 'contain',
-            transform: 'scale(1.04)', // Pequeño zoom para empujar los bordes un poco hacia afuera
+            objectFit: 'cover',
+            filter: 'blur(30px)',
+            transform: 'scale(1.1)', // Para evitar bordes blancos por el blur
+            opacity: 0.3, // Muy sutil
           }}
         >
           <source src="/def-software-video-2.mp4" type="video/mp4" />
         </video>
-        
-        {/* Parche oscuro para tapar la marca de agua de VEED.io sin cortar todo el video */}
-        <div style={{
-          position: 'absolute',
-          bottom: '2%',
-          right: '2%',
-          width: '160px',
-          height: '65px',
-          background: '#000',
-          filter: 'blur(12px)',
-          borderRadius: '12px'
-        }}></div>
+
+        {/* Video principal, más chico para que se vean las letras y sin marca de agua */}
+        <video
+          autoPlay
+          muted
+          playsInline
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+            transform: 'scale(0.85)', // Achicamos un 15% para que no quede tan gigante
+            opacity: 0.5,
+            // Clip-path recorta exactamente un rectangulo en la esquina inferior derecha para borrar Veed.io
+            clipPath: 'polygon(0% 0%, 100% 0%, 100% 88%, 75% 88%, 75% 100%, 0% 100%)'
+          }}
+        >
+          <source src="/def-software-video-2.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* Dynamic Mouse Following Orb */}
