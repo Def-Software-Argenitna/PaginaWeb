@@ -44,11 +44,8 @@ const AtmosphericBackground: React.FC = () => {
             height: '100%',
             objectFit: 'cover',
             filter: 'blur(30px)',
-            transform: 'scale(1.1) translateY(5%)', // Lo bajamos un poquito para que acompañe al video principal
+            transform: 'scale(1.1)', // Para evitar bordes blancos por el blur
             opacity: 0.3, // Muy sutil
-            // Desvanecer suavemente la parte inferior
-            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 90%)',
-            maskImage: 'linear-gradient(to bottom, black 70%, transparent 90%)'
           }}
         >
           <source src="/def-software-video-2.mp4" type="video/mp4" />
@@ -63,17 +60,14 @@ const AtmosphericBackground: React.FC = () => {
             width: '100%',
             height: '100%',
             objectFit: 'contain',
-            transform: 'scale(0.85) translateY(12%)',
-            opacity: videoEnded ? 0.5 : 0,
-            transition: 'opacity 0.4s ease-in-out',
+            transform: 'scale(0.9)', // Mismo tamaño para que coincida perfectamente
+            opacity: videoEnded ? 0.5 : 0, 
+            transition: 'opacity 1s ease-in-out',
             zIndex: 1,
-            // Aplicar la misma máscara para el fade inferior
-            WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 85%)',
-            maskImage: 'linear-gradient(to bottom, black 65%, transparent 85%)'
           }}
         />
 
-        {/* Video principal, centrado y desvanecido para ocultar las letras */}
+        {/* Video principal, centrado y sin cortar letras */}
         <video
           autoPlay
           muted
@@ -84,13 +78,12 @@ const AtmosphericBackground: React.FC = () => {
             width: '100%',
             height: '100%',
             objectFit: 'contain',
-            transform: 'scale(0.85) translateY(12%)', // Lo bajamos un 12% para centrar el cubo y que no se corte arriba
-            opacity: videoEnded ? 0 : 0.5,
-            transition: 'opacity 0.4s ease-in-out',
+            transform: 'scale(0.9)', // Mismo tamaño y sin desplazar hacia abajo para no cortar las letras
+            opacity: videoEnded ? 0 : 0.5, 
+            transition: 'opacity 1s ease-in-out',
             zIndex: 2,
-            // Desvanecer suavemente la parte inferior para borrar las letras finales y la marca de agua
-            WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 85%)',
-            maskImage: 'linear-gradient(to bottom, black 65%, transparent 85%)'
+            // Recorta exactamente la esquina inferior derecha para tapar Veed.io sin tapar las letras del centro
+            clipPath: 'polygon(0% 0%, 100% 0%, 100% 88%, 75% 88%, 75% 100%, 0% 100%)'
           }}
         >
           <source src="/def-software-video-2.mp4" type="video/mp4" />
