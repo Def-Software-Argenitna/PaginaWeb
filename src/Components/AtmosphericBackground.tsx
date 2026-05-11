@@ -32,7 +32,7 @@ const AtmosphericBackground: React.FC = () => {
         overflow: 'hidden',
         background: '#050505'
       }}>
-        {/* Capa de fondo desenfocada para llenar los bordes negros */}
+        {/* Video principal a pantalla completa */}
         <video
           autoPlay
           muted
@@ -41,30 +41,10 @@ const AtmosphericBackground: React.FC = () => {
             position: 'absolute',
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
-            filter: 'blur(30px)',
-            transform: 'scale(1.1)', // Para evitar bordes blancos por el blur
-            opacity: 0.3, // Muy sutil
-            clipPath: 'inset(0 0 12% 0)' // Cortar la franja inferior
-          }}
-        >
-          <source src="/def-software-video-3.mp4" type="video/mp4" />
-        </video>
-
-        {/* Video principal, centrado y sin cortar letras */}
-        <video
-          autoPlay
-          muted
-          playsInline
-          style={{
-            position: 'relative',
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain',
-            transform: 'scale(0.9)', // Mismo tamaño y sin desplazar hacia abajo para no cortar las letras
+            objectFit: 'cover', // Cubre toda la pantalla sin bordes
             opacity: 0.5, 
-            zIndex: 2,
-            clipPath: 'inset(0 0 12% 0)' // Cortar la franja inferior completa
+            zIndex: 0,
+            clipPath: 'inset(0 0 12% 0)' // Mantenemos el corte inferior recto para borrar VEO
           }}
         >
           <source src="/def-software-video-3.mp4" type="video/mp4" />
