@@ -84,22 +84,23 @@ const AtmosphericBackground: React.FC = () => {
           {/* Parche "DS" anclado a la esquina inferior derecha del video REAL */}
           <div style={{
             position: 'absolute',
-            bottom: '10px', 
-            right: '10px', 
-            width: '45px',
-            height: '25px',
-            backgroundColor: '#1c1e22', // Gris casi idéntico al fondo del video
+            bottom: '18px', 
+            right: '45px', 
+            width: '80px',
+            height: '35px',
+            backgroundColor: 'rgba(28, 30, 34, 0.95)', // Gris oscuro casi opaco
+            backdropFilter: 'blur(10px)', // Difumina las letras de VEO abajo
             borderRadius: '4px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'rgba(255,255,255,0.3)', // Color sutil para que pase desapercibido
+            color: 'rgba(255,255,255,0.3)', // Color sutil
             fontFamily: 'var(--font-manrope)',
             fontWeight: '600',
             letterSpacing: '1px',
-            fontSize: '0.75rem',
+            fontSize: '0.8rem',
             border: 'none',
-            boxShadow: 'none', // Sin sombra ni borde para que se funda con el video
+            boxShadow: 'none',
             pointerEvents: 'auto'
           }}>
             DS
