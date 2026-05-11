@@ -64,7 +64,8 @@ const AtmosphericBackground: React.FC = () => {
             height: '100%',
             objectFit: 'contain',
             transform: 'scale(0.85) translateY(12%)',
-            opacity: videoEnded ? 0.5 : 0, // Aparece de inmediato
+            opacity: videoEnded ? 0.5 : 0,
+            transition: 'opacity 0.4s ease-in-out',
             zIndex: 1,
             // Aplicar la misma máscara para el fade inferior
             WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 85%)',
@@ -84,7 +85,8 @@ const AtmosphericBackground: React.FC = () => {
             height: '100%',
             objectFit: 'contain',
             transform: 'scale(0.85) translateY(12%)', // Lo bajamos un 12% para centrar el cubo y que no se corte arriba
-            opacity: videoEnded ? 0 : 0.5, // Desaparece de inmediato
+            opacity: videoEnded ? 0 : 0.5,
+            transition: 'opacity 0.4s ease-in-out',
             zIndex: 2,
             // Desvanecer suavemente la parte inferior para borrar las letras finales y la marca de agua
             WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 85%)',
