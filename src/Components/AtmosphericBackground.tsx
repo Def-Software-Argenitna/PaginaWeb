@@ -84,22 +84,22 @@ const AtmosphericBackground: React.FC = () => {
           {/* Parche "DS" anclado a la esquina inferior derecha del video REAL */}
           <div style={{
             position: 'absolute',
-            bottom: '15px', 
-            right: '15px', 
-            width: '130px',
-            height: '40px',
-            backgroundColor: '#151719', // Gris oscuro que se camufla con el fondo del video
-            borderRadius: '8px',
+            bottom: '10px', 
+            right: '10px', 
+            width: '45px',
+            height: '25px',
+            backgroundColor: '#1c1e22', // Gris casi idéntico al fondo del video
+            borderRadius: '4px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--accent-cyan)',
+            color: 'rgba(255,255,255,0.3)', // Color sutil para que pase desapercibido
             fontFamily: 'var(--font-manrope)',
-            fontWeight: '700',
-            letterSpacing: '2px',
-            fontSize: '1.1rem',
-            border: '1px solid rgba(255,255,255,0.08)',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.8)',
+            fontWeight: '600',
+            letterSpacing: '1px',
+            fontSize: '0.75rem',
+            border: 'none',
+            boxShadow: 'none', // Sin sombra ni borde para que se funda con el video
             pointerEvents: 'auto'
           }}>
             DS
