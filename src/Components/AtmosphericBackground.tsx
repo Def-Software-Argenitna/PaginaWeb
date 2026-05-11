@@ -21,14 +21,13 @@ const AtmosphericBackground: React.FC = () => {
       {/* Background Video */}
       <video
         autoPlay
-        loop
         muted
         playsInline
         style={{
           position: 'absolute',
           width: '100%',
           height: '100%',
-          objectFit: 'cover',
+          objectFit: 'contain',
           top: 0,
           left: 0,
           zIndex: 0,
