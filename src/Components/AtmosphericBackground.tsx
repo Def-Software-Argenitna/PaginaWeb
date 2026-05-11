@@ -67,6 +67,29 @@ const AtmosphericBackground: React.FC = () => {
         >
           <source src="/def-software-video-3.mp4" type="video/mp4" />
         </video>
+
+        {/* Parche "DS" para tapar la marca de agua de VEED.io de forma elegante */}
+        <div style={{
+          position: 'absolute',
+          bottom: '8%',
+          right: '6%',
+          width: '100px',
+          height: '40px',
+          backgroundColor: '#0a0a0a',
+          borderRadius: '8px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'var(--accent-cyan)',
+          fontFamily: 'var(--font-manrope)',
+          fontWeight: '800',
+          fontSize: '1.2rem',
+          zIndex: 3,
+          border: '1px solid rgba(255,255,255,0.05)',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.8)'
+        }}>
+          DS
+        </div>
       </div>
 
       {/* Dynamic Mouse Following Orb */}
