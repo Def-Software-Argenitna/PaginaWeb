@@ -62,9 +62,7 @@ const AtmosphericBackground: React.FC = () => {
             objectFit: 'contain',
             transform: 'scale(0.9)', // Mismo tamaño y sin desplazar hacia abajo para no cortar las letras
             opacity: 0.5, 
-            zIndex: 2,
-            // Recorta exactamente la esquina inferior derecha para tapar posibles marcas de agua
-            clipPath: 'polygon(0% 0%, 100% 0%, 100% 88%, 75% 88%, 75% 100%, 0% 100%)'
+            zIndex: 2
           }}
         >
           <source src="/def-software-video-3.mp4" type="video/mp4" />
