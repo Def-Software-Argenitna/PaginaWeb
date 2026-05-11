@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 // Mouse following atmospheric background
 const AtmosphericBackground: React.FC = () => {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
-  const [videoEnded, setVideoEnded] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -48,45 +47,27 @@ const AtmosphericBackground: React.FC = () => {
             opacity: 0.3, // Muy sutil
           }}
         >
-          <source src="/def-software-video-2.mp4" type="video/mp4" />
+          <source src="/def-software-video-3.mp4" type="video/mp4" />
         </video>
-
-        {/* Imagen estática que se revelará cuando termine el video */}
-        <img
-          src="/def-software-bg-final.png"
-          alt="DEF Software Final"
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain',
-            transform: 'scale(0.9)', // Mismo tamaño para que coincida perfectamente
-            opacity: videoEnded ? 0.5 : 0, 
-            transition: 'opacity 1s ease-in-out',
-            zIndex: 1,
-          }}
-        />
 
         {/* Video principal, centrado y sin cortar letras */}
         <video
           autoPlay
           muted
           playsInline
-          onEnded={() => setVideoEnded(true)}
           style={{
             position: 'relative',
             width: '100%',
             height: '100%',
             objectFit: 'contain',
             transform: 'scale(0.9)', // Mismo tamaño y sin desplazar hacia abajo para no cortar las letras
-            opacity: videoEnded ? 0 : 0.5, 
-            transition: 'opacity 1s ease-in-out',
+            opacity: 0.5, 
             zIndex: 2,
-            // Recorta exactamente la esquina inferior derecha para tapar Veed.io sin tapar las letras del centro
+            // Recorta exactamente la esquina inferior derecha para tapar posibles marcas de agua
             clipPath: 'polygon(0% 0%, 100% 0%, 100% 88%, 75% 88%, 75% 100%, 0% 100%)'
           }}
         >
-          <source src="/def-software-video-2.mp4" type="video/mp4" />
+          <source src="/def-software-video-3.mp4" type="video/mp4" />
         </video>
       </div>
 
