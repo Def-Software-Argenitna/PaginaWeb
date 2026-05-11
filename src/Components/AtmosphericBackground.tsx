@@ -43,7 +43,7 @@ const AtmosphericBackground: React.FC = () => {
             height: '100%',
             objectFit: 'cover',
             filter: 'blur(30px)',
-            transform: 'scale(1.1)', // Para evitar bordes blancos por el blur
+            transform: 'scale(1.1) translateY(5%)', // Lo bajamos un poquito para que acompañe al video principal
             opacity: 0.3, // Muy sutil
             // Desvanecer suavemente la parte inferior
             WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 90%)',
@@ -53,7 +53,7 @@ const AtmosphericBackground: React.FC = () => {
           <source src="/def-software-video-2.mp4" type="video/mp4" />
         </video>
 
-        {/* Video principal, más chico para que se vean las letras y sin marca de agua */}
+        {/* Video principal, centrado y desvanecido para ocultar las letras */}
         <video
           autoPlay
           muted
@@ -63,7 +63,7 @@ const AtmosphericBackground: React.FC = () => {
             width: '100%',
             height: '100%',
             objectFit: 'contain',
-            transform: 'scale(0.85)', // Achicamos un 15% para que no quede tan gigante
+            transform: 'scale(0.85) translateY(12%)', // Lo bajamos un 12% para centrar el cubo y que no se corte arriba
             opacity: 0.5,
             // Desvanecer suavemente la parte inferior para borrar las letras finales y la marca de agua
             WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 85%)',
