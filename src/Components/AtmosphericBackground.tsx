@@ -18,24 +18,46 @@ const AtmosphericBackground: React.FC = () => {
 
   return (
     <div className="atmospheric-container">
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        playsInline
-        style={{
+      {/* Background Video Wrapper */}
+      <div style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        top: 0,
+        left: 0,
+        zIndex: 0,
+        opacity: 0.4,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+      }}>
+        <video
+          autoPlay
+          muted
+          playsInline
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+            transform: 'scale(1.04)', // Pequeño zoom para empujar los bordes un poco hacia afuera
+          }}
+        >
+          <source src="/def-software-video-2.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Parche oscuro para tapar la marca de agua de VEED.io sin cortar todo el video */}
+        <div style={{
           position: 'absolute',
-          width: '100%',
-          height: '100%',
-          objectFit: 'contain',
-          top: 0,
-          left: 0,
-          zIndex: 0,
-          opacity: 0.4, // Oscurecido para que no afecte la legibilidad de la interfaz
-        }}
-      >
-        <source src="/def-software-video.mp4" type="video/mp4" />
-      </video>
+          bottom: '2%',
+          right: '2%',
+          width: '160px',
+          height: '65px',
+          background: '#000',
+          filter: 'blur(12px)',
+          borderRadius: '12px'
+        }}></div>
+      </div>
 
       {/* Dynamic Mouse Following Orb */}
       <div 
