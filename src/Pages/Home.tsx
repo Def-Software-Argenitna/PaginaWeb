@@ -431,6 +431,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
       <article
         key={product.name}
+        id={product.name.toLowerCase()}
         className="product-card glass-panel reveal"
         style={{ transitionDelay: `${index * 0.1}s` }}
       >

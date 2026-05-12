@@ -17,11 +17,19 @@ import EliminacionDatosApp from './Pages/EliminacionDatosApp';
 import ProtectedRoute from './Components/ProtectedRoute';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 }
@@ -123,11 +131,11 @@ function App() {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </div>
                 <div className="dropdown-menu">
-                  <Link to="/" className="dropdown-item">
+                  <Link to="/#meatmanager" className="dropdown-item">
                     <span>MeatManager</span>
                     <span>Plataforma 100% Web para carnicerías</span>
                   </Link>
-                  <Link to="/" className="dropdown-item">
+                  <Link to="/#kioskmanager" className="dropdown-item">
                     <span>KioskManager</span>
                     <span>App móvil para gestión de inventario</span>
                   </Link>
