@@ -34,41 +34,34 @@ function ScrollToTop() {
   return null;
 }
 
-function Logo({ height = '50px' }: { height?: string }) {
-  const [logoError, setLogoError] = useState(false);
-
-  const fallbackLogo = (
-    <>
+function Logo({ height = '40px' }: { height?: string }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
       <svg
-        width="28"
-        height="28"
+        width="32"
+        height="32"
         viewBox="0 0 24 24"
         fill="none"
         stroke="var(--accent-cyan)"
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+        style={{ filter: 'drop-shadow(0 0 8px rgba(0, 242, 254, 0.4))' }}
       >
         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
         <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
         <line x1="12" y1="22.08" x2="12" y2="12"></line>
       </svg>
-      <span style={{ fontWeight: 800, fontSize: '1.4rem', color: '#fff' }}>
-        DEF
-        <span style={{ fontWeight: 300, color: 'var(--text-dim)' }}>Software</span>
+      <span style={{ 
+        fontWeight: 800, 
+        fontSize: '1.4rem', 
+        color: '#fff',
+        letterSpacing: '0.5px',
+        fontFamily: 'var(--font-manrope)'
+      }}>
+        DEF<span style={{ fontWeight: 300, color: 'var(--text-dim)' }}>Software</span>
       </span>
-    </>
-  );
-
-  return !logoError ? (
-    <img
-      src="/def-software-logo.jpg"
-      alt="Def Software"
-      style={{ height, objectFit: 'contain' }}
-      onError={() => setLogoError(true)}
-    />
-  ) : (
-    fallbackLogo
+    </div>
   );
 }
 
@@ -113,16 +106,9 @@ function App() {
               className="brand-logo"
               style={{
                 textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                color: 'var(--accent-cyan)',
-                fontFamily: 'var(--font-manrope)',
-                fontWeight: 800,
-                letterSpacing: 'normal'
               }}
             >
-              Inicio
+              <Logo />
             </Link>
             <nav className="nav-links">
               <div className="nav-item-dropdown">
