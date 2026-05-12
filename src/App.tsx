@@ -156,7 +156,7 @@ function App() {
                 <div className="dropdown-menu">
                   <Link to="/" className="dropdown-item">
                     <span>Pagos</span>
-                    <span>Mercado Pago, MODO, Cuenta DNI, Ualá y Tarjetas</span>
+                    <span>Tarjetas de débito/crédito, Mercado Pago, Cuenta DNI, etc</span>
                   </Link>
                 </div>
               </div>
