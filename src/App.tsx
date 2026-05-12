@@ -153,20 +153,12 @@ function App() {
                 </div>
                 <div className="dropdown-menu">
                   <Link to="/" className="dropdown-item">
-                    <span>Gestión de Salón</span>
-                    <span>Optimiza la atención</span>
-                  </Link>
-                  <Link to="/" className="dropdown-item">
                     <span>Control de Negocio</span>
-                    <span>Métricas y reportes</span>
+                    <span>Tené un orden perfecto de tu negocio y administración</span>
                   </Link>
                   <Link to="/" className="dropdown-item">
                     <span>Organiza tu Delivery</span>
-                    <span>Logística eficiente</span>
-                  </Link>
-                  <Link to="/" className="dropdown-item">
-                    <span>Eventos</span>
-                    <span>Acreditaciones y ventas</span>
+                    <span>Hacemos que el recorrido de tu delivery sea seguro y pueda tener un buen viaje</span>
                   </Link>
                 </div>
               </div>
