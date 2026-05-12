@@ -156,11 +156,7 @@ function App() {
                 <div className="dropdown-menu">
                   <Link to="/" className="dropdown-item">
                     <span>Pagos</span>
-                    <span>Billeteras y tarjetas</span>
-                  </Link>
-                  <Link to="/" className="dropdown-item">
-                    <span>Delivery Apps</span>
-                    <span>Rappi, PedidosYa y más</span>
+                    <span>Mercado Pago, MODO, Cuenta DNI, Ualá y Tarjetas</span>
                   </Link>
                 </div>
               </div>
@@ -180,7 +176,7 @@ function App() {
                     <span>Control de pedidos en tiempo real</span>
                   </Link>
                   <Link to="/" className="dropdown-item">
-                    <span>Facturación Electrónica</span>
+                    <span>Facturación Electrónica (PROXIMAMENTE!!!)</span>
                     <span>Cumplimiento fiscal automático</span>
                   </Link>
                 </div>
