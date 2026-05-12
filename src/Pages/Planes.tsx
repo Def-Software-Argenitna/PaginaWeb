@@ -1,25 +1,49 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const PricingPlans = [
   {
-    name: 'Startup',
-    price: '$49',
-    desc: 'Perfecto para pequeños comercios y negocios emergentes.',
-    features: ['Hasta 5 sucursales', 'Módulo de facturación', 'Stock básico', 'Cierres de caja fijos', 'Soporte general'],
+    name: 'Licencia Web',
+    price: 'Desde $...',
+    desc: 'La solución ideal para comenzar a digitalizar tu operación gastronómica.',
+    features: [
+      '1 usuario habilitado',
+      'Gestión de comandas',
+      'Módulo de facturación*',
+      'Conexión con 1 comandera',
+      'Carta digital con QR',
+      'Estadísticas de ventas',
+      'Gestión de Mesas y Stock'
+    ],
     popular: false,
   },
   {
-    name: 'Profesional',
-    price: '$129',
-    desc: 'Para empresas en crecimiento que necesitan control total.',
-    features: ['Sucursales ilimitadas', 'Facturación automática', 'Stock multicabezal', 'Permisos de usuarios', 'Soporte prioritario 24/7'],
+    name: 'Avanzado',
+    price: 'Desde $...',
+    desc: 'Control total para negocios en crecimiento con múltiples necesidades.',
+    features: [
+      'Usuarios ilimitados',
+      'Módulo de stock, costos y recetas',
+      'Mesas ilimitadas',
+      'Múltiples comanderas',
+      'Múltiples cartas',
+      'Reportes y métricas avanzados',
+      'Integración con apps de delivery'
+    ],
     popular: true,
   },
   {
-    name: 'Enterprise',
-    price: 'Custom',
-    desc: 'Soluciones a medida para franquicias corporativas.',
-    features: ['Despliegue On-Premise', 'Kioscos interactivos API', 'SLA 99.99% garantizado', 'Integraciones bancarias', 'Capacitación in situ'],
+    name: 'Premium',
+    price: 'Desde $...',
+    desc: 'Para empresas que buscan integración total y gestión multisuccursal.',
+    features: [
+      'Acceso a la API para integraciones',
+      'Facturación masiva vía Web',
+      'Gestión Multilocal',
+      'Centro de Producción',
+      'Tienda online con pedidos ilimitados',
+      'Soporte corporativo prioritario',
+      'Módulos personalizados'
+    ],
     popular: false,
   },
 ];
@@ -29,9 +53,10 @@ export default function Planes() {
     <main className="new-main-content">
       <section className="new-hero-section" style={{ paddingBottom: '4rem', paddingTop: '10rem' }}>
         <div className="hero-panel reveal" style={{ padding: '0', background: 'none', border: 'none', boxShadow: 'none' }}>
-          <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#fff', marginBottom: '1rem', lineHeight: 1.1 }}>Planes inversores</h1>
-          <p style={{ color: 'var(--text-dim)', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto' }}>
-            Escalabilidad garantizada. Escoge el modelo que potencie la etapa actual de tu desarrollo comercial.
+          <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#fff', marginBottom: '1rem', lineHeight: 1.1 }}>Precios</h1>
+          <p style={{ color: 'var(--text-dim)', fontSize: '1.2rem', maxWidth: '720px', margin: '0 auto' }}>
+            Simplificá tu operación con una solución integral, fácil de usar y moderna.
+            Seleccioná el plan que mejor se adapte a tu local.
           </p>
         </div>
       </section>

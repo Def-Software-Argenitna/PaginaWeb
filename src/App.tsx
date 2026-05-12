@@ -117,9 +117,116 @@ function App() {
               Inicio
             </Link>
             <nav className="nav-links">
-              <Link to="/plataforma">Plataforma</Link>
-              <Link to="/sobre-nosotros">Sobre nosotros</Link>
-              <Link to="/contacto">Contacto</Link>
+              <div className="nav-item-dropdown">
+                <div className="dropdown-trigger">
+                  <Link to="/">Productos</Link>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+                <div className="dropdown-menu">
+                  <Link to="/plataforma" className="dropdown-item">
+                    <span>Punto de Venta</span>
+                    <span>Software de gestión para locales</span>
+                  </Link>
+                  <Link to="/" className="dropdown-item">
+                    <span>Tienda Online</span>
+                    <span>Ventas web integradas</span>
+                  </Link>
+                  <Link to="/" className="dropdown-item">
+                    <span>Comedores</span>
+                    <span>Gestión corporativa</span>
+                  </Link>
+                  <Link to="/" className="dropdown-item">
+                    <span>Bistro Kiosco</span>
+                    <span>Autoservicio (Muy pronto)</span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="nav-item-dropdown">
+                <div className="dropdown-trigger">
+                  <Link to="/">Soluciones</Link>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+                <div className="dropdown-menu">
+                  <Link to="/" className="dropdown-item">
+                    <span>Gestión de Salón</span>
+                    <span>Optimiza la atención</span>
+                  </Link>
+                  <Link to="/" className="dropdown-item">
+                    <span>Control de Negocio</span>
+                    <span>Métricas y reportes</span>
+                  </Link>
+                  <Link to="/" className="dropdown-item">
+                    <span>Organiza tu Delivery</span>
+                    <span>Logística eficiente</span>
+                  </Link>
+                  <Link to="/" className="dropdown-item">
+                    <span>Eventos</span>
+                    <span>Acreditaciones y ventas</span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="nav-item-dropdown">
+                <div className="dropdown-trigger">
+                  <Link to="/">Integraciones</Link>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+                <div className="dropdown-menu">
+                  <Link to="/" className="dropdown-item">
+                    <span>Pagos</span>
+                    <span>Billeteras y tarjetas</span>
+                  </Link>
+                  <Link to="/" className="dropdown-item">
+                    <span>Delivery Apps</span>
+                    <span>Rappi, PedidosYa y más</span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="nav-item-dropdown">
+                <div className="dropdown-trigger">
+                  <Link to="/">Adicionales</Link>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+                <div className="dropdown-menu">
+                  <Link to="/" className="dropdown-item">
+                    <span>Bistro Móvil</span>
+                    <span>Gestión en movimiento</span>
+                  </Link>
+                  <Link to="/" className="dropdown-item">
+                    <span>Bistro Cocina</span>
+                    <span>Monitor de pedidos</span>
+                  </Link>
+                  <Link to="/" className="dropdown-item">
+                    <span>Bistro Facturación</span>
+                    <span>Fiscal y electrónica</span>
+                  </Link>
+                </div>
+              </div>
+
+              <Link to="/planes">Precios</Link>
+
+              <div className="nav-item-dropdown">
+                <div className="dropdown-trigger">
+                  <Link to="/">Recursos</Link>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+                <div className="dropdown-menu">
+                  <Link to="/centro-ayuda" className="dropdown-item">
+                    <span>Academia</span>
+                    <span>Tutoriales y guías</span>
+                  </Link>
+                  <Link to="/casos-exito" className="dropdown-item">
+                    <span>Blog</span>
+                    <span>Novedades del sector</span>
+                  </Link>
+                  <Link to="/documentacion" className="dropdown-item">
+                    <span>FAQ</span>
+                    <span>Preguntas frecuentes</span>
+                  </Link>
+                </div>
+              </div>
             </nav>
             <div className="auth-buttons">
               <Link to="/login" className="modern-btn nav-btn">
