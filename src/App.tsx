@@ -186,28 +186,9 @@ function App() {
                 </div>
               </div>
 
-              <Link to="/planes">Precios</Link>
 
-              <div className="nav-item-dropdown">
-                <div className="dropdown-trigger">
-                  <Link to="/">Recursos</Link>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </div>
-                <div className="dropdown-menu">
-                  <Link to="/centro-ayuda" className="dropdown-item">
-                    <span>Academia</span>
-                    <span>Tutoriales y guías</span>
-                  </Link>
-                  <Link to="/casos-exito" className="dropdown-item">
-                    <span>Blog</span>
-                    <span>Novedades del sector</span>
-                  </Link>
-                  <Link to="/documentacion" className="dropdown-item">
-                    <span>FAQ</span>
-                    <span>Preguntas frecuentes</span>
-                  </Link>
-                </div>
-              </div>
+
+
             </nav>
             <div className="auth-buttons">
               <Link to="/login" className="modern-btn nav-btn">
