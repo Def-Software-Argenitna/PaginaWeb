@@ -155,7 +155,7 @@ function App() {
                 </div>
                 <div className="dropdown-menu">
                   <Link to="/" className="dropdown-item">
-                    <span>Pagos</span>
+                    <span>Pagos (PROXIMAMENTE!!!)</span>
                     <span>Tarjetas de débito/crédito, Mercado Pago, Cuenta DNI, etc</span>
                   </Link>
                 </div>
