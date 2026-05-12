@@ -131,17 +131,17 @@ function App() {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </div>
                 <div className="dropdown-menu">
-                  <Link to="/#meatmanager" className="dropdown-item">
-                    <span>MeatManager</span>
-                    <span>Plataforma 100% Web para carnicerías</span>
+                  <Link to="/plataforma" className="dropdown-item">
+                    <span>Punto de Venta</span>
+                    <span>Software de gestión comercial</span>
                   </Link>
                   <Link to="/#kioskmanager" className="dropdown-item">
                     <span>KioskManager</span>
                     <span>App móvil para gestión de inventario</span>
                   </Link>
-                  <Link to="/plataforma" className="dropdown-item">
-                    <span>Punto de Venta</span>
-                    <span>Software de gestión comercial</span>
+                  <Link to="/#meatmanager" className="dropdown-item">
+                    <span>MeatManager</span>
+                    <span>Plataforma 100% Web para carnicerías</span>
                   </Link>
                 </div>
               </div>
