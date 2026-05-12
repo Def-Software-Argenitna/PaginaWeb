@@ -146,22 +146,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="nav-item-dropdown">
-                <div className="dropdown-trigger">
-                  <Link to="/">Soluciones</Link>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </div>
-                <div className="dropdown-menu">
-                  <Link to="/" className="dropdown-item">
-                    <span>Control de Negocio</span>
-                    <span>Tené un orden perfecto de tu negocio y administración</span>
-                  </Link>
-                  <Link to="/" className="dropdown-item">
-                    <span>Organiza tu Delivery</span>
-                    <span>Hacemos que el recorrido de tu delivery sea seguro y pueda tener un buen viaje</span>
-                  </Link>
-                </div>
-              </div>
+
 
               <div className="nav-item-dropdown">
                 <div className="dropdown-trigger">
