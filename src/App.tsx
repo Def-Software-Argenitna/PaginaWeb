@@ -104,6 +104,14 @@ function App() {
             <Link
               to="/"
               className="brand-logo"
+              onClick={() => {
+                // Scroll to top
+                if (window.location.pathname === '/') {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                // Replay video
+                window.dispatchEvent(new CustomEvent('replay-background-video'));
+              }}
               style={{
                 textDecoration: 'none',
               }}

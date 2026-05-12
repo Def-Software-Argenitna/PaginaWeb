@@ -16,6 +16,19 @@ const AtmosphericBackground: React.FC = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  useEffect(() => {
+    const handleReplay = () => {
+      const video = document.getElementById('bg-video') as HTMLVideoElement;
+      if (video) {
+        video.currentTime = 0;
+        video.play();
+      }
+    };
+
+    window.addEventListener('replay-background-video', handleReplay);
+    return () => window.removeEventListener('replay-background-video', handleReplay);
+  }, []);
+
   return (
     <div className="atmospheric-container">
       {/* Background Video Wrapper */}
@@ -31,6 +44,7 @@ const AtmosphericBackground: React.FC = () => {
       }}>
         {/* Video principal a pantalla completa */}
         <video
+          id="bg-video"
           autoPlay
           muted
           playsInline
