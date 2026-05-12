@@ -111,11 +111,11 @@ function App() {
             <Link
               to="/"
               className="brand-logo"
-              style={{ 
-                textDecoration: 'none', 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '8px', 
+              style={{
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
                 color: 'var(--accent-cyan)',
                 fontFamily: 'var(--font-manrope)',
                 fontWeight: 800,
@@ -177,7 +177,6 @@ function App() {
                   </Link>
                   <Link to="/" className="dropdown-item">
                     <span>Facturación Electrónica (PROXIMAMENTE!!!)</span>
-                    <span>Cumplimiento fiscal automático</span>
                   </Link>
                 </div>
               </div>
