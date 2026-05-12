@@ -123,21 +123,17 @@ function App() {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </div>
                 <div className="dropdown-menu">
+                  <Link to="/" className="dropdown-item">
+                    <span>MeatManager</span>
+                    <span>Plataforma 100% Web para carnicerías</span>
+                  </Link>
+                  <Link to="/" className="dropdown-item">
+                    <span>KioskManager</span>
+                    <span>App móvil para gestión de inventario</span>
+                  </Link>
                   <Link to="/plataforma" className="dropdown-item">
                     <span>Punto de Venta</span>
-                    <span>Software de gestión para locales</span>
-                  </Link>
-                  <Link to="/" className="dropdown-item">
-                    <span>Tienda Online</span>
-                    <span>Ventas web integradas</span>
-                  </Link>
-                  <Link to="/" className="dropdown-item">
-                    <span>Comedores</span>
-                    <span>Gestión corporativa</span>
-                  </Link>
-                  <Link to="/" className="dropdown-item">
-                    <span>Bistro Kiosco</span>
-                    <span>Autoservicio (Muy pronto)</span>
+                    <span>Software de gestión comercial</span>
                   </Link>
                 </div>
               </div>
@@ -191,16 +187,16 @@ function App() {
                 </div>
                 <div className="dropdown-menu">
                   <Link to="/" className="dropdown-item">
-                    <span>Bistro Móvil</span>
+                    <span>Módulo Móvil</span>
                     <span>Gestión en movimiento</span>
                   </Link>
                   <Link to="/" className="dropdown-item">
-                    <span>Bistro Cocina</span>
-                    <span>Monitor de pedidos</span>
+                    <span>Monitor de Cocina</span>
+                    <span>Control de pedidos en tiempo real</span>
                   </Link>
                   <Link to="/" className="dropdown-item">
-                    <span>Bistro Facturación</span>
-                    <span>Fiscal y electrónica</span>
+                    <span>Facturación Electrónica</span>
+                    <span>Cumplimiento fiscal automático</span>
                   </Link>
                 </div>
               </div>
