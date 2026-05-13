@@ -53,7 +53,7 @@ export default function Planes() {
     <main className="new-main-content">
       <section className="new-hero-section" style={{ paddingBottom: '4rem', paddingTop: '10rem' }}>
         <div className="hero-panel reveal" style={{ padding: '0', background: 'none', border: 'none', boxShadow: 'none' }}>
-          <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#fff', marginBottom: '1rem', lineHeight: 1.1 }}>Precios</h1>
+          <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#fff', marginBottom: '1rem', lineHeight: 1.1 }}>Planes</h1>
           <p style={{ color: 'var(--text-dim)', fontSize: '1.2rem', maxWidth: '720px', margin: '0 auto' }}>
             Simplificá tu operación con una solución integral, fácil de usar y moderna.
             Seleccioná el plan que mejor se adapte a tu local.
@@ -66,7 +66,7 @@ export default function Planes() {
           {PricingPlans.map((plan, index) => (
             <div key={plan.name} className={`pricing-card glass-panel reveal ${plan.popular ? 'popular' : ''}`} style={{ transitionDelay: `${index * 0.15}s` }}>
               <div className="pricing-tier">{plan.name}</div>
-              <div className="pricing-price">{plan.price}<span>/mes</span></div>
+
               <div className="pricing-desc">{plan.desc}</div>
               <ul className="pricing-features">
                 {plan.features.map((feature) => (

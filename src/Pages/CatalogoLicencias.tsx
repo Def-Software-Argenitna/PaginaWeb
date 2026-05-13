@@ -75,7 +75,7 @@ const CatalogoLicencias: FC = () => {
         <div className="reveal active" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3rem' }}>
           <div>
             <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>Catalogo de Licencias</h1>
-            <p style={{ color: 'var(--text-dim)', fontSize: '1rem' }}>Productos, pricing y configuracion comercial base.</p>
+            <p style={{ color: 'var(--text-dim)', fontSize: '1rem' }}>Productos y configuracion comercial base.</p>
           </div>
         </div>
       </section>
@@ -115,14 +115,7 @@ const CatalogoLicencias: FC = () => {
                 <p className="license-desc">{license.description}</p>
               </div>
 
-              <div className="license-card-footer">
-                <div className="license-price">
-                  <span className="price-label">PRECIO</span>
-                  <div className="price-value">
-                    USD {license.price} <span className="price-unit">/ {license.priceUnit}</span>
-                  </div>
-                </div>
-              </div>
+
             </div>
           ))}
         </div>
@@ -201,39 +194,7 @@ const CatalogoLicencias: FC = () => {
           min-height: 3.8em;
         }
 
-        .license-card-footer {
-          margin-top: auto;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          padding-top: 1rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
 
-        .license-price {
-          display: flex;
-          flex-direction: column;
-          gap: 0.2rem;
-        }
-
-        .price-label {
-          font-size: 0.6rem;
-          font-weight: 800;
-          color: var(--text-dim);
-          letter-spacing: 1px;
-        }
-
-        .price-value {
-          font-size: 1.2rem;
-          font-weight: 800;
-          color: #fff;
-        }
-
-        .price-unit {
-          font-size: 0.75rem;
-          color: var(--text-dim);
-          font-weight: 400;
-        }
 
       `}</style>
     </main>
