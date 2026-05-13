@@ -96,14 +96,11 @@ const CatalogoLicencias: FC = () => {
   return (
     <main className="new-main-content">
       <section className="new-hero-section" style={{ paddingBottom: '2rem', paddingTop: '8rem', textAlign: 'left', display: 'block' }}>
-        <div className="reveal active" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+        <div className="reveal active" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3rem' }}>
           <div>
             <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>Catalogo de Licencias</h1>
             <p style={{ color: 'var(--text-dim)', fontSize: '1rem' }}>Productos, pricing y configuracion comercial base.</p>
           </div>
-          <button className="modern-btn nav-btn" style={{ borderRadius: '8px' }}>
-            + Crear Producto
-          </button>
         </div>
       </section>
 
