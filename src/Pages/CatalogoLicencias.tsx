@@ -121,7 +121,6 @@ const CatalogoLicencias: FC = () => {
                   <div className="price-value">
                     USD {license.price} <span className="price-unit">/ {license.priceUnit}</span>
                   </div>
-                  <span className="price-sub">0 asignaciones</span>
                 </div>
               </div>
             </div>
@@ -236,10 +235,6 @@ const CatalogoLicencias: FC = () => {
           font-weight: 400;
         }
 
-        .price-sub {
-          font-size: 0.7rem;
-          color: var(--text-dim);
-        }
       `}</style>
     </main>
   );
