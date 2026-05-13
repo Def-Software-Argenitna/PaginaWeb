@@ -27,14 +27,6 @@ const licenses: License[] = [
     priceUnit: 'Por sucursal'
   },
   {
-    id: '3',
-    name: 'Entregas_TEST',
-    badge: 'WEB + APP VINCULADA',
-    description: 'entregas_test',
-    price: 0,
-    priceUnit: 'Por usuario'
-  },
-  {
     id: '4',
     name: 'Licencia Envios',
     badge: 'WEB + APP VINCULADA',
@@ -74,22 +66,6 @@ const licenses: License[] = [
     price: 10,
     priceUnit: 'Por cliente'
   },
-  {
-    id: '9',
-    name: 'SuperUser',
-    badge: 'MODULO WEB',
-    description: 'Habilita todas las funciones de MeatManager Web y App. Un noble permiso ingresar al panel administrativo completo.',
-    price: 0,
-    priceUnit: 'Por cliente'
-  },
-  {
-    id: '10',
-    name: 'Test',
-    badge: 'APP MOVIL INDEPENDIENTE',
-    description: 'test',
-    price: 1,
-    priceUnit: 'Por sucursal'
-  }
 ];
 
 const CatalogoLicencias: FC = () => {
