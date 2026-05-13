@@ -44,9 +44,9 @@ const licenses: License[] = [
   },
   {
     id: '6',
-    name: 'Mantenimiento pagina web',
+    name: 'Página web',
     badge: 'MODULO WEB',
-    description: 'Mantenimiento pagina web',
+    description: 'Desarrollo, publicación y mantenimiento de página web',
     price: 30,
     priceUnit: 'Por cliente'
   },
