@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import './Css/Modern.css';
 import AtmosphericBackground from './Components/AtmosphericBackground';
@@ -12,6 +12,7 @@ import EstadoSistema from './Pages/EstadoSistema';
 import Documentacion from './Pages/Documentacion';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
+import CatalogoLicencias from './Pages/CatalogoLicencias';
 import PoliticaPrivacidadApp from './Pages/PoliticaPrivacidadApp';
 import EliminacionDatosApp from './Pages/EliminacionDatosApp';
 import ProtectedRoute from './Components/ProtectedRoute';
@@ -38,8 +39,8 @@ function Logo({ height = '40px' }: { height?: string }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
       <svg
-        width="32"
-        height="32"
+        width={height}
+        height={height}
         viewBox="0 0 24 24"
         fill="none"
         stroke="var(--accent-cyan)"
@@ -152,6 +153,10 @@ function App() {
                     <span>Pagos (PROXIMAMENTE!!!)</span>
                     <span>Tarjetas de débito/crédito, Mercado Pago, Cuenta DNI, etc</span>
                   </Link>
+                  <Link to="/catalogo-licencias" className="dropdown-item">
+                    <span>Catalogo de Licencias</span>
+                    <span>Explora y gestiona tus suscripciones</span>
+                  </Link>
                 </div>
               </div>
 
@@ -191,6 +196,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/plataforma" element={<Plataforma />} />
+        <Route path="/catalogo-licencias" element={<CatalogoLicencias />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
         <Route path="/casos-exito" element={<CasosExito />} />
         <Route path="/contacto" element={<Contacto />} />

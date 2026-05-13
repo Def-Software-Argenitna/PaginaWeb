@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, type FC } from 'react';
 
 // Mouse following atmospheric background
-const AtmosphericBackground: React.FC = () => {
+const AtmosphericBackground: FC = () => {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
 
   useEffect(() => {
