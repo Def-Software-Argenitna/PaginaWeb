@@ -1,0 +1,404 @@
+/* SoporteTecnico.css */
+
+.soporte-page {
+  min-height: 100vh;
+  padding: 8rem 1.5rem 4rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* ─── Header ─── */
+.soporte-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.soporte-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: 20px;
+  padding: 0.35rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.soporte-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.75rem;
+}
+
+.soporte-header p {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ─── Form card ─── */
+.soporte-form {
+  background: var(--card-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 18px;
+  padding: 2.25rem 2.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.form-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-cyan);
+  margin: 1.5rem 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.form-section-title:first-of-type {
+  margin-top: 0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  color: var(--text-main);
+  font-family: var(--font-manrope);
+  font-size: 0.93rem;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.04);
+  box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.08);
+}
+
+.form-group input.error,
+.form-group textarea.error,
+.form-group select.error {
+  border-color: #f43f5e;
+}
+
+.form-group select option {
+  background: #1e1e24;
+  color: var(--text-main);
+}
+
+.form-group textarea {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.char-count {
+  font-size: 0.75rem;
+  text-align: right;
+  transition: color 0.2s;
+}
+
+.error-msg {
+  color: #f43f5e;
+  font-size: 0.78rem;
+}
+
+/* Priority select color accent */
+.prioridad-select.prioridad-baja  { border-color: rgba(74, 222, 128, 0.4); }
+.prioridad-select.prioridad-media { border-color: rgba(250, 204, 21, 0.4); }
+.prioridad-select.prioridad-alta  { border-color: rgba(249, 115, 22, 0.4); }
+.prioridad-select.prioridad-critica { border-color: rgba(244, 63, 94, 0.5); box-shadow: 0 0 0 3px rgba(244,63,94,0.1); }
+
+/* ─── File upload ─── */
+.upload-area {
+  border: 2px dashed var(--border-glass);
+  border-radius: 12px;
+  padding: 1.75rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  user-select: none;
+}
+
+.upload-area:hover {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.04);
+}
+
+.upload-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.upload-area p {
+  color: var(--text-dim);
+  font-size: 0.875rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.upload-area p span {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.attached-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.875rem;
+}
+
+.attached-file {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.attached-file button {
+  background: none;
+  border: none;
+  color: #f43f5e;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+.attached-file button:hover {
+  opacity: 1;
+}
+
+/* ─── Submit ─── */
+.form-error-global {
+  background: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  color: #f87171;
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.soporte-submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: var(--font-manrope);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.soporte-submit-btn:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.soporte-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── Spinner ─── */
+.spinner-sm {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Success state ─── */
+.soporte-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  text-align: center;
+  animation: fadeInUp 0.45s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.soporte-success h2 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 0.875rem;
+}
+
+.soporte-success > p {
+  color: var(--text-dim);
+  font-size: 1rem;
+  max-width: 460px;
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+.ticket-id {
+  background: var(--card-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 1.1rem 2rem;
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 0.875rem;
+}
+
+.ticket-id strong {
+  color: var(--accent-cyan);
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.success-note {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.success-note strong {
+  color: var(--text-main);
+}
+
+.soporte-success > button {
+  margin-top: 2rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  color: var(--accent-cyan);
+  font-family: var(--font-manrope);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.soporte-success > button:hover {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.06);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .soporte-page {
+    padding: 6.5rem 1rem 3rem;
+  }
+
+  .soporte-header h1 {
+    font-size: 1.9rem;
+  }
+
+  .soporte-form {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

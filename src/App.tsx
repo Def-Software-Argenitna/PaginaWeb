@@ -15,7 +15,10 @@ import Dashboard from './Pages/Dashboard';
 import CatalogoLicencias from './Pages/CatalogoLicencias';
 import PoliticaPrivacidadApp from './Pages/PoliticaPrivacidadApp';
 import EliminacionDatosApp from './Pages/EliminacionDatosApp';
+import SoporteTecnico from './Pages/SoporteTecnico';
+import AdminTickets from './Pages/AdminTickets';
 import ProtectedRoute from './Components/ProtectedRoute';
+import AdminRoute from './Components/AdminRoute';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -180,6 +183,27 @@ function App() {
                 </div>
               </div>
 
+              <div className="nav-item-dropdown">
+                <div className="dropdown-trigger">
+                  <Link to="/soporte-tecnico">Soporte</Link>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+                <div className="dropdown-menu">
+                  <Link to="/centro-ayuda" className="dropdown-item">
+                    <span>Centro de ayuda</span>
+                    <span>Guías y preguntas frecuentes</span>
+                  </Link>
+                  <Link to="/estado-sistema" className="dropdown-item">
+                    <span>Estado del sistema</span>
+                    <span>Monitoreo en tiempo real</span>
+                  </Link>
+                  <Link to="/soporte-tecnico" className="dropdown-item">
+                    <span>Soporte Técnico</span>
+                    <span>Reportar errores y fallas del sistema</span>
+                  </Link>
+                </div>
+              </div>
+
 
 
 
@@ -204,6 +228,7 @@ function App() {
         <Route path="/estado-sistema" element={<EstadoSistema />} />
         <Route path="/documentacion" element={<Documentacion />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/soporte-tecnico" element={<SoporteTecnico />} />
         <Route path="/app/privacy/meatmanager-mobile" element={<PoliticaPrivacidadApp />} />
         <Route path="/app/data-deletion/meatmanager-mobile" element={<EliminacionDatosApp />} />
         <Route
@@ -212,6 +237,14 @@ function App() {
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/tickets"
+          element={
+            <AdminRoute>
+              <AdminTickets />
+            </AdminRoute>
           }
         />
       </Routes>
@@ -262,6 +295,7 @@ function App() {
                 <Link to="/centro-ayuda">Centro de ayuda</Link>
                 <Link to="/documentacion">Documentación API</Link>
                 <Link to="/estado-sistema">Estado del sistema</Link>
+                <Link to="/soporte-tecnico">Soporte Técnico</Link>
               </div>
             </div>
           </div>
