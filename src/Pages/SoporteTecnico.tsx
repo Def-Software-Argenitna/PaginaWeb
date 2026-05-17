@@ -118,7 +118,23 @@ export default function SoporteTecnico() {
       const cred = await login(loginEmail, loginPassword);
       const user = cred.user;
       setUsuarioActual({ uid: user.uid, email: user.email! });
-      setForm(prev => ({ ...prev, email: user.email!, nombre: user.displayName ?? '' }));
+
+      // Obtener nombre desde la base de datos de Gestionclientes
+      let nombre = '';
+      const gestionUrl = import.meta.env.VITE_GESTION_API_URL as string | undefined;
+      if (gestionUrl) {
+        try {
+          const resp = await fetch(
+            `${gestionUrl}/api/lookup/admin-email?firebaseUid=${encodeURIComponent(user.uid)}`,
+          );
+          if (resp.ok) {
+            const data = await resp.json() as { nombre?: string | null };
+            nombre = data.nombre ?? '';
+          }
+        } catch { /* si Gestionclientes no está disponible, el campo queda editable */ }
+      }
+
+      setForm(prev => ({ ...prev, email: user.email!, nombre }));
       setSoporteVerificado(true);
     } catch (err) {
       if (err instanceof FirebaseError) console.error('Login soporte:', err.code);
