@@ -1,6 +1,5 @@
-// Notification service for support tickets.
-// Configure VITE_DISCORD_WEBHOOK_URL in your .env to enable Discord notifications.
-// Email notifications (EmailJS / backend) to be wired up when credentials are ready.
+// Servicio de notificaciones para tickets de soporte.
+// Los emails se envían via la función serverless /api/notificar-ticket (Vercel).
 
 export interface TicketNotification {
   id: string;
@@ -11,54 +10,24 @@ export interface TicketNotification {
   prioridad: string;
 }
 
-const PRIORITY_COLORS: Record<string, number> = {
-  baja: 0x4ade80,
-  media: 0xfacc15,
-  alta: 0xf97316,
-  critica: 0xf43f5e,
-};
-
-const PRIORITY_LABELS: Record<string, string> = {
-  baja: '🟢 Baja',
-  media: '🟡 Media',
-  alta: '🟠 Alta',
-  critica: '🔴 Crítica',
-};
-
 export async function notificarNuevoTicket(ticket: TicketNotification): Promise<void> {
-  const webhookUrl = import.meta.env.VITE_DISCORD_WEBHOOK_URL as string | undefined;
-
-  if (!webhookUrl) {
-    console.info('[Soporte] Ticket creado:', `TKT-${ticket.id.slice(0, 8).toUpperCase()}`, '— Discord webhook no configurado.');
-    return;
-  }
+  const ticketId = `TKT-${ticket.id.slice(0, 8).toUpperCase()}`;
 
   try {
-    const desc = ticket.descripcion.length > 300
-      ? ticket.descripcion.slice(0, 300) + '…'
-      : ticket.descripcion;
-
-    await fetch(webhookUrl, {
+    await fetch('/api/notificar-ticket', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        embeds: [{
-          title: `🎫 Nuevo Ticket: TKT-${ticket.id.slice(0, 8).toUpperCase()}`,
-          color: PRIORITY_COLORS[ticket.prioridad] ?? 0xaaaaaa,
-          fields: [
-            { name: 'Título', value: ticket.titulo, inline: false },
-            { name: 'Usuario', value: ticket.nombre, inline: true },
-            { name: 'Email', value: ticket.email, inline: true },
-            { name: 'Prioridad', value: PRIORITY_LABELS[ticket.prioridad] ?? ticket.prioridad, inline: true },
-            { name: 'Descripción', value: desc, inline: false },
-          ],
-          footer: { text: 'DEF Software — Sistema de Soporte Técnico' },
-          timestamp: new Date().toISOString(),
-        }],
+        ticketId,
+        nombre:      ticket.nombre,
+        email:       ticket.email,
+        titulo:      ticket.titulo,
+        descripcion: ticket.descripcion,
+        prioridad:   ticket.prioridad,
       }),
     });
   } catch (err) {
-    // Notification failure should never block ticket creation
-    console.error('[Soporte] Error al enviar notificación Discord:', err);
+    // La notificación falla silenciosamente para no interrumpir la creación del ticket
+    console.error('[Soporte] Error al notificar:', err);
   }
 }
