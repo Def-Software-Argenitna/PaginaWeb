@@ -183,26 +183,12 @@ function App() {
                 </div>
               </div>
 
-              <div className="nav-item-dropdown">
-                <div className="dropdown-trigger">
-                  <Link to="/soporte-tecnico">Soporte</Link>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </div>
-                <div className="dropdown-menu">
-                  <Link to="/centro-ayuda" className="dropdown-item">
-                    <span>Centro de ayuda</span>
-                    <span>Guías y preguntas frecuentes</span>
-                  </Link>
-                  <Link to="/estado-sistema" className="dropdown-item">
-                    <span>Estado del sistema</span>
-                    <span>Monitoreo en tiempo real</span>
-                  </Link>
-                  <Link to="/soporte-tecnico" className="dropdown-item">
-                    <span>Soporte Técnico</span>
-                    <span>Reportar errores y fallas del sistema</span>
-                  </Link>
-                </div>
-              </div>
+              <Link to="/soporte-tecnico" style={{ color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 500, padding: '0.25rem 0', transition: 'color 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-cyan)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-main)')}
+              >
+                Soporte Técnico
+              </Link>
 
 
 
