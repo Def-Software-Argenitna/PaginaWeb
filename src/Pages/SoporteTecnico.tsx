@@ -118,22 +118,7 @@ export default function SoporteTecnico() {
       const cred = await login(loginEmail, loginPassword);
       const user = cred.user;
       setUsuarioActual({ uid: user.uid, email: user.email! });
-
-      // Obtener nombre desde Gestionclientes (fire-and-forget antes de mostrar el form)
-      let nombreCompleto = '';
-      try {
-        const infoResp = await fetch('/api/usuario-info', {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify({ firebaseUid: user.uid }),
-        });
-        if (infoResp.ok) {
-          const info = await infoResp.json() as { nombre?: string | null };
-          nombreCompleto = info.nombre ?? '';
-        }
-      } catch { /* si falla, el campo queda vacío para que el usuario lo complete */ }
-
-      setForm(prev => ({ ...prev, email: user.email!, nombre: nombreCompleto }));
+      setForm(prev => ({ ...prev, email: user.email!, nombre: user.displayName ?? '' }));
       setSoporteVerificado(true);
     } catch (err) {
       if (err instanceof FirebaseError) console.error('Login soporte:', err.code);
