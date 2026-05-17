@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import nodemailer from 'nodemailer';
 
-const ADMIN_EMAILS = ['valentinmuzzio1@gmail.com', 'valentinmuzzio585@gmail.com'];
+const FALLBACK_ADMIN_EMAILS = ['valentinmuzzio1@gmail.com', 'valentinmuzzio585@gmail.com'];
 
 const PRIORIDAD: Record<string, string> = {
   baja: '🟢 Baja',
@@ -10,10 +10,31 @@ const PRIORIDAD: Record<string, string> = {
   critica: '🔴 Crítica',
 };
 
+async function resolverEmailAdmin(firebaseUid: string): Promise<string | null> {
+  const gestionUrl = process.env.GESTION_API_URL;
+  const apiKey     = process.env.LOOKUP_API_KEY;
+
+  if (!gestionUrl || !firebaseUid) return null;
+
+  try {
+    const url = `${gestionUrl}/api/lookup/admin-email?firebaseUid=${encodeURIComponent(firebaseUid)}`;
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    if (apiKey) headers['x-api-key'] = apiKey;
+
+    const resp = await fetch(url, { headers });
+    if (!resp.ok) return null;
+
+    const data = await resp.json() as { cashAuthorizationEmail?: string | null };
+    return data.cashAuthorizationEmail ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { nombre, email, titulo, descripcion, prioridad, ticketId } = req.body ?? {};
+  const { nombre, email, titulo, descripcion, prioridad, ticketId, firebaseUid } = req.body ?? {};
 
   if (!nombre || !email || !titulo || !ticketId) {
     return res.status(400).json({ error: 'Faltan datos del ticket' });
@@ -26,6 +47,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error('[Soporte] GMAIL_USER o GMAIL_APP_PASSWORD no configurados');
     return res.status(500).json({ error: 'Servicio de email no configurado' });
   }
+
+  // Intentar obtener el email del admin del cliente desde Gestionclientes
+  const emailAdmin = firebaseUid ? await resolverEmailAdmin(firebaseUid) : null;
+
+  const destinatarios: string[] =
+    emailAdmin ? [emailAdmin] : FALLBACK_ADMIN_EMAILS;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -82,7 +109,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     await transporter.sendMail({
       from: `"DEF Software Soporte" <${gmailUser}>`,
-      to: ADMIN_EMAILS.join(', '),
+      to: destinatarios.join(', '),
       subject: `[${ticketId}] ${titulo} — Prioridad ${prioridadLabel}`,
       html,
     });

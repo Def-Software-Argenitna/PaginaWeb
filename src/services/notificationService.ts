@@ -8,6 +8,7 @@ export interface TicketNotification {
   titulo: string;
   descripcion: string;
   prioridad: string;
+  firebaseUid?: string;
 }
 
 export async function notificarNuevoTicket(ticket: TicketNotification): Promise<void> {
@@ -24,6 +25,7 @@ export async function notificarNuevoTicket(ticket: TicketNotification): Promise<
         titulo:      ticket.titulo,
         descripcion: ticket.descripcion,
         prioridad:   ticket.prioridad,
+        firebaseUid: ticket.firebaseUid,
       }),
     });
   } catch (err) {
