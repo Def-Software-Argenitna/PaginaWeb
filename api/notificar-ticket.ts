@@ -34,7 +34,7 @@ async function resolverEmailAdmin(firebaseUid: string): Promise<string | null> {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { nombre, email, titulo, descripcion, prioridad, ticketId, firebaseUid } = req.body ?? {};
+  const { nombre, email, sucursal, titulo, descripcion, prioridad, ticketId, firebaseUid } = req.body ?? {};
 
   if (!nombre || !email || !titulo || !ticketId) {
     return res.status(400).json({ error: 'Faltan datos del ticket' });
@@ -81,6 +81,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px;">Email</td>
             <td style="padding: 10px 0; border-bottom: 1px solid #eee;"><a href="mailto:${email}" style="color: #0077b6;">${email}</a></td>
           </tr>
+          ${sucursal ? `<tr>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px;">Sucursal</td>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: 600;">📍 ${sucursal}</td>
+          </tr>` : ''}
           <tr>
             <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px;">Prioridad</td>
             <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: 600;">${prioridadLabel}</td>

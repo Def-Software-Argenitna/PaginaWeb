@@ -29,6 +29,7 @@ interface Ticket {
   id: string;
   nombre: string;
   email: string;
+  sucursal: string | null;
   titulo: string;
   descripcion: string;
   prioridad: Prioridad;
@@ -273,7 +274,7 @@ export default function AdminTickets() {
                 <div className="ticket-id-tag">{ticketCode(ticket.id)}</div>
                 <div className="ticket-card-title">{ticket.titulo}</div>
                 <div className="ticket-card-meta">
-                  {ticket.nombre} · {ticket.email}
+                  {ticket.nombre} · {ticket.email}{ticket.sucursal ? ` · 📍 ${ticket.sucursal}` : ''}
                 </div>
               </div>
               <span className={`ticket-status-badge status-${ticket.estado}`}>
@@ -324,6 +325,12 @@ export default function AdminTickets() {
                 <div className="detail-label">Creado</div>
                 <div className="detail-value">{formatDate(selectedTicket.fechaCreacion)}</div>
               </div>
+              {selectedTicket.sucursal && (
+                <div className="detail-item">
+                  <div className="detail-label">Sucursal</div>
+                  <div className="detail-value">📍 {selectedTicket.sucursal}</div>
+                </div>
+              )}
             </div>
 
             {/* Description */}

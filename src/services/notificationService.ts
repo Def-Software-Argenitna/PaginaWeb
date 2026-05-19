@@ -5,6 +5,7 @@ export interface TicketNotification {
   id: string;
   nombre: string;
   email: string;
+  sucursal?: string;
   titulo: string;
   descripcion: string;
   prioridad: string;
@@ -22,6 +23,7 @@ export async function notificarNuevoTicket(ticket: TicketNotification): Promise<
         ticketId,
         nombre:      ticket.nombre,
         email:       ticket.email,
+        sucursal:    ticket.sucursal,
         titulo:      ticket.titulo,
         descripcion: ticket.descripcion,
         prioridad:   ticket.prioridad,

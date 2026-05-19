@@ -14,9 +14,16 @@ type Prioridad    = 'baja' | 'media' | 'alta' | 'critica';
 type EstadoTicket = 'pendiente' | 'en_proceso' | 'resuelto';
 type FiltroEstado = 'todos' | EstadoTicket;
 
+interface Sucursal {
+  id: number;
+  name: string;
+  address: string | null;
+}
+
 interface FormState {
   nombre: string;
   email: string;
+  sucursal: string;
   titulo: string;
   descripcion: string;
   prioridad: Prioridad;
@@ -95,7 +102,9 @@ export default function SoporteTecnico() {
   const [loginLoading, setLoginLoading]           = useState(false);
 
   // ── Ticket form ──────────────────────────────────────────────────────────────
-  const [form, setForm]         = useState<FormState>({ nombre: '', email: '', titulo: '', descripcion: '', prioridad: 'media' });
+  const [form, setForm]         = useState<FormState>({ nombre: '', email: '', sucursal: '', titulo: '', descripcion: '', prioridad: 'media' });
+  const [sucursales, setSucursales] = useState<Sucursal[]>([]);
+  const [loadingSucursales, setLoadingSucursales] = useState(false);
   const [adjuntos, setAdjuntos] = useState<File[]>([]);
   const [errors, setErrors]     = useState<FormErrors>({});
   const [enviando, setEnviando] = useState(false);
@@ -132,6 +141,24 @@ export default function SoporteTecnico() {
             nombre = data.nombre ?? '';
           }
         } catch { /* si Gestionclientes no está disponible, el campo queda editable */ }
+
+        // Cargar sucursales del cliente
+        setLoadingSucursales(true);
+        try {
+          const respSuc = await fetch(
+            `${gestionUrl}/api/lookup/sucursales?firebaseUid=${encodeURIComponent(user.uid)}`,
+          );
+          if (respSuc.ok) {
+            const dataSuc = await respSuc.json() as { sucursales?: Sucursal[] };
+            const lista = dataSuc.sucursales ?? [];
+            setSucursales(lista);
+            // Si solo hay una sucursal, seleccionarla automáticamente
+            if (lista.length === 1) {
+              setForm(prev => ({ ...prev, sucursal: lista[0].name }));
+            }
+          }
+        } catch { /* sucursales no disponibles */ }
+        setLoadingSucursales(false);
       }
 
       setForm(prev => ({ ...prev, email: user.email!, nombre }));
@@ -204,7 +231,7 @@ export default function SoporteTecnico() {
   const removeFile      = (i: number) => setAdjuntos(prev => prev.filter((_, idx) => idx !== i));
 
   const resetForm = () => {
-    setForm({ nombre: '', email: usuarioActual?.email ?? '', titulo: '', descripcion: '', prioridad: 'media' });
+    setForm({ nombre: '', email: usuarioActual?.email ?? '', sucursal: sucursales.length === 1 ? sucursales[0].name : '', titulo: '', descripcion: '', prioridad: 'media' });
     setAdjuntos([]);
     setErrors({});
     setTicketCreado(null);
@@ -228,6 +255,7 @@ export default function SoporteTecnico() {
       const docRef = await addDoc(collection(db, 'tickets'), {
         nombre:      form.nombre.trim(),
         email:       form.email.trim().toLowerCase(),
+        sucursal:    form.sucursal || null,
         titulo:      form.titulo.trim(),
         descripcion: form.descripcion.trim(),
         prioridad:   form.prioridad,
@@ -249,6 +277,7 @@ export default function SoporteTecnico() {
         id:          docRef.id,
         nombre:      form.nombre,
         email:       form.email,
+        sucursal:    form.sucursal || undefined,
         titulo:      form.titulo,
         descripcion: form.descripcion,
         prioridad:   form.prioridad,
@@ -357,6 +386,21 @@ export default function SoporteTecnico() {
             {errors.email && <span className="error-msg">{errors.email}</span>}
           </div>
         </div>
+
+        {sucursales.length > 0 && (
+          <div className="form-group" style={{ marginTop: '0.5rem' }}>
+            <label htmlFor="sucursal">Sucursal *</label>
+            <select id="sucursal" name="sucursal" value={form.sucursal} onChange={handleChange}
+              className="prioridad-select" disabled={loadingSucursales || sucursales.length === 1}>
+              {sucursales.length > 1 && <option value="">Seleccioná una sucursal</option>}
+              {sucursales.map(s => (
+                <option key={s.id} value={s.name}>
+                  {s.name}{s.address ? ` — ${s.address}` : ''}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         <p className="form-section-title">Detalle del problema</p>
 
