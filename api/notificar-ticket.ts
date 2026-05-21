@@ -40,11 +40,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Faltan datos del ticket' });
   }
 
-  const gmailUser = process.env.GMAIL_USER;
-  const gmailPass = process.env.GMAIL_APP_PASSWORD;
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASSWORD;
 
-  if (!gmailUser || !gmailPass) {
-    console.error('[Soporte] GMAIL_USER o GMAIL_APP_PASSWORD no configurados');
+  if (!smtpUser || !smtpPass) {
+    console.error('[Soporte] SMTP_USER o SMTP_PASSWORD no configurados');
     return res.status(500).json({ error: 'Servicio de email no configurado' });
   }
 
@@ -55,8 +55,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     emailAdmin ? [emailAdmin] : FALLBACK_ADMIN_EMAILS;
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: { user: gmailUser, pass: gmailPass },
+    host: 'mail.smtp2go.com',
+    port: 587,
+    secure: false,
+    auth: { user: smtpUser, pass: smtpPass },
   });
 
   const prioridadLabel = PRIORIDAD[prioridad] ?? prioridad;
@@ -112,7 +114,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     await transporter.sendMail({
-      from: `"DEF Software Soporte" <${gmailUser}>`,
+      from: `"DEF Software Soporte" <soporte@def-software.com>`,
       to: destinatarios.join(', '),
       subject: `[${ticketId}] ${titulo} — Prioridad ${prioridadLabel}`,
       html,
