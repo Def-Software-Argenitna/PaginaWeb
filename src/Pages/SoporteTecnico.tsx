@@ -130,36 +130,32 @@ export default function SoporteTecnico() {
 
       // Obtener nombre desde la base de datos de Gestionclientes
       let nombre = '';
-      const gestionUrl = import.meta.env.VITE_GESTION_API_URL as string | undefined;
-      if (gestionUrl) {
-        try {
-          const resp = await fetch(
-            `${gestionUrl}/api/lookup/admin-email?firebaseUid=${encodeURIComponent(user.uid)}`,
-          );
-          if (resp.ok) {
-            const data = await resp.json() as { nombre?: string | null };
-            nombre = data.nombre ?? '';
-          }
-        } catch { /* si Gestionclientes no está disponible, el campo queda editable */ }
+      try {
+        const resp = await fetch(
+          `/api/lookup/admin-email?firebaseUid=${encodeURIComponent(user.uid)}`,
+        );
+        if (resp.ok) {
+          const data = await resp.json() as { nombre?: string | null };
+          nombre = data.nombre ?? '';
+        }
+      } catch { /* si Gestionclientes no está disponible, el campo queda editable */ }
 
-        // Cargar sucursales del cliente
-        setLoadingSucursales(true);
-        try {
-          const respSuc = await fetch(
-            `${gestionUrl}/api/lookup/sucursales?firebaseUid=${encodeURIComponent(user.uid)}`,
-          );
-          if (respSuc.ok) {
-            const dataSuc = await respSuc.json() as { sucursales?: Sucursal[] };
-            const lista = dataSuc.sucursales ?? [];
-            setSucursales(lista);
-            // Si solo hay una sucursal, seleccionarla automáticamente
-            if (lista.length === 1) {
-              setForm(prev => ({ ...prev, sucursal: lista[0].name }));
-            }
+      // Cargar sucursales del cliente
+      setLoadingSucursales(true);
+      try {
+        const respSuc = await fetch(
+          `/api/lookup/sucursales?firebaseUid=${encodeURIComponent(user.uid)}`,
+        );
+        if (respSuc.ok) {
+          const dataSuc = await respSuc.json() as { sucursales?: Sucursal[] };
+          const lista = dataSuc.sucursales ?? [];
+          setSucursales(lista);
+          if (lista.length === 1) {
+            setForm(prev => ({ ...prev, sucursal: lista[0].name }));
           }
-        } catch { /* sucursales no disponibles */ }
-        setLoadingSucursales(false);
-      }
+        }
+      } catch { /* sucursales no disponibles */ }
+      setLoadingSucursales(false);
 
       setForm(prev => ({ ...prev, email: user.email!, nombre }));
       setSoporteVerificado(true);
