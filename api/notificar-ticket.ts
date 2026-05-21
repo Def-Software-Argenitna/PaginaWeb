@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import nodemailer from 'nodemailer';
 
-const FALLBACK_ADMIN_EMAILS = ['valentinmuzzio1@gmail.com', 'valentinmuzzio585@gmail.com'];
+const FALLBACK_ADMIN_EMAILS = ['soporte@def-software.com'];
 
 const PRIORIDAD: Record<string, string> = {
   baja: '🟢 Baja',
