@@ -534,7 +534,6 @@ export default function SoporteTecnico() {
                   {abierto && (
                     <div className="ticket-card-body">
                       <div className="ticket-detalle-bloque">
-                        <p className="ticket-detalle-label">Descripción</p>
                         <p className="ticket-detalle-texto">{ticket.descripcion}</p>
                       </div>
 
