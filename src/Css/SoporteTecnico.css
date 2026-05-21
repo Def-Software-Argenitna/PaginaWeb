@@ -564,12 +564,12 @@
 .ticket-card-body {
   padding: 0 1.25rem 1.25rem;
   border-top: 1px solid var(--border-glass);
-  animation: fadeInDown 0.2s ease;
+  animation: fadeIn 0.2s ease;
 }
 
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .ticket-detalle-bloque {
