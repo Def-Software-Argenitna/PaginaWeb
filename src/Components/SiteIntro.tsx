@@ -2,10 +2,12 @@ import { useLayoutEffect, useRef } from 'react';
 
 /* Entrada al sitio: pantalla completa donde un cubo isometrico (como los del fondo) se dibuja
    trazo a trazo, se rellena con sus caras grises, se escribe "DEF Software" y despues la pantalla
-   se abre para dejar ver el hero y la nav. Se ve una vez por sesion; si la persona scrollea durante
-   la intro se acelera, y si la pagina carga lejos del hero se saltea. */
+   se abre para dejar ver el hero y la nav. Se ve en cada carga de la pagina (no al volver al Home
+   navegando dentro del sitio); si la persona scrollea durante la intro se acelera, y si la pagina
+   carga lejos del hero se saltea. */
 
-const SEEN_KEY = 'def-intro-seen';
+// vive en memoria: se reinicia al recargar, pero sobrevive a la navegacion entre paginas del sitio
+let playedThisLoad = false;
 
 // Cubo isometrico en viewBox 200x200: contorno hexagonal + la "Y" de las aristas interiores
 const OUTLINE = 'M100 20 L169 60 L169 140 L100 180 L31 140 L31 60 Z';
@@ -92,7 +94,7 @@ export default function SiteIntro({ revealSelector, onDone }: SiteIntroProps) {
       if (done) return;
       done = true;
       cleanup();
-      try { sessionStorage.setItem(SEEN_KEY, '1'); } catch { /* sin storage: se repite la intro */ }
+      playedThisLoad = true;
       // la nav y el hero vuelven a su estilo natural; la pantalla de entrada se desmonta
       anims.forEach((a) => {
         const target = (a.effect as KeyframeEffect | null)?.target;
@@ -107,10 +109,8 @@ export default function SiteIntro({ revealSelector, onDone }: SiteIntroProps) {
 
     Promise.all(anims.map((a) => a.finished)).then(complete, () => { /* cancelada al desmontar */ });
 
-    let seen = false;
-    try { seen = sessionStorage.getItem(SEEN_KEY) === '1'; } catch { /* sin storage */ }
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (seen || reduced || location.hash || scrollY > innerHeight * 0.5) {
+    if (playedThisLoad || reduced || location.hash || scrollY > innerHeight * 0.5) {
       finish();
     } else {
       addEventListener('wheel', hurry, { once: true, passive: true });
