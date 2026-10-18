@@ -1,7 +1,7 @@
 import { type ReactNode, useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import TypewriterHero from '../Components/TypewriterHero';
-import HeroIntro from '../Components/HeroIntro';
+import SiteIntro from '../Components/SiteIntro';
 
 interface Product {
   name: string;
@@ -588,8 +588,8 @@ export default function Home() {
   return (
     <main className="new-main-content">
       <section className="new-hero-section">
+        {!introDone && <SiteIntro revealSelector=".hero-intro-reveal" onDone={handleIntroDone} />}
         <div className="hero-panel">
-          <HeroIntro revealSelector=".hero-intro-reveal" onDone={handleIntroDone} />
           <div className="hero-intro-reveal">
             <TypewriterHero active={introDone} />
           </div>
