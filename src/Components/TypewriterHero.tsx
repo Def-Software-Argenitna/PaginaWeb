@@ -7,7 +7,7 @@ const words = [
   'Lleva tu negocio al siguiente nivel',
 ];
 
-export default function TypewriterHero() {
+export default function TypewriterHero({ active = true }: { active?: boolean }) {
   const [displayed, setDisplayed] = useState('');
   const [wordIdx, setWordIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
@@ -15,6 +15,7 @@ export default function TypewriterHero() {
   const [pause, setPause] = useState(false);
 
   useEffect(() => {
+    if (!active) return;
     if (pause) {
       const timer = setTimeout(() => setPause(false), 2000);
       return () => clearTimeout(timer);
@@ -41,7 +42,7 @@ export default function TypewriterHero() {
       setDeleting(false);
       setWordIdx((wordIdx + 1) % words.length);
     }
-  }, [charIdx, deleting, pause, wordIdx]);
+  }, [active, charIdx, deleting, pause, wordIdx]);
 
   return (
     <div className="typewriter-container" style={{ minHeight: '240px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>

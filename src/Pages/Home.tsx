@@ -1,6 +1,7 @@
 import { type ReactNode, useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import TypewriterHero from '../Components/TypewriterHero';
+import HeroIntro from '../Components/HeroIntro';
 
 interface Product {
   name: string;
@@ -581,12 +582,19 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 }
 
 export default function Home() {
+  const [introDone, setIntroDone] = useState(false);
+  const handleIntroDone = useCallback(() => setIntroDone(true), []);
+
   return (
     <main className="new-main-content">
       <section className="new-hero-section">
-        <div className="hero-panel reveal">
-          <TypewriterHero />
+        <div className="hero-panel">
+          <HeroIntro revealSelector=".hero-intro-reveal" onDone={handleIntroDone} />
+          <div className="hero-intro-reveal">
+            <TypewriterHero active={introDone} />
+          </div>
           <p
+            className="hero-intro-reveal"
             style={{
               color: 'var(--text-dim)',
               fontSize: '1.25rem',
@@ -599,7 +607,7 @@ export default function Home() {
             ordenar su operacion y tomar decisiones con informacion real. Convertimos
             procesos cotidianos en ventajas competitivas.
           </p>
-          <div className="hero-actions">
+          <div className="hero-actions hero-intro-reveal">
             <a
               href="#software"
               className="modern-btn main-btn"
