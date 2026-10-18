@@ -1042,15 +1042,17 @@ body {
 
 .bg-camera {
   position: absolute;
-  inset: -6%;
-  animation: bg-camera 38s ease-in-out infinite alternate;
+  inset: 0;
+  transform-origin: 50% 35%;
+  animation: bg-camera 40s ease-in-out infinite alternate;
   will-change: transform;
 }
 
+/* zoom minimo 1.025: alcanza para tapar los bordes cuando el paralaje corre la capa (hasta ~8px) */
 @keyframes bg-camera {
-  0% { transform: scale(1.03) translate3d(-1.4%, -0.8%, 0) rotate(-0.5deg); }
-  50% { transform: scale(1.1) translate3d(0.6%, 0.9%, 0) rotate(0.2deg); }
-  100% { transform: scale(1.06) translate3d(1.4%, -0.4%, 0) rotate(0.5deg); }
+  0% { transform: scale(1.025) translate3d(-0.5%, -0.3%, 0) rotate(-0.25deg); }
+  50% { transform: scale(1.05) translate3d(0.3%, 0.3%, 0) rotate(0.1deg); }
+  100% { transform: scale(1.035) translate3d(0.5%, -0.2%, 0) rotate(0.25deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {

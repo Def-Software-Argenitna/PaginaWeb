@@ -45,7 +45,7 @@ const AtmosphericBackground: FC = () => {
         {/* Paralaje con el mouse (afuera) + camara que deriva lento (adentro): el fondo nunca queda quieto */}
         <div
           className="bg-parallax"
-          style={{ transform: `translate3d(${(50 - mousePos.x) * 0.3}px, ${(50 - mousePos.y) * 0.3}px, 0)` }}
+          style={{ transform: `translate3d(${(50 - mousePos.x) * 0.16}px, ${(50 - mousePos.y) * 0.16}px, 0)` }}
         >
           <div className="bg-camera">
             {/* Video principal a pantalla completa */}
@@ -59,8 +59,9 @@ const AtmosphericBackground: FC = () => {
                 top: 0,
                 left: 0,
                 width: '100%',
-                height: '115%', // Lo hacemos más alto para empujar la franja inferior (el VEO) fuera de la pantalla visible
+                height: '108%', // apenas mas alto que la pantalla: el cuadro entra completo (cluster + texto) y la marca "Veo" de abajo queda afuera
                 objectFit: 'cover',
+                objectPosition: '50% 80%', // en pantallas anchas recorta mas arriba que abajo para que el texto no se corte
                 opacity: 0.5,
                 zIndex: 0
               }}
