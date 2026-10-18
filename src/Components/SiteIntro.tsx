@@ -1,9 +1,10 @@
 import { useLayoutEffect, useRef } from 'react';
 
 /* Entrada al sitio, a pantalla completa. Coreografia:
-   1. se enciende la placa base y los circuitos cian se dibujan desde el centro hacia afuera
-   2. los cubos caen y encastran en su lugar (del centro a los bordes) mientras la camara se endereza
-   3. una onda de energia recorre los circuitos y aparece "DEF Software"
+   1. sobre la placa negra se abren los canales (tiras negras con rieles) desde el centro hacia afuera
+   2. los cubos blancos caen y encastran (del centro a los bordes) mientras la camara se endereza;
+      por los canales empieza a correr luz cian
+   3. una onda de energia recorre los canales y aparece "DEF Software"
    4. la camara se zambulle en el cluster y la pantalla se abre sobre el fondo (el mismo cluster del video)
    Se ve en cada carga de la pagina (no al volver al Home navegando dentro del sitio); si la persona
    scrollea, toca o usa el teclado la intro se acelera, y si la pagina carga lejos del hero se saltea. */
@@ -13,7 +14,7 @@ let playedThisLoad = false;
 
 /* ---------- geometria: red triangular de cubos isometricos dentro de un hexagono ---------- */
 const D = 168; // distancia entre centros de cubos
-const S = 70; // "radio" del cubo (vertice superior a centro): deja ranuras anchas para ver los circuitos
+const S = 74; // "radio" del cubo (vertice superior a centro)
 const H = (S * Math.sqrt(3)) / 2;
 const CELL = D / Math.sqrt(3); // hexagono de celda: sus bordes caen justo en las ranuras entre cubos
 const RADIUS = 3; // 37 cubos
@@ -33,59 +34,51 @@ for (let q = -RADIUS; q <= RADIUS; q++) {
 const PAINT = [...CELLS].sort((a, b) => a.y - b.y || a.x - b.x);
 const DROP_ORDER = new Map([...CELLS].sort((a, b) => a.ring - b.ring || a.angle - b.angle).map((c, i) => [c, i]));
 
-const hex = (cx: number, cy: number, R: number) =>
-  `M${[-90, -30, 30, 90, 150, 210]
-    .map((deg) => {
-      const a = (deg * Math.PI) / 180;
-      return `${(cx + R * Math.cos(a)).toFixed(1)} ${(cy + R * Math.sin(a)).toFixed(1)}`;
-    })
-    .join(' L')} Z`;
+const VERTS = [-90, -30, 30, 90, 150, 210].map((deg) => (deg * Math.PI) / 180);
+const pt = (cx: number, cy: number, r: number, a: number) =>
+  `${(cx + r * Math.cos(a)).toFixed(1)} ${(cy + r * Math.sin(a)).toFixed(1)}`;
+const hex = (cx: number, cy: number, R: number) => `M${VERTS.map((a) => pt(cx, cy, R, a)).join(' L')} Z`;
+
+// canal de cada celda: el hexagono de la ranura + tramos que bajan desde cada vertice del cubo
+const channel = (c: Cell) =>
+  `${hex(c.x, c.y, CELL)} ${VERTS.map((a) => `M${pt(c.x, c.y, S - 4, a)} L${pt(c.x, c.y, CELL, a)}`).join(' ')}`;
+const ALL_CHANNELS = CELLS.map(channel).join(' ');
 
 const FACE_TOP = `M0 ${-S} L${H} ${-S / 2} L0 0 L${-H} ${-S / 2} Z`;
 const FACE_LEFT = `M${-H} ${-S / 2} L0 0 L0 ${S} L${-H} ${S / 2} Z`;
 const FACE_RIGHT = `M0 0 L${H} ${-S / 2} L${H} ${S / 2} L0 ${S} Z`;
 const RIM = `M${-H} ${-S / 2} L0 0 L${H} ${-S / 2}`; // arista frontal de la tapa (brillo)
 
-// circuito de cada celda: el hexagono de la ranura + pistas que salen de cada vertice del cubo hacia la ranura
-const circuit = (c: Cell) =>
-  `${hex(c.x, c.y, CELL)} ${[-90, -30, 30, 90, 150, 210]
-    .map((deg) => {
-      const a = (deg * Math.PI) / 180;
-      const p = (r: number) => `${(c.x + r * Math.cos(a)).toFixed(1)} ${(c.y + r * Math.sin(a)).toFixed(1)}`;
-      return `M${p(S + 6)} L${p(CELL)}`;
-    })
-    .join(' ')}`;
+const rand = (i: number, n: number) => {
+  const v = Math.sin(i * 127.1 + n * 311.7) * 43758.5453;
+  return v - Math.floor(v);
+};
 
-// el brillo se concentra en el centro y se enfria hacia los bordes, como en la imagen de marca
-const CORE_OPACITY = [1, 0.85, 0.6, 0.42];
-const HALO_OPACITY = [0.95, 0.7, 0.42, 0.22];
-const CORE_COLOR = ['#7ff9ff', '#8ff6fb', '#a8e8ec', '#c2d6d8'];
-
-// trazos de luz que recorren algunos circuitos en loop
-const PULSE_CELLS = CELLS.filter((c, i) => c.ring > 0 && i % 4 === 1);
+// luz que corre por los canales: un tramo por celda, con velocidad, sentido y largo propios
+const STREAMS = CELLS.map((c, i) => ({
+  cell: c,
+  duration: 1800 + rand(i, 1) * 2000,
+  reverse: rand(i, 2) > 0.5,
+  dash: 0.09 + rand(i, 3) * 0.08,
+}));
 
 // polvo / cubitos flotando en el fondo, en tres profundidades (determinista para no cambiar entre renders)
 const DUST = Array.from({ length: 26 }, (_, i) => {
-  const rnd = (n: number) => {
-    const v = Math.sin(i * 127.1 + n * 311.7) * 43758.5453;
-    return v - Math.floor(v);
-  };
   const depth = i % 3; // 0 lejos (borroso) · 2 cerca
   return {
-    left: `${(rnd(1) * 100).toFixed(1)}%`,
-    top: `${(rnd(2) * 100).toFixed(1)}%`,
-    size: 6 + depth * 7 + rnd(3) * 8,
+    left: `${(rand(i, 1) * 100).toFixed(1)}%`,
+    top: `${(rand(i, 2) * 100).toFixed(1)}%`,
+    size: 6 + depth * 7 + rand(i, 3) * 8,
     blur: [3.5, 1.2, 0][depth],
     opacity: [0.35, 0.55, 0.8][depth],
     drift: 18 + depth * 22,
-    duration: 7 + rnd(4) * 5,
-    rotate: (rnd(5) - 0.5) * 120,
-    delay: -rnd(6) * 6,
+    duration: 7 + rand(i, 4) * 5,
+    rotate: (rand(i, 5) - 0.5) * 120,
+    delay: -rand(i, 6) * 6,
   };
 });
 
 const EASE_OUT = 'cubic-bezier(0.16, 1, 0.3, 1)';
-const EASE_DRAW = 'cubic-bezier(0.65, 0, 0.35, 1)';
 const CAM = 'perspective(1600px)';
 
 interface SiteIntroProps {
@@ -135,13 +128,10 @@ export default function SiteIntro({ revealSelector, onDone }: SiteIntroProps) {
     );
     add(one('.site-intro__dust'), [{ transform: 'scale(1.15)' }, { transform: 'scale(1)' }], 0, 4400, 'cubic-bezier(0.33, 0, 0.15, 1)');
 
-    // 1 · placa base y circuitos
-    add(one('.intro-plate'), [{ opacity: 0 }, { opacity: 1 }], 0, 900, 'ease-out');
-    add(one('.intro-plate-glow'), [{ opacity: 0 }, { opacity: 0.55 }], 300, 1400, 'ease-out');
-    q<SVGPathElement>('.intro-circuit').forEach((p) => {
-      const ring = Number(p.dataset.ring);
-      add(p, [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], 200 + ring * 230, 750, EASE_DRAW);
-    });
+    // 1 · placa negra y canales que se abren desde el centro
+    add(one('.intro-plate'), [{ opacity: 0 }, { opacity: 1 }], 0, 800, 'ease-out');
+    add(one('.intro-reveal'), [{ transform: 'scale(0)' }, { transform: 'scale(1)' }], 150, 1500, 'cubic-bezier(0.5, 0, 0.2, 1)');
+    add(one('.intro-channel-glow'), [{ opacity: 0 }, { opacity: 0.75 }], 900, 1200, 'ease-out');
 
     // 2 · los cubos caen con peso: aceleran, golpean y asientan
     q<SVGGElement>('.intro-cube').forEach((g) => {
@@ -161,30 +151,25 @@ export default function SiteIntro({ revealSelector, onDone }: SiteIntroProps) {
       );
     });
 
-    // 3 · onda de energia del centro hacia afuera + wordmark
-    q<SVGPathElement>('.intro-circuit--core').forEach((p) => {
-      const ring = Number(p.dataset.ring);
-      const base = CORE_OPACITY[ring];
-      add(p, [{ opacity: base }, { opacity: 1, offset: 0.35 }, { opacity: base }], 2550 + ring * 130, 700, 'ease-out');
+    // luz cian corriendo por los canales (en loop; no cuenta para el final de la intro)
+    q<SVGGElement>('.intro-stream').forEach((g, i) => {
+      const s = STREAMS[i];
+      const frames = s.reverse
+        ? [{ strokeDashoffset: 0 }, { strokeDashoffset: 1 }]
+        : [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }];
+      [...g.children].forEach((p) =>
+        loops.push(p.animate(frames, { delay: 900 + s.cell.ring * 220, duration: s.duration, iterations: Infinity })),
+      );
+      add(g, [{ opacity: 0 }, { opacity: 1 }], 900 + s.cell.ring * 220, 500, 'ease-out');
     });
-    add(one('.intro-plate-glow'), [{ opacity: 0.55 }, { opacity: 1, offset: 0.3 }, { opacity: 0.7 }], 2500, 1100, 'ease-out', 'forwards');
+
+    // 3 · onda de energia + wordmark
+    add(one('.intro-channel-glow'), [{ opacity: 0.75 }, { opacity: 1, offset: 0.3 }, { opacity: 0.8 }], 2500, 1200, 'ease-out', 'forwards');
+    add(one('.intro-wave'), [{ transform: 'scale(0)', opacity: 1 }, { transform: 'scale(1)', opacity: 0 }], 2500, 1300, 'cubic-bezier(0.2, 0, 0.3, 1)');
     q<HTMLSpanElement>('.intro-letter').forEach((l, i) =>
       add(l, [{ opacity: 0, transform: 'translateY(70%)' }, { opacity: 1, transform: 'none' }], 2900 + i * 45, 900),
     );
     add(one('.site-intro__tag'), [{ opacity: 0, letterSpacing: '0.5em' }, { opacity: 1, letterSpacing: '0.32em' }], 3350, 1000);
-
-    // trazos de luz en loop por algunos circuitos (no cuentan para el final de la intro)
-    q<SVGPathElement>('.intro-pulse').forEach((p, i) => {
-      loops.push(
-        p.animate([{ strokeDashoffset: 1, opacity: 1 }, { strokeDashoffset: 0, opacity: 1 }], {
-          delay: 1500 + i * 260,
-          duration: 1600,
-          iterations: Infinity,
-          easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
-          fill: 'backwards',
-        }),
-      );
-    });
 
     // 4 · salida: la camara se zambulle, la pantalla se abre y entran hero y nav
     const EXIT = 4500;
@@ -276,9 +261,9 @@ export default function SiteIntro({ revealSelector, onDone }: SiteIntroProps) {
               animationDelay: `${d.delay}s`,
             }}
           >
-            <path d="M0 -10 L8.7 -5 L0 0 L-8.7 -5 Z" fill="#cfd0cc" />
-            <path d="M-8.7 -5 L0 0 L0 10 L-8.7 5 Z" fill="#8e908c" />
-            <path d="M0 0 L8.7 -5 L8.7 5 L0 10 Z" fill="#4a4d4c" />
+            <path d="M0 -10 L8.7 -5 L0 0 L-8.7 -5 Z" fill="#e4e4df" />
+            <path d="M-8.7 -5 L0 0 L0 10 L-8.7 5 Z" fill="#b3b4af" />
+            <path d="M0 0 L8.7 -5 L8.7 5 L0 10 Z" fill="#6c6f6d" />
           </svg>
         ))}
       </div>
@@ -287,57 +272,75 @@ export default function SiteIntro({ revealSelector, onDone }: SiteIntroProps) {
         <svg className="site-intro__scene" viewBox="-560 -620 1120 1240">
           <defs>
             <linearGradient id="ic-top" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="#e2e2dd" />
-              <stop offset="1" stopColor="#b4b5b0" />
+              <stop offset="0" stopColor="#f1f1ec" />
+              <stop offset="1" stopColor="#d6d6d0" />
             </linearGradient>
             <linearGradient id="ic-left" x1="0" y1="0" x2="0.3" y2="1">
-              <stop offset="0" stopColor="#a9aaa6" />
-              <stop offset="1" stopColor="#6f716e" />
+              <stop offset="0" stopColor="#c9cac5" />
+              <stop offset="1" stopColor="#9c9d99" />
             </linearGradient>
             <linearGradient id="ic-right" x1="1" y1="0" x2="0.7" y2="1">
-              <stop offset="0" stopColor="#5d605e" />
-              <stop offset="1" stopColor="#2f3231" />
+              <stop offset="0" stopColor="#8a8d8a" />
+              <stop offset="1" stopColor="#4e5150" />
             </linearGradient>
-            <radialGradient id="ic-glow" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0" stopColor="#00f2fe" stopOpacity="0.55" />
-              <stop offset="0.55" stopColor="#00b8c4" stopOpacity="0.18" />
+            {/* rieles de los canales: cian cerca del centro, gris frio hacia los bordes */}
+            <radialGradient id="ic-rail" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="600">
+              <stop offset="0" stopColor="#5fe9f0" />
+              <stop offset="0.45" stopColor="#3a8c92" />
+              <stop offset="1" stopColor="#7a8689" />
+            </radialGradient>
+            {/* brillo dentro de los canales: fuerte en el centro, se apaga hacia afuera */}
+            <radialGradient id="ic-channel-glow" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="560">
+              <stop offset="0" stopColor="#00f2fe" stopOpacity="0.6" />
+              <stop offset="0.5" stopColor="#00c4cf" stopOpacity="0.16" />
               <stop offset="1" stopColor="#00f2fe" stopOpacity="0" />
             </radialGradient>
-            <filter id="ic-blur" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="7" />
-            </filter>
+            <radialGradient id="ic-stream" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="600">
+              <stop offset="0" stopColor="#e6feff" />
+              <stop offset="0.5" stopColor="#5cf3fb" />
+              <stop offset="1" stopColor="#3fb9c1" />
+            </radialGradient>
+            <radialGradient id="ic-wave" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0.7" stopColor="#00f2fe" stopOpacity="0" />
+              <stop offset="0.93" stopColor="#8ffaff" stopOpacity="0.55" />
+              <stop offset="1" stopColor="#00f2fe" stopOpacity="0" />
+            </radialGradient>
+            <clipPath id="ic-reveal-clip">
+              <circle className="intro-reveal" cx="0" cy="0" r="720" />
+            </clipPath>
+            <clipPath id="ic-plate-clip">
+              <path d={hex(0, 0, 3 * D + CELL * 0.62)} />
+            </clipPath>
           </defs>
 
-          {/* placa base hexagonal */}
-          <path className="intro-plate" d={hex(0, 0, 3 * D + CELL * 0.55)} />
-          <circle className="intro-plate-glow" cx="0" cy="0" r={3.2 * D} fill="url(#ic-glow)" />
+          {/* placa base negra */}
+          <path className="intro-plate" d={hex(0, 0, 3 * D + CELL * 0.62)} />
 
-          {/* circuitos: halo difuso + nucleo brillante */}
-          <g filter="url(#ic-blur)">
-            {CELLS.map((c, i) => (
-              <path
-                key={i}
-                className="intro-circuit intro-circuit--halo"
-                data-ring={c.ring}
-                d={circuit(c)}
-                pathLength={1}
-                style={{ opacity: HALO_OPACITY[c.ring] }}
-              />
-            ))}
+          {/* canales: tira clara + tira negra encima = dos rieles finos; adentro brillo y luz corriendo */}
+          <g clipPath="url(#ic-plate-clip)">
+            <g clipPath="url(#ic-reveal-clip)">
+              <path className="intro-channel intro-channel--rail" d={ALL_CHANNELS} />
+              <path className="intro-channel intro-channel--floor" d={ALL_CHANNELS} />
+              <path className="intro-channel intro-channel-glow" d={ALL_CHANNELS} />
+              {STREAMS.map((s, i) => (
+                <g key={i} className="intro-stream">
+                  <path
+                    className="intro-stream__halo"
+                    d={channel(s.cell)}
+                    pathLength={1}
+                    style={{ strokeDasharray: `${s.dash} ${1 - s.dash}` }}
+                  />
+                  <path
+                    className="intro-stream__core"
+                    d={channel(s.cell)}
+                    pathLength={1}
+                    style={{ strokeDasharray: `${s.dash} ${1 - s.dash}` }}
+                  />
+                </g>
+              ))}
+            </g>
+            <circle className="intro-wave" cx="0" cy="0" r="640" fill="url(#ic-wave)" />
           </g>
-          {CELLS.map((c, i) => (
-            <path
-              key={i}
-              className="intro-circuit intro-circuit--core"
-              data-ring={c.ring}
-              d={circuit(c)}
-              pathLength={1}
-              style={{ opacity: CORE_OPACITY[c.ring], stroke: CORE_COLOR[c.ring] }}
-            />
-          ))}
-          {PULSE_CELLS.map((c, i) => (
-            <path key={i} className="intro-pulse" d={hex(c.x, c.y, CELL)} pathLength={1} />
-          ))}
 
           {/* cubos */}
           {PAINT.map((c) => (

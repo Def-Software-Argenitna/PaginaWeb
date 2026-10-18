@@ -935,36 +935,52 @@ body {
 }
 
 .site-intro__scene .intro-plate {
-  fill: #07090a;
-  stroke: rgba(0, 242, 254, 0.18);
-  stroke-width: 2;
+  fill: #030405;
 }
 
-.site-intro__scene .intro-circuit {
+.site-intro__scene .intro-reveal,
+.site-intro__scene .intro-wave {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.site-intro__scene .intro-channel {
   fill: none;
-  stroke-dasharray: 1 1;
+  stroke-linejoin: miter;
+  stroke-linecap: butt;
+}
+
+/* tira ancha (rieles) y tira negra encima un poco mas angosta: quedan dos lineas finas a los costados */
+.site-intro__scene .intro-channel--rail {
+  stroke: url(#ic-rail);
+  stroke-width: 16;
+  opacity: 0.9;
+}
+
+.site-intro__scene .intro-channel--floor {
+  stroke: #040607;
+  stroke-width: 12.5;
+}
+
+.site-intro__scene .intro-channel-glow {
+  stroke: url(#ic-channel-glow);
+  stroke-width: 12.5;
+}
+
+.site-intro__scene .intro-stream path {
+  fill: none;
+  stroke: url(#ic-stream);
+  stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.site-intro__scene .intro-circuit--halo {
-  stroke: #00e5f0;
-  stroke-width: 9;
-  opacity: 0.55;
+.site-intro__scene .intro-stream__halo {
+  stroke-width: 12;
+  opacity: 0.4;
 }
 
-.site-intro__scene .intro-circuit--core {
-  stroke: #8ffaff;
-  stroke-width: 2;
-  opacity: 0.7;
-}
-
-.site-intro__scene .intro-pulse {
-  fill: none;
-  stroke: #e9feff;
+.site-intro__scene .intro-stream__core {
   stroke-width: 3.5;
-  stroke-linecap: round;
-  stroke-dasharray: 0.14 0.86;
-  opacity: 0;
 }
 
 .site-intro__scene .intro-cube__edge {
