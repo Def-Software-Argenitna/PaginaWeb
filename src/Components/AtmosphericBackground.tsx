@@ -42,25 +42,33 @@ const AtmosphericBackground: FC = () => {
         overflow: 'hidden',
         background: '#050505'
       }}>
-        {/* Video principal a pantalla completa */}
-        <video
-          id="bg-video"
-          autoPlay
-          muted
-          playsInline
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '115%', // Lo hacemos más alto para empujar la franja inferior (el VEO) fuera de la pantalla visible
-            objectFit: 'cover', 
-            opacity: 0.5, 
-            zIndex: 0
-          }}
+        {/* Paralaje con el mouse (afuera) + camara que deriva lento (adentro): el fondo nunca queda quieto */}
+        <div
+          className="bg-parallax"
+          style={{ transform: `translate3d(${(50 - mousePos.x) * 0.3}px, ${(50 - mousePos.y) * 0.3}px, 0)` }}
         >
-          <source src="/def-software-video-3.mp4" type="video/mp4" />
-        </video>
+          <div className="bg-camera">
+            {/* Video principal a pantalla completa */}
+            <video
+              id="bg-video"
+              autoPlay
+              muted
+              playsInline
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '115%', // Lo hacemos más alto para empujar la franja inferior (el VEO) fuera de la pantalla visible
+                objectFit: 'cover',
+                opacity: 0.5,
+                zIndex: 0
+              }}
+            >
+              <source src="/def-software-video-3.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
       </div>
 
       {/* Dynamic Mouse Following Orb */}
