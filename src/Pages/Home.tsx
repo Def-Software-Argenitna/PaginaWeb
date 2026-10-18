@@ -28,52 +28,52 @@ interface BusinessOutcome {
 const ProductCatalog: Product[] = [
   {
     name: 'KioskManager',
-    badge: 'App movil gestionada',
+    badge: 'App móvil gestionada',
     summary:
-      'Aplicacion movil para iOS y Android que permite la gestion integral de tu negocio directamente desde el celular, sin depender de una PC.',
+      'Aplicación móvil para iOS y Android que permite la gestión integral de tu negocio directamente desde el celular, sin depender de una PC.',
     idealFor:
       'Ideal para dueños de kioscos y minimercados que buscan gestionar el stock, las ventas y la operatoria desde la palma de su mano.',
     capabilities: [
-      'Lectura de codigos de barras nativa utilizando la camara del dispositivo para cobros instantaneos.',
-      'Gestion integral desde el celular: revisa stock, precios y caja desde cualquier lugar.',
-      'Operacion agil en el punto de venta para reducir filas y acelerar la atencion.',
+      'Lectura de códigos de barras nativa utilizando la cámara del dispositivo para cobros instantáneos.',
+      'Gestión integral desde el celular: revisa stock, precios y caja desde cualquier lugar.',
+      'Operación ágil en el punto de venta para reducir filas y acelerar la atención.',
       'Control operativo para supervisar turnos, cierres diarios y usuarios en tiempo real.',
     ],
     segment: 'Retail / kioscos',
     repoUrl: 'https://github.com/Def-Software-Argenitna/KioskManager',
-    images: ['/kioskmanager_mockup.png'],
+    images: ['/kioskmanager_mockup.webp'],
   },
   {
     name: 'MeatManager',
     badge: 'Plataforma 100% Web',
     summary:
-      'Plataforma web para carnicerias con foco en ventas, stock y rentabilidad, accesible desde cualquier sucursal con una sola operacion centralizada.',
+      'Plataforma web para carnicerías con foco en ventas, stock y rentabilidad, accesible desde cualquier sucursal con una sola operación centralizada.',
     idealFor:
-      'Ideal para carnicerias y despensas con venta por peso que buscan modernizarse mediante terminales tactiles e integraciones fisicas.',
+      'Ideal para carnicerías y despensas con venta por peso que buscan modernizarse mediante terminales táctiles e integraciones físicas.',
     capabilities: [
-      'Punto de venta web rapido para ventas por kilo o unidad.',
-      'Integracion con balanzas por Serial/USB para capturar peso real sin carga manual.',
-      'Control de stock de cortes, cuentas corrientes de clientes y menu digital para WhatsApp.',
-      'Modo PRO con trazabilidad, analisis de rindes, costos reales y gestion de proveedores.',
+      'Punto de venta web rápido para ventas por kilo o unidad.',
+      'Integración con balanzas por Serial/USB para capturar peso real sin carga manual.',
+      'Control de stock de cortes, cuentas corrientes de clientes y menú digital para WhatsApp.',
+      'Modo PRO con trazabilidad, análisis de rindes, costos reales y gestión de proveedores.',
     ],
     segment: 'Carnicerias / alimentos frescos',
     repoUrl: 'https://github.com/Def-Software-Argenitna/MeatManager',
     images: [
-      '/meatmanager/image.png',
-      '/meatmanager/2.png',
-      '/meatmanager/3.png',
-      '/meatmanager/4.png',
-      '/meatmanager/5.png',
-      '/meatmanager/6.png',
-      '/meatmanager/77.png',
-      '/meatmanager/8.png',
+      '/meatmanager/image.webp',
+      '/meatmanager/2.webp',
+      '/meatmanager/3.webp',
+      '/meatmanager/4.webp',
+      '/meatmanager/5.webp',
+      '/meatmanager/6.webp',
+      '/meatmanager/77.webp',
+      '/meatmanager/8.webp',
     ],
   },
 ];
 
 const SalesFeatures: SalesFeature[] = [
   {
-    title: 'Gestion de inventario',
+    title: 'Gestión de inventario',
     icon: (
       <svg
         width="24"
@@ -114,10 +114,10 @@ const SalesFeatures: SalesFeature[] = [
       </svg>
     ),
     description:
-      'Flujo de venta agil para mostrador y caja, con registro rapido de kilos, unidades y comandas.',
+      'Flujo de venta ágil para mostrador y caja, con registro rápido de kilos, unidades y comandas.',
   },
   {
-    title: 'Gestion de cobros',
+    title: 'Gestión de cobros',
     icon: (
       <svg
         width="24"
@@ -136,7 +136,7 @@ const SalesFeatures: SalesFeature[] = [
       </svg>
     ),
     description:
-      'Configura efectivo, tarjetas, transferencias y billeteras virtuales con una operacion de cobro mas clara.',
+      'Configura efectivo, tarjetas, transferencias y billeteras virtuales con una operación de cobro más clara.',
   },
   {
     title: 'Clientes y cuentas corrientes',
@@ -179,7 +179,7 @@ const SalesFeatures: SalesFeature[] = [
       </svg>
     ),
     description:
-      'Integracion con balanzas electronicas para reducir errores manuales y mejorar la velocidad de atencion.',
+      'Integración con balanzas electrónicas para reducir errores manuales y mejorar la velocidad de atención.',
   },
   {
     title: 'Rindes y rentabilidad',
@@ -198,27 +198,30 @@ const SalesFeatures: SalesFeature[] = [
       </svg>
     ),
     description:
-      'Analiza rendimiento por animal, costos post-despostada y calidad de proveedores para cuidar margenes.',
+      'Analiza rendimiento por animal, costos post-desposte y calidad de proveedores para cuidar márgenes.',
   },
 ];
 
 const BusinessOutcomes: BusinessOutcome[] = [
   {
-    title: 'Operacion centralizada en la web',
+    title: 'Operación centralizada en la web',
     description:
-      'Toda la gestion queda unificada en la plataforma web para administrar el negocio desde un unico entorno.',
+      'Toda la gestión queda unificada en la plataforma web para administrar el negocio desde un único entorno.',
   },
   {
-    title: 'Mas control financiero diario',
+    title: 'Más control financiero diario',
     description:
       'Centraliza stock, fiados, caja y medios de pago para tomar decisiones con datos operativos reales.',
   },
   {
     title: 'Escalabilidad para crecer',
     description:
-      'Empieza con funciones base y evoluciona a analitica PRO de rindes, costos y gestion multi-sucursal.',
+      'Empieza con funciones base y evoluciona a analítica PRO de rindes, costos y gestión multi-sucursal.',
   },
 ];
+
+/** Miniatura liviana (320px) de una captura; las capturas sin miniatura se usan tal cual */
+const thumbOf = (src: string) => src.replace(/\/meatmanager\/([^/]+)\.webp$/, '/meatmanager/thumb-$1.webp');
 
 /* ── Lightbox ─────────────────────────────────────────────────────────── */
 function Lightbox({
@@ -276,7 +279,7 @@ function Lightbox({
         .lb-img { animation: lbSlideIn 0.25s cubic-bezier(.22,1,.36,1); }
         .lb-btn:hover { background: rgba(255,255,255,0.18) !important; }
         .lb-close:hover { background: rgba(249,115,22,0.85) !important; }
-        .lb-thumb-active { border: 2px solid var(--accent-color, #f97316) !important; opacity: 1 !important; }
+        .lb-thumb-active { border: 2px solid var(--accent-cyan) !important; opacity: 1 !important; }
       `}</style>
 
       {/* Botón cerrar */}
@@ -345,7 +348,7 @@ function Lightbox({
             key={current}
             className="lb-img"
             src={images[current]}
-            alt={`Screenshot ${current + 1}`}
+            alt={`Captura ${current + 1} de ${images.length}`}
             style={{
               maxWidth: images.length > 1 ? 'calc(90vw - 120px)' : '90vw',
               maxHeight: '75vh',
@@ -392,8 +395,8 @@ function Lightbox({
             {images.map((img, i) => (
               <img
                 key={img}
-                src={img}
-                alt={`thumb ${i + 1}`}
+                src={thumbOf(img)}
+                alt={`Miniatura ${i + 1}`}
                 onClick={() => setCurrent(i)}
                 className={i === current ? 'lb-thumb-active' : ''}
                 style={{
@@ -479,9 +482,12 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
               <img
                 src={product.images[selectedImg]}
                 alt={`Vista principal de ${product.name}`}
+                loading="lazy"
+                decoding="async"
                 style={{
                   width: '100%',
                   height: 'auto',
+                  maxHeight: '540px',
                   display: 'block',
                   objectFit: 'contain',
                   transition: 'opacity 0.25s ease, transform 0.25s ease',
@@ -535,14 +541,18 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 }}
               >
                 {product.images.map((img, i) => (
-                  <div
+                  <button
+                    type="button"
                     key={img}
                     onClick={() => setSelectedImg(i)}
+                    aria-label={`Ver captura ${i + 1} de ${product.name}`}
+                    aria-pressed={i === selectedImg}
                     style={{
+                      padding: 0,
                       borderRadius: '8px',
                       overflow: 'hidden',
                       border: i === selectedImg
-                        ? '2px solid var(--accent-color, #f97316)'
+                        ? '2px solid var(--accent-cyan)'
                         : '1px solid rgba(255,255,255,0.1)',
                       height: '60px',
                       background: 'rgba(255,255,255,0.03)',
@@ -551,8 +561,10 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                     }}
                   >
                     <img
-                      src={img}
-                      alt={`${product.name} screenshot ${i + 1}`}
+                      src={thumbOf(img)}
+                      loading="lazy"
+                      decoding="async"
+                      alt=""
                       style={{
                         width: '100%',
                         height: '100%',
@@ -561,7 +573,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                         transition: 'opacity 0.2s',
                       }}
                     />
-                  </div>
+                  </button>
                 ))}
               </div>
             )}
@@ -603,8 +615,8 @@ export default function Home() {
               lineHeight: 1.6,
             }}
           >
-            Desarrollamos software comercial para negocios que necesitan vender mas,
-            ordenar su operacion y tomar decisiones con informacion real. Convertimos
+            Desarrollamos software comercial para negocios que necesitan vender más,
+            ordenar su operación y tomar decisiones con información real. Convertimos
             procesos cotidianos en ventajas competitivas.
           </p>
           <div className="hero-actions hero-intro-reveal">
@@ -631,7 +643,7 @@ export default function Home() {
           <h2>Software que ofrecemos</h2>
           <p>
             Tomamos nuestros desarrollos reales y los convertimos en productos listos
-            para resolver problemas concretos de operacion, ventas y control.
+            para resolver problemas concretos de operación, ventas y control.
           </p>
         </div>
 
@@ -644,10 +656,10 @@ export default function Home() {
 
       <section className="new-info-section">
         <div className="section-header reveal">
-          <h2>Capacidades que convierten operacion en crecimiento</h2>
+          <h2>Capacidades que convierten operación en crecimiento</h2>
           <p>
             No vendemos solo un sistema: entregamos herramientas para controlar mejor,
-            vender con mas fluidez y escalar sin perder orden.
+            vender con más fluidez y escalar sin perder orden.
           </p>
         </div>
         <div className="info-grid">
@@ -667,9 +679,9 @@ export default function Home() {
 
       <section className="new-info-section" style={{ paddingTop: '0' }}>
         <div className="section-header reveal">
-          <h2>Por que nuestros productos ayudan a vender mas</h2>
+          <h2>Por qué nuestros productos ayudan a vender más</h2>
           <p>
-            Cada solucion esta pensada para impactar en el dia a dia del negocio, no
+            Cada solución está pensada para impactar en el día a día del negocio, no
             solo para sumar pantallas o funciones decorativas.
           </p>
         </div>
@@ -698,8 +710,8 @@ export default function Home() {
               margin: '0 auto 3rem',
             }}
           >
-            Si quieres vender mejor, ordenar procesos y profesionalizar tu operacion,
-            te ayudamos a elegir e implementar la solucion adecuada para tu empresa.
+            Si quieres vender mejor, ordenar procesos y profesionalizar tu operación,
+            te ayudamos a elegir e implementar la solución adecuada para tu empresa.
           </p>
           <div
             style={{

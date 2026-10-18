@@ -5,7 +5,7 @@ import { useLayoutEffect, useRef } from 'react';
    2. los cubos blancos caen y encastran (del centro a los bordes) mientras la camara se endereza;
       por los canales empieza a correr luz cian
    3. una onda de energia recorre los canales y aparece "DEF Software"
-   4. la camara se zambulle en el cluster y la pantalla se abre sobre el fondo (el mismo cluster del video)
+   4. la camara se zambulle en el cluster y la pantalla se abre sobre el fondo (la imagen del mismo cluster)
    Se ve en cada carga de la pagina (no al volver al Home navegando dentro del sitio); si la persona
    scrollea, toca o usa el teclado la intro se acelera, y si la pagina carga lejos del hero se saltea. */
 
@@ -220,14 +220,6 @@ export default function SiteIntro({ revealSelector, onDone }: SiteIntroProps) {
     if (playedThisLoad || reduced || location.hash || scrollY > innerHeight * 0.5) {
       finish();
     } else {
-      // el video del fondo termina en el mismo cluster: se deja en su ultimo cuadro para que la salida empalme
-      const video = document.getElementById('bg-video') as HTMLVideoElement | null;
-      if (video) {
-        video.pause();
-        const toEnd = () => { video.currentTime = Math.max(0, video.duration - 0.05); };
-        if (video.readyState >= 1) toEnd();
-        else video.addEventListener('loadedmetadata', toEnd, { once: true });
-      }
       ['wheel', 'touchmove', 'keydown', 'pointerdown'].forEach((t) =>
         addEventListener(t, hurry, { once: true, passive: true }),
       );

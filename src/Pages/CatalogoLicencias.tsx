@@ -12,32 +12,32 @@ interface License {
 const licenses: License[] = [
   {
     id: '1',
-    name: 'App Movil Gerencial',
+    name: 'App Móvil Gerencial',
     badge: 'WEB + APP VINCULADA',
-    description: 'Habilita la app movil gerencial para el administrador del cliente, con cajas en tiempo real, indicadores y ubicacion de repartidores.',
+    description: 'Habilita la app móvil gerencial para el administrador del cliente, con cajas en tiempo real, indicadores y ubicación de repartidores.',
     price: 5,
     priceUnit: 'Por cliente'
   },
   {
     id: '2',
     name: 'Despostada',
-    badge: 'MODULO WEB',
-    description: 'Modulo de despostada.',
+    badge: 'MÓDULO WEB',
+    description: 'Módulo de despostada.',
     price: 15,
     priceUnit: 'Por sucursal'
   },
   {
     id: '4',
-    name: 'Licencia Envios',
+    name: 'Licencia Envíos',
     badge: 'WEB + APP VINCULADA',
-    description: 'Se asigna a un usuario de una sucursal. Habilita el modulo de logistica en la web y el acceso del repartidor a la app movil.',
+    description: 'Se asigna a un usuario de una sucursal. Habilita el módulo de logística en la web y el acceso del repartidor a la app móvil.',
     price: 5,
     priceUnit: 'Por usuario'
   },
   {
     id: '5',
     name: 'Licencia MeatManager',
-    badge: 'OPERACION WEB',
+    badge: 'OPERACIÓN WEB',
     description: 'Habilita MeatManager por sucursal y permite al administrador gestionar usuarios web con permisos granulados.',
     price: 50,
     priceUnit: 'Por sucursal'
@@ -45,15 +45,15 @@ const licenses: License[] = [
   {
     id: '6',
     name: 'Página web',
-    badge: 'MODULO WEB',
+    badge: 'MÓDULO WEB',
     description: 'Desarrollo, publicación y mantenimiento de página web',
     price: 30,
     priceUnit: 'Por cliente'
   },
   {
     id: '7',
-    name: 'Menu Digital',
-    badge: 'MODULO WEB',
+    name: 'Menú Digital',
+    badge: 'MÓDULO WEB',
     description: 'Habilita el pedido por whatsapp para la sucursal asignada.',
     price: 5,
     priceUnit: 'Por sucursal'
@@ -61,7 +61,7 @@ const licenses: License[] = [
   {
     id: '8',
     name: 'Rendimiento Pro',
-    badge: 'MODULO WEB',
+    badge: 'MÓDULO WEB',
     description: 'Habilita el rendimiento en todas las sucursales del cliente.',
     price: 10,
     priceUnit: 'Por cliente'
@@ -74,8 +74,8 @@ const CatalogoLicencias: FC = () => {
       <section className="new-hero-section" style={{ paddingBottom: '2rem', paddingTop: '8rem', textAlign: 'left', display: 'block' }}>
         <div className="reveal active" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 3rem' }}>
           <div>
-            <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>Catalogo de Licencias</h1>
-            <p style={{ color: 'var(--text-dim)', fontSize: '1rem' }}>Productos y configuracion comercial base.</p>
+            <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>Catálogo de Licencias</h1>
+            <p style={{ color: 'var(--text-dim)', fontSize: '1rem' }}>Productos y configuración comercial base.</p>
           </div>
         </div>
       </section>

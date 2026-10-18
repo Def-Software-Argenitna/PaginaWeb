@@ -520,7 +520,7 @@ export default function SoporteTecnico() {
                         className="ticket-badge-prioridad"
                         style={{ color: PRIORIDAD_TEXT[ticket.prioridad] }}
                       >
-                        {ticket.prioridad.charAt(0).toUpperCase() + ticket.prioridad.slice(1)}
+                        {PRIORIDAD_LABELS[ticket.prioridad].split(' — ')[0]}
                       </span>
                       <span className="ticket-fecha">{formatFecha(ticket.fechaCreacion)}</span>
                       <span className={`ticket-chevron${abierto ? ' rotado' : ''}`}>▾</span>

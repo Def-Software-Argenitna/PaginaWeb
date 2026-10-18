@@ -15,13 +15,13 @@ function ContactForm() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const subject = encodeURIComponent('Consulta comercial - Software para carnicerias y fiambrerias');
+    const subject = encodeURIComponent('Consulta comercial - Software para carnicerías y fiambrerías');
     const body = encodeURIComponent(
       [
         `Nombre: ${formData.name}`,
         `Negocio: ${formData.business}`,
         `Email: ${formData.email}`,
-        `Telefono: ${formData.phone}`,
+        `Teléfono: ${formData.phone}`,
         '',
         'Consulta:',
         formData.message,
@@ -35,7 +35,7 @@ function ContactForm() {
     <form className="contact-form" onSubmit={handleSubmit}>
       <div className="form-header">
         <span className="form-tag">Contacto comercial</span>
-        <h2>Coordina una demo y recibi una propuesta.</h2>
+        <h2>Coordiná una demo y recibí una propuesta.</h2>
         <p>Contanos tu rubro, cantidad de puestos y objetivo comercial.</p>
       </div>
 
@@ -62,12 +62,12 @@ function ContactForm() {
       />
       <input
         type="tel"
-        placeholder="Telefono o WhatsApp"
+        placeholder="Teléfono o WhatsApp"
         value={formData.phone}
         onChange={(event) => setFormData({ ...formData, phone: event.target.value })}
       />
       <textarea
-        placeholder="Ejemplo: tengo una carniceria con dos cajas, quiero controlar stock, precios y caja diaria, y conocer el costo de implementacion."
+        placeholder="Ejemplo: tengo una carnicería con dos cajas, quiero controlar stock, precios y caja diaria, y conocer el costo de implementación."
         value={formData.message}
         onChange={(event) => setFormData({ ...formData, message: event.target.value })}
         required

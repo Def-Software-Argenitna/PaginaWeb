@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 export default function EliminacionDatosApp() {
   useEffect(() => {
     const previousTitle = document.title;
-    document.title = 'Eliminacion de Datos | MeatManager Mobile';
+    document.title = 'Eliminación de Datos | MeatManager Mobile';
 
     let robots = document.querySelector('meta[name="robots"]');
     const hadRobots = Boolean(robots);

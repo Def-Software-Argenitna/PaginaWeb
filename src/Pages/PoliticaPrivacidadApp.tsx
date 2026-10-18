@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 export default function PoliticaPrivacidadApp() {
   useEffect(() => {
     const previousTitle = document.title;
-    document.title = 'Politica de Privacidad | MeatManager Mobile';
+    document.title = 'Política de Privacidad | MeatManager Mobile';
 
     let robots = document.querySelector('meta[name="robots"]');
     const hadRobots = Boolean(robots);

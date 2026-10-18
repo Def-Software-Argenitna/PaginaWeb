@@ -16,22 +16,9 @@ const AtmosphericBackground: FC = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useEffect(() => {
-    const handleReplay = () => {
-      const video = document.getElementById('bg-video') as HTMLVideoElement;
-      if (video) {
-        video.currentTime = 0;
-        video.play();
-      }
-    };
-
-    window.addEventListener('replay-background-video', handleReplay);
-    return () => window.removeEventListener('replay-background-video', handleReplay);
-  }, []);
-
   return (
     <div className="atmospheric-container">
-      {/* Background Video Wrapper */}
+      {/* Fondo de marca */}
       <div style={{
         position: 'absolute',
         width: '100%',
@@ -48,12 +35,12 @@ const AtmosphericBackground: FC = () => {
           style={{ transform: `translate3d(${(50 - mousePos.x) * 0.16}px, ${(50 - mousePos.y) * 0.16}px, 0)` }}
         >
           <div className="bg-camera">
-            {/* Video principal a pantalla completa */}
-            <video
-              id="bg-video"
-              autoPlay
-              muted
-              playsInline
+            {/* Ultimo cuadro del video de marca (80 KB en WebP en lugar de bajar los 7 MB del video) */}
+            <img
+              src="/bg-cluster.webp"
+              alt=""
+              aria-hidden="true"
+              decoding="async"
               style={{
                 position: 'absolute',
                 top: 0,
@@ -65,9 +52,7 @@ const AtmosphericBackground: FC = () => {
                 opacity: 0.5,
                 zIndex: 0
               }}
-            >
-              <source src="/def-software-video-3.mp4" type="video/mp4" />
-            </video>
+            />
           </div>
         </div>
       </div>

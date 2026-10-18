@@ -46,7 +46,9 @@ export default function TypewriterHero({ active = true }: { active?: boolean }) 
 
   return (
     <div className="typewriter-container" style={{ minHeight: '240px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <h1 style={{ 
+      {/* El H1 real es fijo (lo leen Google y los lectores de pantalla); el texto animado es decorativo */}
+      <h1 className="sr-only">DEF Software: software de gestión para comercios</h1>
+      <p aria-hidden="true" style={{
         fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
         fontWeight: 700, 
         lineHeight: 1.1,
@@ -63,7 +65,7 @@ export default function TypewriterHero({ active = true }: { active?: boolean }) 
           animation: 'blink 1s step-end infinite',
           marginLeft: '4px'
         }}>|</span>
-      </h1>
+      </p>
       <style>{`
         @keyframes blink {
           from, to { opacity: 1; }

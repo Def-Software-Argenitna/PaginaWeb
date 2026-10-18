@@ -34,7 +34,7 @@ const PricingPlans = [
   {
     name: 'Premium',
     price: 'Desde $...',
-    desc: 'Para empresas que buscan integración total y gestión multisuccursal.',
+    desc: 'Para empresas que buscan integración total y gestión multisucursal.',
     features: [
       'Acceso a la API para integraciones',
       'Facturación masiva vía Web',

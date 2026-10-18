@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import './Css/Modern.css';
+import { applyPageMeta } from './pageMeta';
 import AtmosphericBackground from './Components/AtmosphericBackground';
 import Home from './Pages/Home';
 import Contacto from './Pages/Contacto';
@@ -69,9 +70,78 @@ function Logo({ height = '40px' }: { height?: string }) {
   );
 }
 
+interface NavEntry {
+  title: string;
+  description: string;
+  to?: string;
+  /** Todavia no disponible: se muestra sin link y con la etiqueta "Próximamente" */
+  soon?: boolean;
+}
+
+const NAV: { label: string; items: NavEntry[] }[] = [
+  {
+    label: 'Productos',
+    items: [
+      { title: 'Punto de venta', description: 'Software de gestión comercial', to: '/plataforma' },
+      { title: 'KioskManager', description: 'App móvil para gestión de inventario', to: '/#kioskmanager' },
+      { title: 'MeatManager', description: 'Plataforma 100% web para carnicerías', to: '/#meatmanager' },
+    ],
+  },
+  {
+    label: 'Integraciones',
+    items: [
+      { title: 'Pagos', description: 'Tarjetas de débito y crédito, Mercado Pago, Cuenta DNI y más', soon: true },
+      { title: 'Catálogo de licencias', description: 'Explora y gestiona tus suscripciones', to: '/catalogo-licencias' },
+    ],
+  },
+  {
+    label: 'Adicionales',
+    items: [
+      { title: 'Módulo móvil', description: 'Gestión en movimiento', to: '/contacto' },
+      { title: 'Monitor de cocina', description: 'Control de pedidos en tiempo real', to: '/contacto' },
+      { title: 'Facturación electrónica', description: 'Comprobantes electrónicos desde el punto de venta', soon: true },
+    ],
+  },
+];
+
+function NavItem({ item }: { item: NavEntry }) {
+  const body = (
+    <>
+      <span>
+        {item.title}
+        {item.soon && <em className="soon-badge">Próximamente</em>}
+      </span>
+      <span>{item.description}</span>
+    </>
+  );
+  if (item.soon || !item.to) {
+    return <div className="dropdown-item is-soon" aria-disabled="true">{body}</div>;
+  }
+  return <Link to={item.to} className="dropdown-item">{body}</Link>;
+}
+
 function App() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const isHiddenLegalRoute = pathname.startsWith('/app/');
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // el menu de celular se cierra al navegar
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname, hash]);
+
+  // las paginas legales de la app (/app/...) ponen su propio titulo
+  useEffect(() => {
+    if (!isHiddenLegalRoute) applyPageMeta(pathname);
+  }, [pathname, isHiddenLegalRoute]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('menu-open', menuOpen);
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuOpen(false); };
+    addEventListener('keydown', onKey);
+    return () => removeEventListener('keydown', onKey);
+  }, [menuOpen]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -113,92 +183,59 @@ function App() {
                 if (window.location.pathname === '/') {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
-                // Replay video
-                window.dispatchEvent(new CustomEvent('replay-background-video'));
               }}
+              aria-label="DEF Software, inicio"
               style={{
                 textDecoration: 'none',
               }}
             >
               <Logo />
             </Link>
-            <nav className="nav-links">
-              <div className="nav-item-dropdown">
-                <div className="dropdown-trigger">
-                  <Link to="/">Productos</Link>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <nav className="nav-links" aria-label="Principal">
+              {NAV.map((group) => (
+                <div className="nav-item-dropdown" key={group.label}>
+                  <button type="button" className="dropdown-trigger" aria-haspopup="true">
+                    <span>{group.label}</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  </button>
+                  <div className="dropdown-menu">
+                    {group.items.map((item) => <NavItem key={item.title} item={item} />)}
+                  </div>
                 </div>
-                <div className="dropdown-menu">
-                  <Link to="/plataforma" className="dropdown-item">
-                    <span>Punto de Venta</span>
-                    <span>Software de gestión comercial</span>
-                  </Link>
-                  <Link to="/#kioskmanager" className="dropdown-item">
-                    <span>KioskManager</span>
-                    <span>App móvil para gestión de inventario</span>
-                  </Link>
-                  <Link to="/#meatmanager" className="dropdown-item">
-                    <span>MeatManager</span>
-                    <span>Plataforma 100% Web para carnicerías</span>
-                  </Link>
-                </div>
-              </div>
+              ))}
 
-
-
-              <div className="nav-item-dropdown">
-                <div className="dropdown-trigger">
-                  <Link to="/">Integraciones</Link>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </div>
-                <div className="dropdown-menu">
-                  <Link to="/" className="dropdown-item">
-                    <span>Pagos (PROXIMAMENTE!!!)</span>
-                    <span>Tarjetas de débito/crédito, Mercado Pago, Cuenta DNI, etc</span>
-                  </Link>
-                  <Link to="/catalogo-licencias" className="dropdown-item">
-                    <span>Catalogo de Licencias</span>
-                    <span>Explora y gestiona tus suscripciones</span>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="nav-item-dropdown">
-                <div className="dropdown-trigger">
-                  <Link to="/">Adicionales</Link>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </div>
-                <div className="dropdown-menu">
-                  <Link to="/" className="dropdown-item">
-                    <span>Módulo Móvil</span>
-                    <span>Gestión en movimiento</span>
-                  </Link>
-                  <Link to="/" className="dropdown-item">
-                    <span>Monitor de Cocina</span>
-                    <span>Control de pedidos en tiempo real</span>
-                  </Link>
-                  <Link to="/" className="dropdown-item">
-                    <span>Facturación Electrónica (PROXIMAMENTE!!!)</span>
-                  </Link>
-                </div>
-              </div>
-
-              <Link to="/soporte-tecnico" style={{ color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 500, padding: '0.25rem 0', transition: 'color 0.2s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-cyan)')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-main)')}
-              >
-                Soporte Técnico
+              <Link to="/soporte-tecnico" className="nav-plain-link">
+                Soporte técnico
               </Link>
-
-
-
-
             </nav>
             <div className="auth-buttons">
               <Link to="/login" className="modern-btn nav-btn">
                 Ingresar
               </Link>
+              <button
+                type="button"
+                className={`nav-burger${menuOpen ? ' is-open' : ''}`}
+                aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                aria-expanded={menuOpen}
+                aria-controls="mobile-menu"
+                onClick={() => setMenuOpen((open) => !open)}
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
             </div>
+          </div>
+
+          <div id="mobile-menu" className={`mobile-menu${menuOpen ? ' is-open' : ''}`} hidden={!menuOpen}>
+            {NAV.map((group) => (
+              <div className="mobile-menu__group" key={group.label}>
+                <p className="mobile-menu__label">{group.label}</p>
+                {group.items.map((item) => <NavItem key={item.title} item={item} />)}
+              </div>
+            ))}
+            <Link to="/soporte-tecnico" className="mobile-menu__plain">Soporte técnico</Link>
+            <Link to="/contacto" className="modern-btn main-btn mobile-menu__cta">Solicitar asesoramiento</Link>
           </div>
         </header>
       )}
@@ -262,7 +299,8 @@ function App() {
               <h4>Producto</h4>
               <div className="footer-links">
                 <Link to="/plataforma">Plataforma</Link>
-                <Link to="/contacto">Descargar</Link>
+                <Link to="/#software">Software</Link>
+                <Link to="/catalogo-licencias">Catálogo de licencias</Link>
               </div>
             </div>
 
