@@ -47,7 +47,6 @@ const ProductCatalog: Product[] = [
       '/kioskmanager/articulos.webp',
       '/kioskmanager/promociones.webp',
       '/kioskmanager/usuarios.webp',
-      '/kioskmanager_mockup.webp',
     ],
   },
   {
