@@ -41,7 +41,14 @@ const ProductCatalog: Product[] = [
     ],
     segment: 'Retail / kioscos',
     repoUrl: 'https://github.com/Def-Software-Argenitna/KioskManager',
-    images: ['/kioskmanager_mockup.webp'],
+    images: [
+      '/kioskmanager/dashboard.webp',
+      '/kioskmanager/ventas.webp',
+      '/kioskmanager/articulos.webp',
+      '/kioskmanager/promociones.webp',
+      '/kioskmanager/usuarios.webp',
+      '/kioskmanager_mockup.webp',
+    ],
   },
   {
     name: 'MeatManager',
@@ -221,7 +228,7 @@ const BusinessOutcomes: BusinessOutcome[] = [
 ];
 
 /** Miniatura liviana (320px) de una captura; las capturas sin miniatura se usan tal cual */
-const thumbOf = (src: string) => src.replace(/\/meatmanager\/([^/]+)\.webp$/, '/meatmanager/thumb-$1.webp');
+const thumbOf = (src: string) => src.replace(/\/(meatmanager|kioskmanager)\/([^/]+)\.webp$/, '/$1/thumb-$2.webp');
 
 /* ── Lightbox ─────────────────────────────────────────────────────────── */
 function Lightbox({
