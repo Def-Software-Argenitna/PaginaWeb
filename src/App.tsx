@@ -8,8 +8,6 @@ import Contacto from './Pages/Contacto';
 import SobreNosotros from './Pages/SobreNosotros';
 import Plataforma from './Pages/Plataforma';
 import CentroAyuda from './Pages/CentroAyuda';
-import EstadoSistema from './Pages/EstadoSistema';
-import Documentacion from './Pages/Documentacion';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import CatalogoLicencias from './Pages/CatalogoLicencias';
@@ -246,8 +244,6 @@ function App() {
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/centro-ayuda" element={<CentroAyuda />} />
-        <Route path="/estado-sistema" element={<EstadoSistema />} />
-        <Route path="/documentacion" element={<Documentacion />} />
         <Route path="/login" element={<Login />} />
         <Route path="/soporte-tecnico" element={<SoporteTecnico />} />
         <Route path="/app/privacy/meatmanager-mobile" element={<PoliticaPrivacidadApp />} />
@@ -314,8 +310,6 @@ function App() {
               <h4>Soporte</h4>
               <div className="footer-links">
                 <Link to="/centro-ayuda">Centro de ayuda</Link>
-                <Link to="/documentacion">Documentación API</Link>
-                <Link to="/estado-sistema">Estado del sistema</Link>
                 <Link to="/soporte-tecnico">Soporte Técnico</Link>
               </div>
             </div>

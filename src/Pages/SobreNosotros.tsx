@@ -13,8 +13,7 @@
       <section id="sobre-nosotros" className="new-info-section" style={{ paddingTop: '2rem' }}>
         <div className="glass-panel reveal" style={{ padding: '3rem', textAlign: 'center', marginBottom: '4rem' }}>
           <p style={{ fontSize: '1.15rem', color: 'var(--text-dim)', lineHeight: 1.8, maxWidth: '800px', margin: '0 auto' }}>
-            Fundada en 2024, DEF Software nació de la necesidad de simplificar la facturación y el inventario para equipos ágiles, evitando planillas eternas. Hoy procesamos millones de transacciones semanales, brindando sistemas rápidos, respaldos ininterrumpibles y una expansión fluida para cualquier tamaño de punto de venta.
-          </p>
+            Fundada en 2024, DEF Software nació de la necesidad de simplificar la facturación y el inventario para equipos ágiles, evitando planillas eternas.          </p>
         </div>
       </section>
     </main>

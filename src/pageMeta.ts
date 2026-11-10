@@ -34,14 +34,6 @@ const PAGES: Record<string, PageMeta> = {
     title: `Centro de ayuda | ${BRAND}`,
     description: 'Respuestas a las preguntas frecuentes sobre nuestros sistemas de gestión.',
   },
-  '/estado-sistema': {
-    title: `Estado del sistema | ${BRAND}`,
-    description: 'Estado de los servicios de DEF Software.',
-  },
-  '/documentacion': {
-    title: `Documentación API | ${BRAND}`,
-    description: 'Documentación para integrar DEF Software con tus propias plataformas.',
-  },
   '/soporte-tecnico': {
     title: `Soporte técnico | ${BRAND}`,
     description: 'Abrí un ticket de soporte y seguí su estado.',
