@@ -26,10 +26,6 @@ const PAGES: Record<string, PageMeta> = {
     title: `Sobre nosotros | ${BRAND}`,
     description: 'Quiénes somos y cómo desarrollamos software de gestión para comercios en Argentina.',
   },
-  '/casos-exito': {
-    title: `Casos de éxito | ${BRAND}`,
-    description: 'Comercios que ordenaron su operación y venden mejor con DEF Software.',
-  },
   '/contacto': {
     title: `Contacto | ${BRAND}`,
     description: 'Coordiná una demo y recibí una propuesta para tu comercio.',

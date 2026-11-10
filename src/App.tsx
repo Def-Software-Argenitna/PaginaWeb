@@ -7,7 +7,6 @@ import Home from './Pages/Home';
 import Contacto from './Pages/Contacto';
 import SobreNosotros from './Pages/SobreNosotros';
 import Plataforma from './Pages/Plataforma';
-import CasosExito from './Pages/CasosExito';
 import CentroAyuda from './Pages/CentroAyuda';
 import EstadoSistema from './Pages/EstadoSistema';
 import Documentacion from './Pages/Documentacion';
@@ -245,7 +244,6 @@ function App() {
         <Route path="/plataforma" element={<Plataforma />} />
         <Route path="/catalogo-licencias" element={<CatalogoLicencias />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
-        <Route path="/casos-exito" element={<CasosExito />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/centro-ayuda" element={<CentroAyuda />} />
         <Route path="/estado-sistema" element={<EstadoSistema />} />
@@ -308,7 +306,6 @@ function App() {
               <h4>Compañía</h4>
               <div className="footer-links">
                 <Link to="/sobre-nosotros">Sobre nosotros</Link>
-                <Link to="/casos-exito">Casos de éxito</Link>
                 <Link to="/contacto">Contacto</Link>
               </div>
             </div>
